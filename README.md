@@ -1,12 +1,18 @@
-# **GAME DESIGN DOCUMENT**
+# **LAST NIGHTFALL**
 
-## **JUEGOS EN RED**
+## **Dos supervivientes tendrán que enfrentarse a los peligros de la noche. Pasando de nivel y mejorando sus armas o cambiándolas por otras mejores para superar las adversidades**
 
-## **GRADO DE DISEÑO Y DESARROLLO DE VIDEOJUEGOS**
+Jorge Galiano García correo: [j.galiano.2018@alumnos.urjc.es](mailto:j.galiano.2018@alumnos.urjc.es) github: Jorgee-sk
 
-Jorge Galiano García, Darío Martín Redondo, Pablo Romero Hernández, Daniel Romero Hernández.
+Darío Martín Redondo correo: [d.martinr.2018@alumnos.urjc.es](mailto:d.martinr.2018@alumnos.urjc.es) github: Fyrlian
 
-![](RackMultipart20201021-4-ql5cse_html_768a528ad3a49d0d.png)
+Pablo Romero Hernández correo: [p.romero.2018@alumnos.urjc.es](mailto:p.romero.2018@alumnos.urjc.es) github: DanielinR
+
+Daniel Romero Hernández correo: [d.romeroh.2018@alumnos.urjc.es](mailto:d.romeroh.2018@alumnos.urjc.es)
+
+Github: Kalomano
+
+![](RackMultipart20201021-4-3lj6h4_html_768a528ad3a49d0d.png)
 
 ## **1.-Cambios**
 
@@ -324,7 +330,7 @@ Afectará a los enemigos y los jugadores, sobre todo en los personajes cuando re
 
 **4.1 Menú principal**
 
-![](RackMultipart20201021-4-ql5cse_html_b95acb92579df43d.png)
+![](RackMultipart20201021-4-3lj6h4_html_b95acb92579df43d.png)
 
 - Título: Donde aparecerá el nombre de nuestro videojuego.
 - Inicio: Botón para comenzar el juego
@@ -335,7 +341,7 @@ Afectará a los enemigos y los jugadores, sobre todo en los personajes cuando re
 
 **4.2 NIVEL**
 
-![](RackMultipart20201021-4-ql5cse_html_b503c7309cf449e.png)
+![](RackMultipart20201021-4-3lj6h4_html_b503c7309cf449e.png)
 
 - Nivel y oleada: Podremos observar en el interfaz el nivel en el que nos encontramos de todo el juego y las oleadas que han pasado.
 - Intentos: Cuantos intentos llevamos en la misma partida (se resetean al acabar el juego o al cerrarlo).
@@ -345,7 +351,7 @@ Afectará a los enemigos y los jugadores, sobre todo en los personajes cuando re
 
 **4.3 CONFIGURACION**
 
-![](RackMultipart20201021-4-ql5cse_html_b549d054ed592436.png)
+![](RackMultipart20201021-4-3lj6h4_html_b549d054ed592436.png)
 
 - Sonido: Botón que nos permite ajustarlo a nuestro gusto, tanto sonidos del juego como música.
 - Modo daltónico: Botón que cambia la disposición de los colores del juego para ajustarlo en caso de problemas visuales con los colores
@@ -354,7 +360,7 @@ Afectará a los enemigos y los jugadores, sobre todo en los personajes cuando re
 
 **4.4 MENU DE PAUSA**
 
-![](RackMultipart20201021-4-ql5cse_html_31ef41548610d274.png)
+![](RackMultipart20201021-4-3lj6h4_html_31ef41548610d274.png)
 
 - Vida: Vida de los jugadores.
 - Armas: Armas que hayan recogido y estén disponibles para cada jugador en el momento de pausa del juego.
