@@ -101,7 +101,7 @@ Glock: Pistola simple
 - Daño a cuerpo: 15
 - Cargador: Infinito
 
-Magnum: Revolver
+Mangum: Revolver
 
 - Disparo: único (una bala por click)
 - Daño a cabeza: 70
