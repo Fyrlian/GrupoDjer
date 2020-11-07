@@ -21,7 +21,7 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
+            gravity: { y: 400 },
             debug: false
         }
     },
@@ -56,6 +56,24 @@ function preload ()
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
     this.load.spritesheet('mainch', 'assets/mainch.png', { frameWidth: 100, frameHeight: 100 });
     this.load.spritesheet('mainchizq', 'assets/mainchizq.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('escopder', 'assets/escopder.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('escopizq', 'assets/escopizq.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('glockizq', 'assets/glockizq.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('glockder', 'assets/glockder.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('v2der', 'assets/v2der.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('v2izq', 'assets/v2izq.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('mangumder', 'assets/mangumder.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('mangumizq', 'assets/mangumder.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('francoder', 'assets/francoder.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('francoizq', 'assets/francoizq.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('uzider', 'assets/uzider.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('uziizq', 'assets/uziizq.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('m4der', 'assets/m4der.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('m4izq', 'assets/m4izq.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('akder', 'assets/akder.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('akizq', 'assets/akizq.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('ligder', 'assets/ligder.png', { frameWidth: 100, frameHeight: 100 });
+    this.load.spritesheet('ligizq', 'assets/ligizq.png', { frameWidth: 100, frameHeight: 100 });
 }
 
 function create ()
@@ -87,9 +105,17 @@ function create ()
     player.setCollideWorldBounds(true);
 
     //  Our player animations, turning, walking left and walking right.
+    // ANIMACIONES DE ANDAR
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('mainchizq', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('mainch', { start: 0, end: 3 }),
         frameRate: 5,
         repeat: -1
     });
@@ -101,10 +127,388 @@ function create ()
     });
 
     this.anims.create({
-        key: 'right',
-        frames: this.anims.generateFrameNumbers('mainch', { start: 0, end: 3 }),
+        key: 'turnizq',
+        frames: [ { key: 'mainchizq', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'saltoturnizq',
+        frames: [ { key: 'mainchizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'saltoturnder',
+        frames: [ { key: 'mainch', frame: 2 } ],
+        frameRate: 5
+    });
+    // ANIMACIONES DE GLOCK
+    this.anims.create({
+        key: 'glockleft',
+        frames: this.anims.generateFrameNumbers('glockizq', { start: 0, end: 3 }),
         frameRate: 5,
         repeat: -1
+    });
+
+    this.anims.create({
+        key: 'glockright',
+        frames: this.anims.generateFrameNumbers('glockder', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'glockturn',
+        frames: [ { key: 'glockder', frame: 1 } ],
+        frameRate: 5
+    });
+
+    this.anims.create({
+        key: 'glockturnizq',
+        frames: [ { key: 'glockizq', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'glocksaltoturnizq',
+        frames: [ { key: 'glockizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'glocksaltoturnder',
+        frames: [ { key: 'glockder', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'glockdisparoglckizq',
+        frames: [ { key: 'glockizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'glockdisparoglockder',
+        frames: [ { key: 'glockder', frame: 2 } ],
+        frameRate: 5
+    });
+// ANIMACIONES MANGUM
+    this.anims.create({
+        key: 'mangumleft',
+        frames: this.anims.generateFrameNumbers('mangumizq', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'mangumright',
+        frames: this.anims.generateFrameNumbers('mangumder', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'mangumturn',
+        frames: [ { key: 'mangumder', frame: 1 } ],
+        frameRate: 5
+    });
+
+    this.anims.create({
+        key: 'mangumturnizq',
+        frames: [ { key: 'mangumizq', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'mangumsaltoturnizq',
+        frames: [ { key: 'mangumizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'mangumsaltoturnder',
+        frames: [ { key: 'mangumder', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'mangumdisparoglckizq',
+        frames: [ { key: 'mangumizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'mangumdisparoglockder',
+        frames: [ { key: 'mangumder', frame: 2 } ],
+        frameRate: 5
+    });
+    // ANIMACIONES ESCOP
+
+    this.anims.create({
+        key: 'escopleft',
+        frames: this.anims.generateFrameNumbers('escopizq', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'escopright',
+        frames: this.anims.generateFrameNumbers('escopder', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'escopturn',
+        frames: [ { key: 'mangumder', frame: 1 } ],
+        frameRate: 5
+    });
+
+    this.anims.create({
+        key: 'escopturnizq',
+        frames: [ { key: 'mangumizq', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'escopsaltoturnizq',
+        frames: [ { key: 'mangumizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'escopsaltoturnder',
+        frames: [ { key: 'mangumder', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'escopdisparoglckizq',
+        frames: [ { key: 'mangumizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'escopdisparoglockder',
+        frames: [ { key: 'mangumder', frame: 2 } ],
+        frameRate: 5
+    });
+    // ANIMACIONES AK
+    this.anims.create({
+        key: 'akleft',
+        frames: this.anims.generateFrameNumbers('akleft', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'akright',
+        frames: this.anims.generateFrameNumbers('akder', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'akturn',
+        frames: [ { key: 'akder', frame: 1 } ],
+        frameRate: 5
+    });
+
+    this.anims.create({
+        key: 'akturnizq',
+        frames: [ { key: 'akizq', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'aksaltoturnizq',
+        frames: [ { key: 'akizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'aksaltoturnder',
+        frames: [ { key: 'akder', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'akdisparoglckizq',
+        frames: [ { key: 'akizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'akdisparoglockder',
+        frames: [ { key: 'akder', frame: 2 } ],
+        frameRate: 5
+    });
+    //ANIMACIONES M4
+    this.anims.create({
+        key: 'm4left',
+        frames: this.anims.generateFrameNumbers('m4izq', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'm4right',
+        frames: this.anims.generateFrameNumbers('m4der', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'm4turn',
+        frames: [ { key: 'm4der', frame: 1 } ],
+        frameRate: 5
+    });
+
+    this.anims.create({
+        key: 'm4turnizq',
+        frames: [ { key: 'm4izq', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'm4saltoturnizq',
+        frames: [ { key: 'm4izq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'm4saltoturnder',
+        frames: [ { key: 'm4der', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'm4disparoglckizq',
+        frames: [ { key: 'm4izq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'm4disparoglockder',
+        frames: [ { key: 'm4der', frame: 2 } ],
+        frameRate: 5
+    });
+    //ANIMACIONES UZI
+    this.anims.create({
+        key: 'uzileft',
+        frames: this.anims.generateFrameNumbers('uziizq', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'uziright',
+        frames: this.anims.generateFrameNumbers('uzider', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'uziturn',
+        frames: [ { key: 'uzider', frame: 1 } ],
+        frameRate: 5
+    });
+
+    this.anims.create({
+        key: 'uziturnizq',
+        frames: [ { key: 'uziizq', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'uzisaltoturnizq',
+        frames: [ { key: 'uziizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'uzisaltoturnder',
+        frames: [ { key: 'uzider', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'uzidisparoglckizq',
+        frames: [ { key: 'uziizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'uzidisparoglockder',
+        frames: [ { key: 'uzider', frame: 2 } ],
+        frameRate: 5
+    });
+    //ANIMACIONES LIG
+    this.anims.create({
+        key: 'ligleft',
+        frames: this.anims.generateFrameNumbers('ligizq', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'ligright',
+        frames: this.anims.generateFrameNumbers('ligder', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'ligturn',
+        frames: [ { key: 'ligder', frame: 1 } ],
+        frameRate: 5
+    });
+
+    this.anims.create({
+        key: 'ligturnizq',
+        frames: [ { key: 'ligizq', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'ligsaltoturnizq',
+        frames: [ { key: 'ligizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'ligsaltoturnder',
+        frames: [ { key: 'ligder', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'ligdisparoglckizq',
+        frames: [ { key: 'ligizq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'ligdisparoglockder',
+        frames: [ { key: 'ligder', frame: 2 } ],
+        frameRate: 5
+    });
+    //ANIMACIONES V2
+    this.anims.create({
+        key: 'v2left',
+        frames: this.anims.generateFrameNumbers('v2izq', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'v2right',
+        frames: this.anims.generateFrameNumbers('v2der', { start: 0, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'v2turn',
+        frames: [ { key: 'v2der', frame: 1 } ],
+        frameRate: 5
+    });
+
+    this.anims.create({
+        key: 'v2turnizq',
+        frames: [ { key: 'v2izq', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'v2saltoturnizq',
+        frames: [ { key: 'v2izq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'v2saltoturnder',
+        frames: [ { key: 'v2der', frame: 2 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'v2disparoglckizq',
+        frames: [ { key: 'v2izq', frame: 1 } ],
+        frameRate: 5
+    });
+    this.anims.create({
+        key: 'v2disparoglockder',
+        frames: [ { key: 'v2der', frame: 2 } ],
+        frameRate: 5
     });
 
     //  Input Events
@@ -147,13 +551,13 @@ function update ()
         return;
     }
 
-    if (cursors.left.isDown)
+    if (cursors.left.isDown && player.body.touching.down)
     {
         player.setVelocityX(-160);
 
         player.anims.play('left', true);
     }
-    else if (cursors.right.isDown)
+    else if (cursors.right.isDown && player.body.touching.down)
     {
         player.setVelocityX(160);
 
@@ -169,6 +573,18 @@ function update ()
     {
         player.setVelocityY(-200);
     }
+    if (!player.body.touching.down && cursors.left.isDown)
+    {
+        player.anims.play('saltoturnizq', true);
+        player.setVelocityX(-160);
+    }
+    if (!player.body.touching.down && cursors.right.isDown)
+    {
+        player.anims.play('saltoturnder', true);
+        
+        player.setVelocityX(160);
+    }
+  
 }
 
 function collectStar (player, star)
