@@ -20,7 +20,7 @@ Daniel Romero Hernández correo: [d.romeroh.2018@alumnos.urjc.es](mailto:d.romer
 
 ## **2.- Introducción**
 
-Este es el GDD (game design document) del videojuego last nightfall. En este documento se plantea dejar por escrito los principales elementos que conformarán nuestro videojuego en los diferentes ámbitos por los que se compone. Utilizando para su implementación Phaser 3 y buscando ser un videojuego cooperativo.
+es el GDD (game design document) del videojuego last nightfall. En este documento se plantea dejar por escrito los principales elementos que conformarán nuestro videojuego en los diferentes ámbitos por los que se compone. Utilizando para su implementación Phaser 3 y buscando ser un videojuego cooperativo.
 
 **2.1 Concepto del juego**
 
