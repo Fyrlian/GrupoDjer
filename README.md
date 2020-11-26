@@ -354,7 +354,6 @@ Afectará a los enemigos y los jugadores, sobre todo en los personajes cuando re
 ![](RackMultipart20201021-4-3lj6h4_html_b549d054ed592436.png)
 
 - Sonido: Botón que nos permite ajustarlo a nuestro gusto, tanto sonidos del juego como música.
-- Modo daltónico: Botón que cambia la disposición de los colores del juego para ajustarlo en caso de problemas visuales con los colores
 - Volver: Botón para retroceder al menú principal
 - Fondo: Imagen de fondo del propio menú
 
