@@ -27,13 +27,7 @@ class Scene2 extends Phaser.Scene {
         var bConfig = this.add.graphics('botonConfiguracion').setInteractive();
         var bControl = this.add.graphics('botonControles').setInteractive();
         var bCredit = this.add.graphics('botonCreditos').setInteractive();
-    
-        
-  
 
-       
-        
-        
         
 
         //BOTON PARA JUGAR 1 JUGADOR
@@ -116,7 +110,7 @@ class Scene2 extends Phaser.Scene {
 
 
         this.gameButtonConf.on('pointerdown', function (pointer) {
-            this.scene.start('sceneGame');
+            this.scene.start('sceneOptions');
         }.bind(this));
  
         this.gameButtonConf.on('pointerover', function (event) {
