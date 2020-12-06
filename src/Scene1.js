@@ -8,11 +8,13 @@ class Scene1 extends Phaser.Scene {
    
    
     //IMAGENES DEL JUEGO
-      this.load.image('sueloMapa','assets/sueloMapa.png')
-      this.load.image('suelo','assets/suelo.png')
-      this.load.image('sueloMedio','assets/sueloMedio.png')
-      this.load.image('sueloMedio2','assets/sueloMedio2.png')
-      this.load.image('fondo','assets/Nivel 1.png')
+      this.load.image('sueloMapa','assets/sueloMapa.png');
+      this.load.image('suelo','assets/suelo.png');
+      this.load.image('sueloMedio','assets/sueloMedio.png');
+      this.load.image('sueloMedio2','assets/sueloMedio2.png');
+      this.load.image('escalon','assets/escalon.png');
+      this.load.image('escalonGrande','assets/escalonGrande.png');
+      this.load.image('fondo','assets/Nivel 1.png');
       this.load.image('sky', 'assets/sky.png');
       this.load.image('ground', 'assets/platform.png');
       this.load.image('star', 'assets/star.png');
@@ -21,7 +23,7 @@ class Scene1 extends Phaser.Scene {
       this.load.image('botonGrande','assets/botonGrande.png');
       this.load.image('botonPeque','assets/botonPeque.png');
       this.load.image('fondoMenu','assets/fondoMenu.png');
-
+      this.load.image('controles','assets/Controles.png');
       //SPRITES DEL JUEGO
       this.load.spritesheet('zombieRight','assets/zombieRight.png',{ frameWidth: 30, frameHeight: 40});
       this.load.spritesheet('zombieLeft','assets/zombieLeft.png',{ frameWidth: 30, frameHeight: 40});
@@ -136,3 +138,4 @@ ready () {
 
 }
 } 
+
