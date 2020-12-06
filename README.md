@@ -310,16 +310,15 @@ Afectará a los enemigos y los jugadores, sobre todo en los personajes cuando re
 
 **Movimiento:**
 
-- A-\&gt; Desplazamiento a la izquierda.
-- D-\&gt;Desplazamiento a la derecha.
-- Espacio-\&gt; Salto (doble espacio, doble salto).
-- Shift-\&gt;Dash
+- A; Desplazamiento a la izquierda.
+- D;Desplazamiento a la derecha.
+- W; Salto (doble espacio, doble salto).
+- Shift;Dash
 
 **Armas:**
 
-- Ratón-\&gt;Apuntar
-- R-\&gt;Recargar
-- Click izquierdo-\&gt;Disparar
+- R;Recargar
+- Espacio;Disparar
 
 **Extras:**
 
