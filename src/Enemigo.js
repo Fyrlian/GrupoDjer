@@ -8,8 +8,6 @@ class Enemigo extends Phaser.GameObjects.Sprite{
 
         scene.enemigos.add(this)
 
-        scene.enemigos.add(this);
-
     }
 
 
@@ -58,4 +56,5 @@ class Enemigo extends Phaser.GameObjects.Sprite{
 
     }
 }     
+     
      
