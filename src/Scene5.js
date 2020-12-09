@@ -11,9 +11,9 @@ class Scene5 extends Phaser.Scene {
     create(){
 
 
-      this.creditsText = this.add.text(0, 0, 'Creditos', { fontSize: '52px', fill: '#fff' });
-      this.hechoPor = this.add.text(0, 0, 'Creado por:', { fontSize: '26px', fill: '#fff' });
-      this.Jorge = this.add.text(0, 0, 'Jorge Galiano Garcia', { fontSize: '26px', fill: '#fff' });
+      this.creditsText = this.add.text(0, 0, 'Credits', { fontSize: '52px', fill: '#fff' });
+      this.hechoPor = this.add.text(0, 0, 'Created by:', { fontSize: '26px', fill: '#fff' });
+      this.Jorge = this.add.text(0, 0, 'Jorge Galiano García', { fontSize: '26px', fill: '#fff' });
       this.Pablo = this.add.text(0, 0, 'Pablo Romero Hernández', { fontSize: '26px', fill: '#fff' });
       this.Dani = this.add.text(0, 0, 'Daniel Romero Hernández', { fontSize: '26px', fill: '#fff' });
       this.zone = this.add.zone(config.width/2, config.height/2, config.width/2, config.height/2);
@@ -72,7 +72,6 @@ class Scene5 extends Phaser.Scene {
 
         this.JorgeTween = this.tweens.add({
           targets: this.Jorge,
-       //   y: 400,
        y: config.height/2,
           ease: 'Power1',
           duration: 8000,
