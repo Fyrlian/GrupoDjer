@@ -19,7 +19,7 @@ class Scene1 extends Phaser.Scene {
       this.load.image('ground', 'assets/platform.png');
       this.load.image('star', 'assets/star.png');
       this.load.image('bomb', 'assets/bomb.png');
-      this.load.image('bullet', 'assets/star.png');
+      this.load.image('botonPausa','assets/botonPausa.png');
       this.load.image('botonGrande','assets/botonGrande.png');
       this.load.image('botonPeque','assets/botonPeque.png');
       this.load.image('fondoMenu','assets/fondoMenu.png');
@@ -34,18 +34,30 @@ class Scene1 extends Phaser.Scene {
       this.load.image('opciones','assets/fondoConfig.png');
       this.load.image('botonAtrasNotOver','assets/botonAtrasGris.png');
       this.load.image('botonAtrasOver','assets/botonAtrasBlanco.png');
+      this.load.image('botonExitNotOver','assets/botonAtrasGris.png');
+      this.load.image('botonExitOver','assets/botonAtrasBlanco.png');
       this.load.image('botonEnabled','assets/botonesEnabled.png');
       this.load.image('botonDisabled','assets/botonDisabled.png');
+      this.load.image('fondoPausa','assets/menuPausa.png');
+ 
+      //fuentes
+      this.load.bitmapFont('fuentes','assets/font.png','assets/font.fnt');
+
 
       //SPRITES DEL JUEGO
       this.load.spritesheet('zombieRight','assets/zombieRight.png',{ frameWidth: 30, frameHeight: 40});
       this.load.spritesheet('zombieLeft','assets/zombieLeft.png',{ frameWidth: 30, frameHeight: 40});
-              
 
+      this.load.spritesheet('balaLeft','assets/balaIzq.png',{ frameWidth: 16, frameHeight: 8});            
+      this.load.spritesheet('balaRight','assets/bala.png',{ frameWidth: 16, frameHeight: 8});
       
       this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 100 });
       this.load.spritesheet('mainch', 'assets/mainchAK-47.png', { frameWidth: 100, frameHeight: 100 });
       this.load.spritesheet('mainchizq', 'assets/mainchAK-47Izq.png', { frameWidth: 100, frameHeight: 100 });
+      //Sprite jugador 2
+      this.load.spritesheet('mainch2', 'assets/mainchAK-47-2.png', { frameWidth: 100, frameHeight: 100 });
+      this.load.spritesheet('mainchizq2', 'assets/mainchAK-47Izq-2.png', { frameWidth: 100, frameHeight: 100 });
+
       
       //AUDIO DEL JUEGO
       this.load.audio('audioMenu','assets/MusicaTenebrosa.mp3');
@@ -153,5 +165,3 @@ ready () {
 
 }
 } 
-
-
