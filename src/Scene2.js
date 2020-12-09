@@ -15,15 +15,18 @@ class Scene2 extends Phaser.Scene {
 
 
         this.background = this.add.image(config.width/2,config.height/2,"fondoMenu");
-       //MUSICA DE FONDO DEL MENU
-       var audio = this.sound.add('audioMenu',{volume: 0.11,loop: true});
-        audio.play();
-        audio.resume();
-       
+        
+
+        var audio = this.sound.add('audioMenu',{volume: 0.11,loop: true});
+        if(estadoSonido == true){
+            audio.play();
+            audio.resume();
+        }else{
+            audio.stop();
+        }
+        
 
         
-        var bJugador = this.add.graphics('botonUnJugador').setInteractive();
-        var mJugador = this.add.graphics('botonMultijugador').setInteractive();
         var bConfig = this.add.graphics('botonConfiguracion').setInteractive();
         var bControl = this.add.graphics('botonControles').setInteractive();
         var bCredit = this.add.graphics('botonCreditos').setInteractive();
@@ -31,18 +34,12 @@ class Scene2 extends Phaser.Scene {
         
 
         //BOTON PARA JUGAR 1 JUGADOR
-        this.gameButtonOnePlayer = this.add.sprite(100, 200, 'botonGrande').setInteractive();
-        this.centerButton(this.gameButtonOnePlayer, -4.4,-1); //Posicion inicial 
+        this.gameButtonOnePlayer = this.add.sprite(100, 200, 'botonGrandeNotOver').setInteractive();
+        this.centerButton(this.gameButtonOnePlayer, -4.4,-2); //Posicion inicial 
  
-        this.gameTextOnePlayer = this.add.text(0, 0, 'UN JUGADOR', { fontSize: '32px', fill: '#fff' });
-        this.centerButtonText(this.gameTextOnePlayer, this.gameButtonOnePlayer);
- 
-        bJugador.fillStyle(0x222222, 0.8);
-        bJugador.fillRect(this.gameButtonOnePlayer.x-200,this.gameButtonOnePlayer.y-35,400,300);
-        var bJugadorX = this.gameButtonOnePlayer.x-200;
-        var bJugadorY = this.gameButtonOnePlayer.y-35;
-
-
+        this.gameTextOnePlayer = this.add.text(0, 0, 'SINGLEPLAYER', { fontSize: '32px', fill: '#fff' });
+        this.centerButtonText(this.gameTextOnePlayer, this.gameButtonOnePlayer); 
+        
         this.gameButtonOnePlayer.on('pointerdown', function (pointer) {
             audio.pause();
             this.scene.start('sceneGame');
@@ -50,49 +47,34 @@ class Scene2 extends Phaser.Scene {
         }.bind(this));
  
         this.gameButtonOnePlayer.on('pointerover', function (event) {
-            bJugador.clear()
-            bJugador.fillStyle(0xFFFFFF,0.8);
-            bJugador.fillRect(bJugadorX,bJugadorY,400,300);
-        
+            this.setTexture('botonGrandeOver');
         });
  
-        this.input.on('pointerout', function (event) {
-            bJugador.clear()
-            bJugador.fillStyle(0x222222,0.8);
-            bJugador.fillRect(bJugadorX,bJugadorY,400,300);
-        
+        this.gameButtonOnePlayer.on('pointerout', function (event) {
+            this.setTexture('botonGrandeNotOver');
+           
         });
 
 
         //BOTON MULTIJUGADOR
-        this.gameButtonMulti = this.add.sprite(100, 200, 'botonGrande').setInteractive();
-        this.centerButton(this.gameButtonMulti, -4.4,2.4);
+        this.gameButtonMulti = this.add.sprite(100, 200, 'botonGrandeNotOver').setInteractive();
+        this.centerButton(this.gameButtonMulti, -4.4,1.5);
  
-        this.gameTextMulti = this.add.text(0, 0, 'MULTIJUGADOR', { fontSize: '32px', fill: '#fff' });
+        this.gameTextMulti = this.add.text(0, 0, 'MULTIPLAYER', { fontSize: '32px', fill: '#fff' });
         this.centerButtonText(this.gameTextMulti, this.gameButtonMulti);
  
-        mJugador.fillStyle(0x222222, 0.8);
-        mJugador.fillRect(this.gameButtonMulti.x-200,this.gameButtonMulti.y-50,400,300);
-
-
-        var mJugadorX = this.gameButtonMulti.x-200;
-        var mJugadorY = this.gameButtonMulti.y-50;
 
         this.gameButtonMulti.on('pointerdown', function (pointer) {
             audio.pause();
-            this.scene.start('sceneGame');
+            this.scene.start('sceneGame2');
         }.bind(this));
  
         this.gameButtonMulti.on('pointerover', function (event) {
-            mJugador.clear();
-            mJugador.fillStyle(0xFFFFFF,0.8);
-            mJugador.fillRect(mJugadorX,mJugadorY,400,300);
+            this.setTexture('botonGrandeOver');
         });
  
-        this.input.on('pointerout', function (event) {
-            mJugador.clear();
-            mJugador.fillStyle(0x222222,0.8);
-            mJugador.fillRect(mJugadorX,mJugadorY,400,300);
+        this.gameButtonMulti.on('pointerout', function (event) {
+            this.setTexture('botonGrandeNotOver');
         });
 
         //BOTON CONFIGURACIÓN
@@ -100,7 +82,7 @@ class Scene2 extends Phaser.Scene {
         this.gameButtonConf = this.add.sprite(100, 200,'botonPeque').setInteractive();
         this.centerButton(this.gameButtonConf, 4,0.6);
  
-        this.gameTextConf = this.add.text(0, 0, 'CONFIGURACION', { fontSize: '32px', fill: '#fff' });
+        this.gameTextConf = this.add.text(0, 0, 'OPTIONS', { fontSize: '32px', fill: '#fff' });
         this.centerButtonText(this.gameTextConf, this.gameButtonConf);
  
         bConfig.fillStyle(0x222222, 0.8);
@@ -135,7 +117,7 @@ class Scene2 extends Phaser.Scene {
         this.gameButtonCred = this.add.sprite(100, 200, 'botonPeque').setInteractive();
         this.centerButton(this.gameButtonCred, 4,-1);
  
-        this.gameTextCred = this.add.text(0, 0, 'CREDITOS', { fontSize: '32px', fill: '#fff' });
+        this.gameTextCred = this.add.text(0, 0, 'CREDITS', { fontSize: '32px', fill: '#fff' });
         this.centerButtonText(this.gameTextCred, this.gameButtonCred);
  
         bCredit.fillStyle(0x222222, 0.8);
@@ -169,7 +151,7 @@ class Scene2 extends Phaser.Scene {
          this.gameButtonControl = this.add.sprite(100, 200, 'botonPeque').setInteractive();
          this.centerButton(this.gameButtonControl, 4,-2.4);
   
-         this.gameTextControl = this.add.text(0, 0, 'CONTROLES',{ fontSize: '32px', fill: '#fff' });
+         this.gameTextControl = this.add.text(0, 0, 'CONTROLS',{ fontSize: '32px', fill: '#fff' });
          this.centerButtonText(this.gameTextControl, this.gameButtonControl);
         
          bControl.fillStyle(0x222222, 0.8);
@@ -179,7 +161,7 @@ class Scene2 extends Phaser.Scene {
 
          this.gameButtonControl.on('pointerdown', function (pointer) {
 
-             this.scene.start('sceneGame');
+             this.scene.start('sceneControles');
          
          }.bind(this));
   
