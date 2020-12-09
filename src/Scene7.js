@@ -263,7 +263,7 @@ class Scene7 extends Phaser.Scene {
 
 
         //DISPARO PLAYER 1
-        this.input.keyboard.on("keydown_SPACE",() =>{//pulsar el boton de disparo
+        this.input.keyboard.on("keydown_SHIFT",() =>{//pulsar el boton de disparo
                 
             this.disparoSound.play();
 
@@ -295,7 +295,7 @@ class Scene7 extends Phaser.Scene {
         })
 
         //DISPARO PLAYER 2
-        this.input.keyboard.on("keydown_SHIFT",() => {//pulsar el boton de disparo
+        this.input.keyboard.on("keydown_SPACE",() => {//pulsar el boton de disparo
                 
             this.disparoSound.play();
 
@@ -442,8 +442,7 @@ class Scene7 extends Phaser.Scene {
                 this.physics.world.removeCollider(this.colliderEscaleras);
                 this.physics.world.removeCollider(this.colliderEscaleras1);
                 this.physics.world.removeCollider(this.colliderEscaleras2);
-                console.log("colliderEscalerasElimnado");
-                console.log("colliderElimnado");
+         
                 colliderEliminado = 1;
                 colliderEscalerasEliminado = 1;
                 this.time.delayedCall(500, this.encimaDePlat, [], this);
@@ -461,7 +460,7 @@ class Scene7 extends Phaser.Scene {
             {
                
                 this.colliderEscalerasEliminadoAux = 1
-                console.log("colliderEscalerasElimnado");
+                
                
             }
 
@@ -483,7 +482,7 @@ class Scene7 extends Phaser.Scene {
             {
                
                 this.colliderEscalerasEliminadoAux = 1;
-                console.log("colliderEscalerasElimnado");
+             
                 //console.log("colliderElimnado");
                
             }
@@ -508,7 +507,7 @@ class Scene7 extends Phaser.Scene {
             {
            
                 this.colliderEscalerasEliminadoAux = 1;
-                console.log("colliderEscalerasElimnado");
+              
                 //console.log("colliderElimnado");
                          
             
@@ -561,7 +560,7 @@ class Scene7 extends Phaser.Scene {
         //Pulsar tecla abajo(eliminar collider)
         if ((Phaser.Input.Keyboard.DownDuration(this.s)) && player2.vivo && player2.body.touching.down)
         {
-            console.log("quetallllll")
+           
             this.physics.world.removeCollider(this.colliderPlats2);
             this.physics.world.removeCollider(this.colliderEscaleras_2);
             this.physics.world.removeCollider(this.colliderEscaleras1_2);
@@ -607,7 +606,7 @@ class Scene7 extends Phaser.Scene {
             {
                
                 this.colliderEscalerasEliminadoAux2 = 1;
-                console.log("colliderEscalerasElimnado");
+                
                 //console.log("colliderElimnado");
                
             }
@@ -733,8 +732,7 @@ encimaDePlat(){
     
     colliderEliminado = 0;
 
-    console.log("colliderEscalerasAñadido");
-    console.log("colliderAñadido");
+    
     }
     if(colliderEscalerasEliminado === 1){
         this.physics.world.removeCollider(this.colliderEscaleras);
