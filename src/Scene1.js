@@ -23,21 +23,36 @@ class Scene1 extends Phaser.Scene {
       this.load.image('botonGrande','assets/botonGrande.png');
       this.load.image('botonPeque','assets/botonPeque.png');
       this.load.image('fondoMenu','assets/fondoMenu.png');
-      this.load.image('controles','assets/Controles.png');
+      this.load.image('controles','assets/menuControles.png');
+      this.load.image('botonGrandeOver','assets/botonGrandeOver.png');
+      this.load.image('botonGrandeNotOver','assets/botonGrandeNotOver.png');
+      this.load.image('rampaEscalera','assets/collideEscaleras.png');
+      this.load.image('paredFondo','assets/paredFondo.png');
+      this.load.image('sueloTejado','assets/sueloTejado.png');
+      this.load.image('tejado','assets/tejadoEscalera.png');
+      this.load.image('gameOv','assets/gameOver.png');
+      this.load.image('opciones','assets/fondoConfig.png');
+      this.load.image('botonAtrasNotOver','assets/botonAtrasGris.png');
+      this.load.image('botonAtrasOver','assets/botonAtrasBlanco.png');
+      this.load.image('botonEnabled','assets/botonesEnabled.png');
+      this.load.image('botonDisabled','assets/botonDisabled.png');
+
       //SPRITES DEL JUEGO
       this.load.spritesheet('zombieRight','assets/zombieRight.png',{ frameWidth: 30, frameHeight: 40});
       this.load.spritesheet('zombieLeft','assets/zombieLeft.png',{ frameWidth: 30, frameHeight: 40});
               
 
       
-      this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+      this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 100 });
       this.load.spritesheet('mainch', 'assets/mainchAK-47.png', { frameWidth: 100, frameHeight: 100 });
       this.load.spritesheet('mainchizq', 'assets/mainchAK-47Izq.png', { frameWidth: 100, frameHeight: 100 });
       
       //AUDIO DEL JUEGO
       this.load.audio('audioMenu','assets/MusicaTenebrosa.mp3');
       this.load.audio('audioScene1','assets/MusicaFondoScene1.mp3');
-      
+      this.load.audio('perderUnaVidaSound','assets/PerderUnaVida.mp3');
+      this.load.audio('disparoSound','assets/disparo.mp3');
+      this.load.audio('gameOverSound','assets/GameOver.mp3');
 
       
       
@@ -138,4 +153,5 @@ ready () {
 
 }
 } 
+
 
