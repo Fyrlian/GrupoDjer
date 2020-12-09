@@ -11,35 +11,43 @@ class Scene4 extends Phaser.Scene {
     create(){
 
       this.background = this.add.image(config.width/2,config.height/2,'opciones');
+     
+      audio1 = this.sound.add('audioScene1',{volume: 0.05,loop: true});
       
-        if(iteracion == 0){
 
-        this.musicOn = true;
-        this.soundOn = true;
-        
-        }
 
+        if(estadoMusica===true)
         this.musicButton = this.add.image(config.width/2.5, config.height/2,'botonEnabled');
+        else
+        this.musicButton = this.add.image(config.width/2.5, config.height/2,'botonDisabled');
+        
+
         this.musicText = this.add.text(config.width/2.4, config.height/2.06, 'ENABLE/DISABLE MUSIC ', { fontSize: 32 });
          
+        
+        if(estadoSonido===true)
         this.soundButton = this.add.image(config.width/2.5, config.height/1.6,'botonEnabled');
+        else
+        this.soundButton = this.add.image(config.width/2.5, config.height/1.6,'botonDisabled');
+        
+
         this.soundText = this.add.text(config.width/2.4, config.height/1.64, 'ENABLE/DISABLE SOUND ', { fontSize: 32 });
          
         this.musicButton.setInteractive();
         this.soundButton.setInteractive();
          
         this.musicButton.on('pointerdown', function () {
-          
-          this.musicOn = !this.musicOn;
+          estadoMusica = !estadoMusica;
           this.updateAudioMusic();
+          
 
         }.bind(this));
          
         this.soundButton.on('pointerdown', function () {
-
-          this.soundOn = !this.soundOn;
-          this.updateAudioSonido();
+          estadoSonido = !estadoSonido;
           
+          this.updateAudioSonido();
+         
 
         }.bind(this));
          
@@ -70,63 +78,43 @@ class Scene4 extends Phaser.Scene {
         });
 
 
-       iteracion++;
+      
        
     }
 
 
     updateAudioMusic() {
 
-        if (this.musicOn === true) {
+        if (estadoMusica === true) {
 
           this.musicButton.setTexture('botonEnabled');
           this.sound.resumeAll();
-          estadoSonido = true;
+          audio1.stop();
 
         } else {
           
           this.musicButton.setTexture('botonDisabled');
           this.sound.stopAll();
-          estadoSonido = false;
-        
-        }
-
-        if (this.soundOn === true) {
-
-          this.soundButton.setTexture('botonEnabled');
          
-        } else {
-          
-          this.soundButton.setTexture('botonDisabled');
         
         }
+
 
       }
       updateAudioSonido() {
 
-        if (this.musicOn === true) {
-
-          this.musicButton.setTexture('botonEnabled');
-
-        } else {
-          
-          this.musicButton.setTexture('botonDisabled');
-        
-        }
-       
-       
-        if (this.soundOn === true) {
+        if (estadoSonido === true) {
 
           this.soundButton.setTexture('botonEnabled');
           this.sound.resumeAll();
-          estadoSonido = true;
+         
           
 
         } else {
         
           this.soundButton.setTexture('botonDisabled');
           this.sound.stopAll();
-          estadoSonido = false;
+          
 
         }
 
