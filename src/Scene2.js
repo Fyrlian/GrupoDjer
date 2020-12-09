@@ -16,9 +16,8 @@ class Scene2 extends Phaser.Scene {
 
         this.background = this.add.image(config.width/2,config.height/2,"fondoMenu");
         
-
-        var audio = this.sound.add('audioMenu',{volume: 0.11,loop: true});
-        if(estadoSonido == true){
+        audio = this.sound.add('audioMenu',{volume: 0.04,loop: true});
+        if(estadoMusica === true){
             audio.play();
             audio.resume();
         }else{
@@ -180,7 +179,7 @@ class Scene2 extends Phaser.Scene {
 
 
 
-        
+       
         
     
       
