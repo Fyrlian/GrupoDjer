@@ -2,7 +2,7 @@ class Bala extends Phaser.GameObjects.Sprite{
 
     constructor(scene){
         
-        super(scene,-1,-1,"bullet");
+        super(scene,-10,-10,"bullet");
         scene.add.existing(this);
         scene.physics.world.enableBody(this);
         this.body.allowGravity = false;
@@ -14,13 +14,20 @@ class Bala extends Phaser.GameObjects.Sprite{
 
     matarBala(){
 
-        this.x = -1;
-        this.y = -1;
-        this.balas.getChildren()[i].body.setVelocityX(0);
+        this.x = -10;
+        this.y = -10;
+        this.body.setVelocityX(0);
 
 
     }
 
+    update(){
 
+        //detecta si esta fuera de los bordes
+        if(this.x > config.width || this.x < 0){
+            this.matarBala()
+        }
+
+    }
     
 }
