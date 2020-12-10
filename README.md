@@ -455,3 +455,17 @@ Los efectos de sonido se guardarán en .wav.
   - Efecto de recarga: sonido de recarga de arma.
   - Efecto navegar por el menú: Al mover el ratón por las opciones de los menús.
   - Ruido daño al jugador: sonido sufrimiento de personaje.
+  
+  **5.- Referencias**
+Fuente: https://www.dafont.com/es/digital-7.font
+Sprite zombies: https://opengameart.org/content/zombie-and-skeleton-32x48
+Phaser examples, proporcionados por phaser oficial.
+Sonidos: http://recursostic.educacion.es/bancoimagenes/web/
+
+
+
+
+
+
+
+  
