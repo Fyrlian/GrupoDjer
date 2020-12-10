@@ -15,6 +15,7 @@ Daniel Romero Hernández correo: [d.romeroh.2018@alumnos.urjc.es](mailto:d.romer
 ![](RackMultipart20201021-4-3lj6h4_html_768a528ad3a49d0d.png)
 
 ## **1.-Cambios**
+## **1.2-Posibles futuros cambios**
 
 ## **-**
 
@@ -41,8 +42,6 @@ Mejoras: El juego estará muy basado en mejorar nuestras herramientas con el din
 Los géneros principales del juego son:
 
 Hacn n slash: Ya mencionado previamente, recompensando al jugador por encadenar combos de bajas, con grandes oleadas y muchos efectos visuales que hagan sentir a este dinamismo y recompensa.
-
-Scroll lateral: Siendo 2D y con diferentes plataformas para colocarse, es un aspecto principal del diseño.
 
 Metroidvania: puesto que el jugador tendrá que retroceder y avanzar a su voluntad utilizando mejoras encontradas más adelante o simplemente para &quot;farmear&quot; dinero o recompensas.
 
@@ -332,20 +331,18 @@ Afectará a los enemigos y los jugadores, sobre todo en los personajes cuando re
 ![](RackMultipart20201021-4-3lj6h4_html_b95acb92579df43d.png)
 
 - Título: Donde aparecerá el nombre de nuestro videojuego.
-- Inicio: Botón para comenzar el juego
+- InicioUnJugador: Botón para comenzar el juego de un jugador
+- InicioMultijugador: Botón para comenzar el juego multijugador
 - Configuración: Botón para acceder a la configuración de nuestro videojuego donde podremos ajustar los diferentes settings.
-- Salir: Botón para cerrar el juego
 - Créditos: Aparecen los nombres de los desarrolladores del juego
 - Fondo e imagen: La decoración del propio interfaz
+- Controles
 
 **4.2 NIVEL**
 
 ![](RackMultipart20201021-4-3lj6h4_html_b503c7309cf449e.png)
 
 - Nivel y oleada: Podremos observar en el interfaz el nivel en el que nos encontramos de todo el juego y las oleadas que han pasado.
-- Intentos: Cuantos intentos llevamos en la misma partida (se resetean al acabar el juego o al cerrarlo).
-- Armas: Observamos que armas hemos obtenido a lo largo del juego y cuales podemos utilizar.
-- Balas: Cuantas balas nos quedan en el cargador.
 - Vida: Vida de los personajes que están en la partida.
 
 **4.3 CONFIGURACION**
@@ -360,15 +357,12 @@ Afectará a los enemigos y los jugadores, sobre todo en los personajes cuando re
 
 ![](RackMultipart20201021-4-3lj6h4_html_31ef41548610d274.png)
 
-- Vida: Vida de los jugadores.
-- Armas: Armas que hayan recogido y estén disponibles para cada jugador en el momento de pausa del juego.
-- Balas: Número de balas de cada jugador restantes.
+
 - Nivel y oleada: Podremos observar en el interfaz el nivel en el que nos encontramos de todo el juego y las oleadas que han pasado.
 - Sonido: Botón que nos permite ajustarlo a nuestro gusto, tanto sonidos del juego como música.
-- Modo daltónico: Botón que cambia la disposición de los colores del juego para ajustarlo en caso de problemas visuales con los colores
 - Salir al juego: Botón para reanudar el juego.
 - Salir al menú principal: Botón para finalizar la partida y volver al menú principal.
-- Mejoras: Para ver las mejoras disponibles que tienen los jugadores en activo.
+
 
 **5.- Arte**
 
