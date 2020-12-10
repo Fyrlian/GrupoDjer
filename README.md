@@ -457,10 +457,10 @@ Los efectos de sonido se guardarán en .wav.
   - Ruido daño al jugador: sonido sufrimiento de personaje.
   
   **5.- Referencias**
-Fuente: https://www.dafont.com/es/digital-7.font
-Sprite zombies: https://opengameart.org/content/zombie-and-skeleton-32x48
-Phaser examples, proporcionados por phaser oficial.
-Sonidos: http://recursostic.educacion.es/bancoimagenes/web/
+- Fuente: https://www.dafont.com/es/digital-7.font.
+- Sprite zombies: https://opengameart.org/content/zombie-and-skeleton-32x48.
+- Phaser examples, proporcionados por phaser oficial.
+- Sonidos: http://recursostic.educacion.es/bancoimagenes/web/.
 
 
 
