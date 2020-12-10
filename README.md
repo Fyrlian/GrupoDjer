@@ -15,9 +15,21 @@ Daniel Romero Hernández correo: [d.romeroh.2018@alumnos.urjc.es](mailto:d.romer
 ![](RackMultipart20201021-4-3lj6h4_html_768a528ad3a49d0d.png)
 
 ## **1.-Cambios**
+Al comienzo queríamos hacer un juego demasiado complejo, por lo que hemos decidido en esta fase simplificarlo, algunas de las ideas iniciales por el momento las dejaremos en "Posibles cambios futuros".
+Para simplificar el juego se ha eliminado el scroll lateral, la variedad de armas y enemigos, las mejoras, las habilidades y el modo daltónico.
+
 ## **1.2-Posibles futuros cambios**
 
-## **-**
+Mejoras: Upgrades para las armas que les otorguen más potencias o utilidades, se utilizan abriendo cajas de mejoras y serán aleatorias.
+
+Exploración: Los jugadores querrán limpiar las diferentes zonas para acceder a las siguientes con sus mejoras y herramientas que ayudarán al avance del juego, creándose un bucle de avanzar para mejorar.
+
+Armas: utilizadas para el progreso en el juego, se consiguen abriendo cajas de armas con dinero y serán aleatorias.
+
+Habilidades: Dashes, doble salto, lanzar granadas… herramientas que ayuden al usuario a la hora del combate y que sirvan para retroceder y desbloquear mejoras a las que no se podían acceder de forma inicial.
+
+Aleatoriedad: Las armas y mejoras serán aleatorias dependiendo de unas probabilidades que denotarán lo bueno o malo es. Las cajas tendrán un contenido adecuado para el nivel, existiendo así &quot;piscinas&quot; de objetos.
+
 
 ## **2.- Introducción**
 
@@ -29,13 +41,11 @@ En last nightfall los jugadores comenzarán en un mundo postapocalíptico con ar
 
 **2.2 Características principales**
 
-Exploración: Los jugadores querrán limpiar las diferentes zonas para acceder a las siguientes con sus mejoras y herramientas que ayudarán al avance del juego, creándose un bucle de avanzar para mejorar.
 
 Frenetismo: Los jugadores han de estar en constante movimiento siempre que no se encuentren en zonas de descanso defendiéndose de los monstruos que los atacan, avanzando en el mapa o cambiando su posición a una más estratégica.
 
 Combate: Este juego pretende generar dinamismo y dopamina a base de matar muchos monstruos en oleadas, no ha de ser táctico ni preciso sino rápido y fluido.
 
-Mejoras: El juego estará muy basado en mejorar nuestras herramientas con el dinero que vayamos recolectando, mejores armas, más visuales, mejorarlas con más munición, cadencia…
 
 **2.3 Género**
 
@@ -50,21 +60,15 @@ Metroidvania: puesto que el jugador tendrá que retroceder y avanzar a su volunt
 El rango del público objetivo varía desde jugadores casuales hasta jugadores más &quot;tryhard&quot; que pretendan completarlo al 100%, pudiendo ser un juego divertido para pasar el rato pero también con un contenido al que los jugadores más dedicados puedan dedicar horas y horas y al que puedan volver a rejugar. En cuanto a la edad, está claro que no está hecho para los más pequeños, pero no contiene un excesivo uso de violencia explícita como para que solo personas adultas puedan disfrutarlo.
 
 **2.5 Jugabilidad**
-
-Armas: utilizadas para el progreso en el juego, se consiguen abriendo cajas de armas con dinero y serán aleatorias.
-
-Mejoras: Upgrades para las armas que les otorguen más potencias o utilidades, se utilizan abriendo cajas de mejoras y serán aleatorias.
-
-Habilidades: Dashes, doble salto, lanzar granadas… herramientas que ayuden al usuario a la hora del combate y que sirvan para retroceder y desbloquear mejoras a las que no se podían acceder de forma inicial
+Disparo: El jugador podrá disparar una bala cada segundo, que usará para acabar con sus enemigos.
+Atravesar obstaculos: El jugador podrá "atravesar" el suelo y las escaleras a su gusto para posicionarse en el nivel.
 
 **2.6 Estilo visual**
 
-Al ser un juego 2D, basaremos nuestro juego en un estilo visual cercano al &quot;pixel art&quot; y cartoon donde es fácil diferenciar los pixeles que componen la escena dando un toque retro y a la vez amigable (consiguiendo rechazar así la violencia explícita). Será llamativo recompensado al usuario con efectos visuales al encadenar combos, matar muchos enemigos o conseguir mejoras.
-
+Al ser un juego 2D, basaremos nuestro juego en un estilo visual cercano al &quot;pixel art&quot; y cartoon donde es fácil diferenciar los pixeles que componen la escena dando un toque retro y a la vez amigable (consiguiendo rechazar así la violencia explícita). Será llamativo.
 **2.7 Alcance**
 
-El juego se planea que esté completo cuando salga de forma oficial (no se añadirán DLCs ni actualizaciones de contenido, solo mejoras de rendimiento o arreglar glitches y bugs)
-
+El juego se planea que saldrá de una forma más simple para posteriormente incluir todas las armas definidas y los enemigos en posteriores entregas como actualizaciones.
 ## **3.- Mecánicas de juego**
 
 En esta sección trataremos con profundidad la jugabilidad del juego, las diferentes mecánicas que se le aplican así como el flujo de dificultad. Además se explicarán los diferentes enemigos y mejoras existentes.
@@ -73,24 +77,20 @@ En esta sección trataremos con profundidad la jugabilidad del juego, las difere
 
 Oleadas: El juego está basado en ataques de enemigos en los diferentes niveles, estas oleadas aumentarán en función del nivel en el que estamos, aumentado también la dificultad de los enemigos y no solo el número de estos.
 
-Dificultad: La gráfica de dificultad del juego seguirá un patrón constante de forma que cada nivel será más difícil pero se podrá retroceder para mejorar nuestras habilidades. Si el usuario no es capaz de vencer un nuevo nivel podrá volver a uno ya completado para conseguir recursos que invertir en nuevas armas o en nuevas mejoras.
+Dificultad: La gráfica de dificultad del juego seguirá un patrón constante de forma que cada nivel y ronda será más difícil.
 
-Aleatoriedad: Las armas y mejoras serán aleatorias dependiendo de unas probabilidades que denotarán lo bueno o malo es. Las cajas tendrán un contenido adecuado para el nivel, existiendo así &quot;piscinas&quot; de objetos.
 
-Dinero: El jugador utilizará el dinero en abrir cajas disponibles en cada nivel, las cajas aumentarán su precio de forma que podrá conseguir unas mejoras antes de pasar de nivel y si quiere más tendrá que rejugarlo.
 
 **3.2 Flujo de juego**
 
-Al iniciar el juego, el usuario se encontrará con un menú de inicio con las opciones de iniciar la partida, una pequeña configuración y un botón para salir.
+Al iniciar el juego, el usuario se encontrará con la barra de carga, posteriormente con un menú de inicio con las opciones de iniciar la partida, controles, una pequeña configuración y los créditos.
 
-Al darle a salir el juego se cerrará.
+Al darle a configuración el juego abrirá un menú que nos permitirá hacer cambios como poner o quitar el sonido.
 
-Al darle a configuración el juego abrirá un menú que nos permitirá hacer cambios como poner o quitar el sonido o poner el modo daltónico.
+Al darle a iniciar partida, el juego dará comienzo y se encontrará en una casa. Al utilizarlo comenzarán las llegadas de oleadas. Al acabar con todos los monstruos se abrirá la puerta al siguiente nivel (atravesándola se accede al anterior) y se podrá gastar el dinero en las diferentes cajas. Si se muere, se perderá 1 vida de 3 existentes. Para perder la partida se deberá morir 3 veces de forma seguida. Al pasar un nivel se restauran todas las vidas.
 
-Al darle a iniciar partida, el juego dará comienzo y se encontrará en una casa. Aparecerá un texto que explicará al usuario que para comenzar los ataques de los monstruos tendrá que interactuar con un objeto (diferente cada nivel). Al utilizarlo comenzarán las llegadas de oleadas, al matar monstruos conseguiremos monedas. Al acabar con todos los monstruos se abrirá la puerta al siguiente nivel (atravesándola se accede al anterior) y se podrá gastar el dinero en las diferentes cajas. Si se muere, se perderá 1 vida de 3 existentes. Para perder la partida se deberá morir 3 veces de forma seguida. Al pasar un nivel se restauran todas las vidas. Si se muere en modo co-op, un jugador vivo podrá reanimar al jugador al completar el nivel de forma que no pierde ninguna vida.
-
-**3.3 Armas**
-
+**3.3 Armas** 
+SE MANTIENE ESTE APARTADO AUNQUE SOLO SE HARÁ USO DE ELLAS EN POSIBLES ACTUALIZACIONES
 **Leyenda de obtención:**  **Inicial**** , **** común (100%, 70% a partir del segundo nivel), **** épico (30% a partir del segundo nivel, 25% a partir del tercer nivel) **** y **** legendario (5% a partir del tercer nivel)**
 
 Glock: Pistola simple
@@ -156,6 +156,7 @@ M4-A7: Fusil
 - Cargador: 30
 
 **3.4 Mejoras**
+SE MANTIENE ESTE APARTADO AUNQUE SOLO SE HARÁ USO DE ELLAS EN POSIBLES ACTUALIZACIONES
 
 **Leyenda de obtención:** **común (100%, 60% a partir del segundo nivel),** **épico (40% a partir del segundo nivel, 30% a partir del tercer nivel)**  **y** **legendario (10% a partir del tercer nivel)**
 
@@ -202,6 +203,8 @@ Nivel 2 -------------------------------- 40 oro
 - Velocidad: Media
 - Vida: 150
 - Daño: 30
+
+SE MANTIENEN LOS SIGUIENTES PERSONAJES AUNQUE SOLO SE HARÁ USO DE ELLOS EN POSIBLES ACTUALIZACIONES
 
 **Murciélagos infectados**
 
@@ -299,31 +302,39 @@ Se darán entre enemigos y personaje, cuando estos impacten reducirán la vida d
 
 Se darán entre las balas que dispara el jugador y los enemigos infligiendo daño a los mismos.
 
-Obviamos las colisiones con objetos del entorno (paredes etc.)
+Obviamos las colisiones con objetos del entorno (paredes etc.), aunque algunas de estas colisiones pueda atravesarlas el jugador pulsando un botón, las escaleras siempre por la derecha.
 
 **Gravedad**
 
-Afectará a los enemigos y los jugadores, sobre todo en los personajes cuando realicen dobles saltos o saltos simples.
+Afectará a los enemigos y los jugadores.
 
 **Controles**
 
 **Movimiento:**
-
+Jugador 1
 - A; Desplazamiento a la izquierda.
 - D;Desplazamiento a la derecha.
 - W; Salto (doble espacio, doble salto).
-- Shift;Dash
+- S;Desplazamiento hacia abajo.
+Jugador 2
+- Tecla izquierda; Desplazamiento a la izquierda.
+- Tecla derecha;Desplazamiento a la derecha.
+- Tecla arriba; Salto (doble espacio, doble salto).
+- Tecla abajo;Desplazamiento hacia abajo.
+
 
 **Armas:**
-
-- R;Recargar
+Jugador 1
 - Espacio;Disparar
-
+Jugador 1
+- Shift dcho;Disparar
 **Extras:**
 
-- Esc-\&gt; Menú de pausa
-- E-\&gt;Interactuar
-
+- Boton de pausa; Menú de pausa
+Jugador 1
+- E-\&gt;Interactuar (no implementado, se implementa en futuras actualizaciones)
+Jugador 2
+- P-\&gt;Interactuar (no implementado, se implementa en futuras actualizaciones)
 **4. Interfaz**
 
 **4.1 Menú principal**
@@ -408,9 +419,7 @@ Todas las imágenes serán guardadas tanto en formato .png como en formato .psd 
   - Icono Mejora de velocidad: Imagen cuadrada con un dibujo pixel art simple de unas botas con alas y una flecha apuntando a la derecha, fondo color amarillo.
   - Icono Mejora de vida: Imagen cuadrada con un dibujo pixel art simple de un corazón y una flecha apuntando arriba, fondo color morado.
 
-- **Puntero de juego:** Hit marker simple estilo first person shooter.
-- **Barra de vida:** Rectángulo el cual tendrá de color verde el porcentaje de vida del personaje y de color rojo el porcentaje de vida perdida.
-- **Contador de balas restantes:** Imagen de tres balas a pixel art simple contiguo a un número que muestra el número de balas restante.
+- **Contador de vidas:** Numero que nos dirá el numero de vidas de nuestros personajes
 - **Cartel de Game Over:** Se muestra cuando ambos jugadores quedan sin vida.
 - **Contador de siguiente oleada:** Se muestra para avisar a los jugadores cuando va a venir una nueva oleada.
 - **Animaciones:** Todos los personajes contarán con animaciones de movimiento, ataque, recibir daño y morir.
@@ -426,9 +435,8 @@ Los efectos de sonido se guardarán en .wav.
   - Menú principal: Música relajada, de ambiente.
   - Juego: Música generalmente tensa.
   - Game Over: Música ambiente triste.
-  - Música de victoria: Música alegre e incluso épica.
 
-- **Efectos:**
+- **Efectos:** Algunos se implementaran en futuras actualizaciones
 
   - Ataque de Zombie: Ruido de grito de Zombie cuando ataca al jugador.
   - Ataque de Murciélago infectado: Ruido de grito de murciélago cuando ataca al jugador.
