@@ -61,7 +61,7 @@ class Scene3 extends Phaser.Scene {
         escaleras.refresh();
         
         //GRUPO ESCALERAS A LA PLANTA SUPERIOR
-        escaleras1= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 130 });
+        escaleras1= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 148 });
         Phaser.Actions.PlaceOnLine(escaleras1.getChildren(), new Phaser.Geom.Line(config.width/2.5, config.height/1.54,config.width/1.65,config.height/3.16));
         escaleras1.refresh();
         
@@ -387,8 +387,7 @@ class Scene3 extends Phaser.Scene {
             this.physics.world.removeCollider(this.colliderEscaleras);
             this.physics.world.removeCollider(this.colliderEscaleras1);
             this.physics.world.removeCollider(this.colliderEscaleras2);
-            console.log("colliderEscalerasElimnado");
-            console.log("colliderElimnado");
+            
             colliderEliminado = 1;
             colliderEscalerasEliminado = 1;
             this.time.delayedCall(500, this.encimaDePlat, [], this);
@@ -406,7 +405,7 @@ class Scene3 extends Phaser.Scene {
             {
                
                 this.colliderEscalerasEliminadoAux = 1
-                console.log("colliderEscalerasElimnado");
+               
                
             }
 
@@ -428,7 +427,7 @@ class Scene3 extends Phaser.Scene {
             {
                
                 this.colliderEscalerasEliminadoAux = 1;
-                console.log("colliderEscalerasElimnado");
+             
                 //console.log("colliderElimnado");
                
             }
@@ -453,7 +452,7 @@ class Scene3 extends Phaser.Scene {
             {
            
                 this.colliderEscalerasEliminadoAux = 1;
-                console.log("colliderEscalerasElimnado");
+               
                 //console.log("colliderElimnado");
                          
             
@@ -509,7 +508,7 @@ quitarVida(player){
         }
         setTimeout(function(){player.inmortalidad = false;}, 2000)
         
-        console.log(player.vidas);
+    
     }
     
 }
@@ -550,7 +549,7 @@ cuentaAtrasFunc(num, cuentaAtras, time, inicioContador, delta, scene){
 reiniciarContador(scene){
     scene.contadorTimeMedido = false;
     scene.ready = true;
-    console.log("despues " + scene.ready);
+   
 }
 
 encimaDePlat(){
@@ -560,8 +559,6 @@ encimaDePlat(){
     
     colliderEliminado = 0;
 
-    console.log("colliderEscalerasAñadido");
-    console.log("colliderAñadido");
     }
     if(colliderEscalerasEliminado === 1){
         this.physics.world.removeCollider(this.colliderEscaleras);
@@ -585,7 +582,7 @@ escalerasDcha(){
         this.colliderEscaleras = this.physics.add.collider(player,escaleras);
         this.colliderEscaleras1 = this.physics.add.collider(player, escaleras1);
         this.colliderEscaleras2 = this.physics.add.collider(player, escaleras2);
-        console.log("colliderEscalerasAñadido");
+        
         colliderEscalerasEliminado = 0;
 
 

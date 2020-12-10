@@ -57,4 +57,3 @@ class Enemigo extends Phaser.GameObjects.Sprite{
     }
 }     
      
-     

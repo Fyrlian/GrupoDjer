@@ -6,7 +6,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            debug: true
+            debug: false
 
         },
         matter: {
@@ -16,11 +16,11 @@ var config = {
     },
     scale: {
         parent: 'yourgamediv',
-        mode: 'fit',
+        mode: 'resize',
         width: 1920,
         height: 1080
     },
-    scene:[Scene0,Scene1,Scene2,Scene3,Scene4,Scene5,Scene6,Scene7,Scene8]
+    scene:[Scene0,Scene1,Scene2,Scene3,Scene4,Scene5,Scene6,Scene7,Scene8,Scene9,Scene10]
 };
 
 var player;
@@ -33,6 +33,8 @@ var escaleras,escaleras1,escaleras2,tejas,tejas2;
 var cursors;
 var score = 0;
 var scoreText;
+var vidasText;
+var vidasText2;
 var cuentaAtras;
 var fireButton;
 var bullets;
@@ -43,11 +45,18 @@ var estado2;
 var encimaDePlat =0;
 var colliderEliminado = 0;
 var colliderEscalerasEliminado = 0;
-var iteracion = 0;
+var colliderEliminado2 = 0;
+var colliderEscalerasEliminado2 = 0;
 var estadoSonido = true;
-var gameOver = false;
-
+var estadoMusica=true;
 var disparoSound;
+var gameOverSound;
+var Sound;
+var colliderEnemigosEliminado = 0;
+var audio1;
+var audio;
+var vueltaAlJuego = false;
+
 
 
 var game = new Phaser.Game(config);
