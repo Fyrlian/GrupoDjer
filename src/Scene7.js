@@ -345,6 +345,7 @@ class Scene7 extends Phaser.Scene {
 
     update(time,delta){
 
+        //enviar la ubicacion jugador 1 al servidor
         $.ajax({
             method: "POST",
             url:"http://localhost:8080/jugador/0",
@@ -359,6 +360,22 @@ class Scene7 extends Phaser.Scene {
             console.log(textStatus+" "+jqXHR.statusCode());
             });
 
+
+
+        //enviar la ubicacion jugador 2 al servidor
+        $.ajax({
+            method: "POST",
+            url:"http://localhost:8080/jugador/1",
+            data: JSON.stringify({posicionx: player2.x, posiciony: player2.y}),
+            processData: false,
+            headers: {
+            "Content-type":"application/json"
+            }
+            }).done(function(data, textStatus, jqXHR) {
+            console.log(textStatus+" "+jqXHR.statusCode());
+            }).fail(function(data, textStatus, jqXHR){
+            console.log(textStatus+" "+jqXHR.statusCode());
+            });
 
 
         //ACTUALIZAR VIDAS
