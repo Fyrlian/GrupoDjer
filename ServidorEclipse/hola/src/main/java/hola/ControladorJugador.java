@@ -21,9 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControladorJugador {
 	
 	private Jugador[] jugadores = new Jugador[2];
+
 	
 	
-	
+	//get
 	@RequestMapping(value = "/jugador/{id}", method = RequestMethod.GET) 
 	
 	public Jugador getJugador(@PathVariable ("id")int id){
@@ -32,7 +33,24 @@ public class ControladorJugador {
 		
 	}
 	
+	//put
+	@RequestMapping(value = "/jugador/{id}", method = RequestMethod.PUT)
 	
+	public ResponseEntity<Jugador> actualizarJugador(@RequestBody Jugador jugador, @PathVariable ("id")int id){
+		
+		if(jugadores[id] != null) {
+			
+			jugadores[id] = jugador;
+			return new ResponseEntity<Jugador>(jugador, HttpStatus.OK);
+			
+		}
+		
+		else {return new ResponseEntity<Jugador>(HttpStatus.NOT_FOUND);}
+				
+		
+	}
+	
+	//post
 	@RequestMapping(value = "/jugador/{id}", method = RequestMethod.POST)
 	
 	public ResponseEntity<Jugador> introducirJugador(@RequestBody Jugador jugador, @PathVariable ("id")int id){
@@ -41,7 +59,9 @@ public class ControladorJugador {
 		
 		return new ResponseEntity<Jugador>(jugador, HttpStatus.CREATED);
 		
+		
 	}
+	
 	
 }
 

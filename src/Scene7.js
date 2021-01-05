@@ -340,16 +340,14 @@ class Scene7 extends Phaser.Scene {
         this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     
 
-    }
-    
 
-    update(time,delta){
 
-        //enviar la ubicacion jugador 1 al servidor
-        $.ajax({
+
+         //enviar la ubicacion jugador 1 al servidor
+         $.ajax({
             method: "POST",
             url:"http://localhost:8080/jugador/0",
-            data: JSON.stringify({posicionx: player.x, posiciony: player.y}),
+            data: JSON.stringify({posicionx: player.x, posiciony: player.y, vida: player.vidas}),
             processData: false,
             headers: {
             "Content-type":"application/json"
@@ -366,7 +364,45 @@ class Scene7 extends Phaser.Scene {
         $.ajax({
             method: "POST",
             url:"http://localhost:8080/jugador/1",
-            data: JSON.stringify({posicionx: player2.x, posiciony: player2.y}),
+            data: JSON.stringify({posicionx: player2.x, posiciony: player2.y, vida: player2.vidas}),
+            processData: false,
+            headers: {
+            "Content-type":"application/json"
+            }
+            }).done(function(data, textStatus, jqXHR) {
+            console.log(textStatus+" "+jqXHR.statusCode());
+            }).fail(function(data, textStatus, jqXHR){
+            console.log(textStatus+" "+jqXHR.statusCode());
+            });
+
+
+    }
+    
+
+    update(time,delta){
+
+        //enviar la ubicacion jugador 1 al servidor
+        $.ajax({
+            method: "PUT",
+            url:"http://localhost:8080/jugador/0",
+            data: JSON.stringify({posicionx: player.x, posiciony: player.y, vida: player.vidas}),
+            processData: false,
+            headers: {
+            "Content-type":"application/json"
+            }
+            }).done(function(data, textStatus, jqXHR) {
+            console.log(textStatus+" "+jqXHR.statusCode());
+            }).fail(function(data, textStatus, jqXHR){
+            console.log(textStatus+" "+jqXHR.statusCode());
+            });
+
+
+
+        //enviar la ubicacion jugador 2 al servidor
+        $.ajax({
+            method: "PUT",
+            url:"http://localhost:8080/jugador/1",
+            data: JSON.stringify({posicionx: player2.x, posiciony: player2.y, vida: player2.vidas}),
             processData: false,
             headers: {
             "Content-type":"application/json"
