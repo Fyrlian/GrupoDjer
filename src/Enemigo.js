@@ -30,12 +30,12 @@ class Enemigo extends Phaser.GameObjects.Sprite{
         }else if(xBuena < this.x){
 
             this.anims.play("Enemigoleft", true);
-            this.body.setVelocityX(-100);
+            this.body.setVelocityX(-120);
 
         }else if(xBuena > this.x){
 
             this.anims.play("Enemigoright", true);
-            this.body.setVelocityX(100);
+            this.body.setVelocityX(120);
         }
 
 

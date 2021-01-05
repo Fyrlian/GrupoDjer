@@ -36,12 +36,13 @@ class Scene2 extends Phaser.Scene {
         this.gameButtonOnePlayer = this.add.sprite(100, 200, 'botonGrandeNotOver').setInteractive();
         this.centerButton(this.gameButtonOnePlayer, -4.4,-2); //Posicion inicial 
  
-        this.gameTextOnePlayer = this.add.text(0, 0, 'SINGLEPLAYER', { fontSize: '32px', fill: '#fff' });
+        this.gameTextOnePlayer = this.add.bitmapText(0, 0,'fuentes','singleplayer',32);
+
         this.centerButtonText(this.gameTextOnePlayer, this.gameButtonOnePlayer); 
         
         this.gameButtonOnePlayer.on('pointerdown', function (pointer) {
             audio.pause();
-            this.scene.start('sceneGame');
+            this.scene.start('sceneObjetivo');
             
         }.bind(this));
  
@@ -59,13 +60,13 @@ class Scene2 extends Phaser.Scene {
         this.gameButtonMulti = this.add.sprite(100, 200, 'botonGrandeNotOver').setInteractive();
         this.centerButton(this.gameButtonMulti, -4.4,1.5);
  
-        this.gameTextMulti = this.add.text(0, 0, 'MULTIPLAYER', { fontSize: '32px', fill: '#fff' });
+        this.gameTextMulti = this.add.bitmapText(0, 0,'fuentes','multiplayer',32);
         this.centerButtonText(this.gameTextMulti, this.gameButtonMulti);
  
 
         this.gameButtonMulti.on('pointerdown', function (pointer) {
             audio.pause();
-            this.scene.start('sceneGame2');
+            this.scene.start('sceneObjetivo2');
         }.bind(this));
  
         this.gameButtonMulti.on('pointerover', function (event) {
@@ -81,7 +82,7 @@ class Scene2 extends Phaser.Scene {
         this.gameButtonConf = this.add.sprite(100, 200,'botonPeque').setInteractive();
         this.centerButton(this.gameButtonConf, 4,0.6);
  
-        this.gameTextConf = this.add.text(0, 0, 'OPTIONS', { fontSize: '32px', fill: '#fff' });
+        this.gameTextConf = this.add.bitmapText(0, 0,'fuentes','options',32);
         this.centerButtonText(this.gameTextConf, this.gameButtonConf);
  
         bConfig.fillStyle(0x222222, 0.8);
@@ -116,7 +117,7 @@ class Scene2 extends Phaser.Scene {
         this.gameButtonCred = this.add.sprite(100, 200, 'botonPeque').setInteractive();
         this.centerButton(this.gameButtonCred, 4,-1);
  
-        this.gameTextCred = this.add.text(0, 0, 'CREDITS', { fontSize: '32px', fill: '#fff' });
+        this.gameTextCred = this.add.bitmapText(0, 0,'fuentes','credits',32);
         this.centerButtonText(this.gameTextCred, this.gameButtonCred);
  
         bCredit.fillStyle(0x222222, 0.8);
@@ -150,7 +151,7 @@ class Scene2 extends Phaser.Scene {
          this.gameButtonControl = this.add.sprite(100, 200, 'botonPeque').setInteractive();
          this.centerButton(this.gameButtonControl, 4,-2.4);
   
-         this.gameTextControl = this.add.text(0, 0, 'CONTROLS',{ fontSize: '32px', fill: '#fff' });
+         this.gameTextControl = this.add.bitmapText(0, 0,'fuentes','controls',32);
          this.centerButtonText(this.gameTextControl, this.gameButtonControl);
         
          bControl.fillStyle(0x222222, 0.8);

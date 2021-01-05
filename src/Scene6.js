@@ -17,7 +17,7 @@ class Scene6 extends Phaser.Scene {
       this.gameButtonBack = this.add.sprite(100, 200, 'botonAtrasNotOver').setInteractive();
       this.centerButton(this.gameButtonBack, 8.1,-4); //Posicion inicial 
 
-      this.gameTextBack = this.add.text(0, 0, 'BACK', { fontSize: '32px', fill: '#fff' });
+      this.gameTextBack = this.add.bitmapText(0, 0,'fuentes',' back ',32);
       this.centerButtonText(this.gameTextBack, this.gameButtonBack); 
       
       this.gameButtonBack.on('pointerdown', function (pointer) {

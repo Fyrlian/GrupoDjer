@@ -22,7 +22,7 @@ class Scene4 extends Phaser.Scene {
         this.musicButton = this.add.image(config.width/2.5, config.height/2,'botonDisabled');
         
 
-        this.musicText = this.add.text(config.width/2.4, config.height/2.06, 'ENABLE/DISABLE MUSIC ', { fontSize: 32 });
+        this.musicText = this.add.bitmapText(config.width/2.4, config.height/2.06,'fuentes','enable/disable music ',32);
          
         
         if(estadoSonido===true)
@@ -31,7 +31,7 @@ class Scene4 extends Phaser.Scene {
         this.soundButton = this.add.image(config.width/2.5, config.height/1.6,'botonDisabled');
         
 
-        this.soundText = this.add.text(config.width/2.4, config.height/1.64, 'ENABLE/DISABLE SOUND ', { fontSize: 32 });
+        this.soundText = this.add.bitmapText(config.width/2.4, config.height/1.64,'fuentes','enable/disable sound ',32);
          
         this.musicButton.setInteractive();
         this.soundButton.setInteractive();
@@ -60,7 +60,7 @@ class Scene4 extends Phaser.Scene {
         this.gameButtonBack = this.add.sprite(100, 200, 'botonAtrasNotOver').setInteractive();
         this.centerButton(this.gameButtonBack, 0,-3); //Posicion inicial 
  
-        this.gameTextBack = this.add.text(0, 0, 'BACK', { fontSize: '32px', fill: '#fff' });
+        this.gameTextBack = this.add.bitmapText(0, 0,'fuentes',' back ',32);
         this.centerButtonText(this.gameTextBack, this.gameButtonBack); 
         
         this.gameButtonBack.on('pointerdown', function (pointer) {

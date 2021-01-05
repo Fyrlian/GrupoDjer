@@ -18,8 +18,10 @@ class Scene8 extends Phaser.Scene {
     this.colliderEscalerasEliminado = 0;
 
       this.gameOverText = this.add.image(config.width/2,config.height/2,'gameOv');
- 
-       
+
+      this.text = this.add.bitmapText(config.width/3.15, config.height/1.5,'fuentes3',('Llegaste a la ronda: '+ rondaFinal),32);
+     
+    
       
 
      

@@ -5,13 +5,13 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
-            debug: false
+            gravity: { y: 500 },
+            debug: true
 
         },
         matter: {
-            gravity: { y: 300 },
-            debug: false
+            gravity: { y: 500 },
+            debug: true
         },
     },
     scale: {
@@ -20,7 +20,7 @@ var config = {
         width: 1920,
         height: 1080
     },
-    scene:[Scene0,Scene1,Scene2,Scene3,Scene4,Scene5,Scene6,Scene7,Scene8,Scene9,Scene10]
+    scene:[Scene0,Scene1,Scene2,Scene3,Scene4,Scene5,Scene6,Scene7,Scene8,Scene9,Scene10,Scene11,Scene12]
 };
 
 var player;
@@ -56,6 +56,7 @@ var colliderEnemigosEliminado = 0;
 var audio1;
 var audio;
 var vueltaAlJuego = false;
+var rondaFinal = 0;
 
 
 

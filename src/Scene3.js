@@ -34,11 +34,17 @@ class Scene3 extends Phaser.Scene {
         
       // this.sueloMapa =this.physics.add.staticImage(config.width/2, config.height/1.02, 'sueloMapa');
       this.sueloMapa =this.physics.add.staticGroup();
-      this.sueloMapa.create(config.width/2, config.height/1.02, 'sueloMapa')
-      this.sueloMapa.create(config.width/2, config.height/1.01, 'sueloMapa')
-      this.sueloMapa.create(config.width/2, config.height/1.0, 'sueloMapa')
+      this.sueloMapa.create(config.width/2.35, config.height/1.08, 'suelo')
+      this.sueloMapa.create(config.width/2.35, config.height/1.075, 'suelo')
+      this.sueloMapa.create(config.width/2.35, config.height/1.070, 'suelo')
+    
+      this.sueloMapa.create(config.width/1.6, config.height/1.08, 'suelo')
+      this.sueloMapa.create(config.width/1.1, config.height/1.05, 'suelo')
       this.sueloMapa.create(config.width/2, config.height/0.99, 'sueloMapa')
       this.sueloMapa.create(config.width/2, config.height/0.98, 'sueloMapa')
+      this.sueloMapa.create(config.width/2, config.height/0.97, 'sueloMapa')
+      this.sueloMapa.create(config.width/2, config.height/0.96, 'sueloMapa')
+      this.sueloMapa.create(config.width/2, config.height/0.95, 'sueloMapa')
 
         //( The platforms group contains the ground and the 2 ledges we can jump on
 
@@ -49,38 +55,46 @@ class Scene3 extends Phaser.Scene {
      
         
         //platforms.create(config.width/2.07, config.height/1.09, 'suelo');
-        platforms.create(config.width/2.10, config.height/1.585, 'sueloMedio');
-        platforms.create(config.width/1.3, config.height/1.585, 'sueloMedio2');
-        platforms.create(config.width/1.19,config.height/2.11,'paredFondo');
-        platforms.create(config.width/1.65,config.height/3.15,'sueloTejado');
+        //SUELO DEL MEDIO
+        platforms.create(config.width/1.48, config.height/1.60, 'sueloMedio2');
+        platforms.create(config.width/2.97, config.height/1.535, 'sueloMedio');
+        platforms.create(config.width/1.22,config.height/2.72,'sueloTejado');
+        platforms.create(config.width/1, config.height/1.48, 'sueloMedio2');
+        platforms.create(config.width/18, config.height/1.9, 'sueloMedio2');
+
+
+        platforms.create(config.width/6,config.height/3.8,'sueloTejado');
+        platforms.create(config.width/4,config.height/3.8,'sueloTejado');
+
+
 
         //GRUPO DE LAS PRIMERAS ESCALERAS
-        escaleras = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 64 });
+        escaleras = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
         //Phaser.Actions.PlaceOnLine(escaleras.getChildren(), new Phaser.Geom.Line(config.width/8.34, config.height/1.13,config.width/4.04,config.height/1.550));
-        Phaser.Actions.PlaceOnLine(escaleras.getChildren(), new Phaser.Geom.Line(config.width/8.38, config.height/1.16,config.width/3.9,config.height/1.59));
+        Phaser.Actions.PlaceOnLine(escaleras.getChildren(), new Phaser.Geom.Line(config.width/20, config.height/1.06,config.width/3.6,config.height/1.54));
         escaleras.refresh();
         
         //GRUPO ESCALERAS A LA PLANTA SUPERIOR
-        escaleras1= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 148 });
-        Phaser.Actions.PlaceOnLine(escaleras1.getChildren(), new Phaser.Geom.Line(config.width/2.5, config.height/1.54,config.width/1.65,config.height/3.16));
+        escaleras1= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 500 });
+        Phaser.Actions.PlaceOnLine(escaleras1.getChildren(), new Phaser.Geom.Line(config.width/2.7, config.height/1.54,config.width/1.7,config.height/2.7));
         escaleras1.refresh();
         
         //GRUPO ESCALERAS PLANTA DE ABAJO
-        escaleras2= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 86 });
-        Phaser.Actions.PlaceOnLine(escaleras2.getChildren(), new Phaser.Geom.Line(config.width/1.9, config.height/1.08,config.width/1.44,config.height/1.59));
+        escaleras2= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 400 });
+        Phaser.Actions.PlaceOnLine(escaleras2.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.1,config.height/1.49));
         escaleras2.refresh();
 
-        //TEJADO CON GRUPO DE TEJAS IZQUIERDA Y DERECHA
+       /* //TEJADO CON GRUPO DE TEJAS IZQUIERDA Y DERECHA
         tejas= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 86 });
         Phaser.Actions.PlaceOnLine(tejas.getChildren(), new Phaser.Geom.Line(config.width/2.67, config.height/3 ,config.width/1.65,config.height/50));
         tejas.refresh();
         tejas2 = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 86 });
         Phaser.Actions.PlaceOnLine(tejas2.getChildren(), new Phaser.Geom.Line(config.width/1.65,config.height/50,config.width/1.19,config.height/3));
         tejas2.refresh();
-
+*/
 
         //PRIMER ESCALON GOOORDO
-        platforms.create((config.width/2)/6,(config.height/2)/0.567, 'escalonGrande');
+        //platforms.create((config.width/2)/6,(config.height/2)/0.567, 'escalonGrande');
         
 
         // The player and its settings
@@ -123,16 +137,16 @@ class Scene3 extends Phaser.Scene {
         //  Our player animations, turning, walking left and walking right.
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('mainchizq', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainchizq', { start: 0, end: 16 }),
+            frameRate: 17,
             repeat: -1
             
         });
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('mainch', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainch', { start: 0, end: 16 }),
+            frameRate: 17,
             repeat: -1
             
 
@@ -177,16 +191,16 @@ class Scene3 extends Phaser.Scene {
         //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
 
         //VIDAS
-        vidasText = this.add.text(16, 48, 'VIDAS: ' + player.vidas, { fontSize: '32px', fill: '#fff' });
+        vidasText = this.add.bitmapText(16, 16,'fuentes3','vidas: '+ player.vidas,40);
 
         //  The score
         this.ronda = 0;
-        scoreText = this.add.text(16, 16, 'RONDA: ' + this.ronda, { fontSize: '32px', fill: '#fff' });
+        scoreText = this.add.bitmapText(config.width/2.2, 16,'fuentes3','ronda '+ this.ronda,40);
 
         //CUENTA ATRAS
         this.ready = true;//indica que el jugador esta en tiempo de prepararse
         this.enemigosSpawn = false;//indica que pueden aparecer enemigos o no
-        cuentaAtras = this.add.bitmapText(this.sys.game.config.width/2, this.sys.game.config.height/2,'fuentes','5',200);
+        cuentaAtras = this.add.bitmapText(this.sys.game.config.width/2, this.sys.game.config.height/2,'fuentes3','5',100);
         this.contadorTimeMedido = false;//guarda si se ha recopilado el tiempo del inicio se la cuenta atras
         this.inicioContador = 0;//tiempo del inicio se la cuenta atras
         this.contadorEnEjecucion = false;
@@ -203,8 +217,8 @@ class Scene3 extends Phaser.Scene {
        this.colliderEscaleras = this.physics.add.collider(player,escaleras);
        this.colliderEscaleras1 = this.physics.add.collider(player, escaleras1);
        this.colliderEscaleras2 = this.physics.add.collider(player, escaleras2);
-       this.physics.add.collider(player, tejas);
-       this.physics.add.collider(player, tejas2);
+       /*this.physics.add.collider(player, tejas);
+       this.physics.add.collider(player, tejas2);*/
         
 
 
@@ -216,11 +230,11 @@ class Scene3 extends Phaser.Scene {
         //COLLIDER DE LOS ENEMIGOS
         this.colliderEnemPlat = this.physics.add.collider(this.enemigos, platforms);
         this.physics.add.collider(this.enemigos,this.sueloMapa);
-        this.physics.add.collider(this.enemigos,escaleras);
-        this.physics.add.collider(this.enemigos,escaleras1);
-        this.physics.add.collider(this.enemigos,escaleras2);
-        this.colliderEnemTejas1 = this.physics.add.collider(this.enemigos,tejas);
-        this.colliderEnemTejas2 = this.physics.add.collider(this.enemigos,tejas2);
+        this.colliderEnemEscaleras1 =this.physics.add.collider(this.enemigos,escaleras);
+        this.colliderEnemEscaleras2 =this.physics.add.collider(this.enemigos,escaleras1);
+        this.colliderEnemEscaleras3 =this.physics.add.collider(this.enemigos,escaleras2);
+        /*this.colliderEnemTejas1 = this.physics.add.collider(this.enemigos,tejas);
+        this.colliderEnemTejas2 = this.physics.add.collider(this.enemigos,tejas2);*/
         this.physics.add.collider(this.enemigos);
     //    this.physics.add.collider(this.enemigos);//enemigos chocan con enemigos 
         //this.physics.add.overlap(this.enemigos, this.enemigos, function(enemigo1,enemigo2){enemigo1.body.setVelocidadX(0);}, null, this);//jugador choca con enemigo
@@ -254,9 +268,10 @@ class Scene3 extends Phaser.Scene {
                 }
                 if(i >= 50 - 1){
                         i = 0;
-                }      
+                }  
+
                 this.balas.getChildren()[i].x = player.x;
-                this.balas.getChildren()[i].y = player.y+10;
+                this.balas.getChildren()[i].y = player.y+22;
                 this.balas.getChildren()[i].setVisible(true);
 
                 if(estado == 0){
@@ -284,11 +299,12 @@ class Scene3 extends Phaser.Scene {
 
     update(time,delta){
 //aACTUALIZAR VIDAS
-        vidasText.setText("VIDAS: " + player.vidas);
+        vidasText.setText("vidas: " + player.vidas);
 
         //CONDICION DE DERROTA
         if(!player.vivo){
             audio1.pause();
+            rondaFinal = this.ronda;
             game.scene.stop('sceneGame');
             game.scene.start('sceneGameOver');
         }
@@ -324,32 +340,35 @@ class Scene3 extends Phaser.Scene {
             enem.update(player.x,-1, player.vivo, false);
         }
         //ENEMIGOS BAJAN PLATAFORMAS
-        var probabilidadBajarEscaleras = 0.02;
+        var probabilidadBajarEscaleras = 0.0017;
         var bajanEscaleras = Math.random() * (1 - 0) + 0;//numero aleatorio del 0 al 1
 
         if(bajanEscaleras < probabilidadBajarEscaleras){
 
             this.physics.world.removeCollider(this.colliderEnemPlat);
-            this.physics.world.removeCollider(this.colliderEnemTejas1);
-            this.physics.world.removeCollider(this.colliderEnemTejas2);
+            this.physics.world.removeCollider(this.colliderEnemEscaleras1);
+            this.physics.world.removeCollider(this.colliderEnemEscaleras2);
+            this.physics.world.removeCollider(this.colliderEnemEscaleras3);
+
+            /*this.physics.world.removeCollider(this.colliderEnemTejas1);
+            this.physics.world.removeCollider(this.colliderEnemTejas2);*/
             colliderEnemigosEliminado = 1;
             //console.log("colliderEscalerasElimnado");
             //console.log("colliderElimnado");
-            this.time.delayedCall(500, this.zombiesPlatF, [], this);       
+            this.time.delayedCall(1300, this.zombiesPlatF, [], this);       
             
         }
         //APARICION ENEMIGOS 
         var tiempoEntreZombies = 5000/this.ronda;   
         if(this.enemigosSpawn && (((time - this.tiempoEnemigo)%tiempoEntreZombies >= 0) && ((time - this.tiempoEnemigo)%tiempoEntreZombies < delta) )){
-
-            new Enemigo(this,this.sys.game.config.width/1.25,0);
-            new Enemigo(this,this.sys.game.config.width/2.75,0);
+            new Enemigo(this,this.sys.game.config.width,0);
+            new Enemigo(this,0,0);
         }
         
 
         if (cursors.left.isDown && player.vivo)
         {
-            player.setVelocityX(-160);
+            player.setVelocityX(-220);
     
             player.anims.play('left', true);
     
@@ -357,7 +376,7 @@ class Scene3 extends Phaser.Scene {
         }
         else if (cursors.right.isDown && player.vivo)
         {
-            player.setVelocityX(160);
+            player.setVelocityX(220);
     
             player.anims.play('right', true);
     
@@ -375,7 +394,7 @@ class Scene3 extends Phaser.Scene {
     if(player.vivo){
         if (cursors.up.isDown && player.body.touching.down)
         {
-            player.setVelocityY(-200);
+            player.setVelocityY(-400);
         }
     }
 
@@ -390,7 +409,7 @@ class Scene3 extends Phaser.Scene {
             
             colliderEliminado = 1;
             colliderEscalerasEliminado = 1;
-            this.time.delayedCall(500, this.encimaDePlat, [], this);
+            this.time.delayedCall(800, this.encimaDePlat, [], this);
 
         }
 
@@ -530,7 +549,7 @@ cuentaAtrasFunc(num, cuentaAtras, time, inicioContador, delta, scene){
                 scene.tiempoEnemigo = time;//se guarda el tiempo en el que se activa su aparicion
                 scene.ready = false; //El jugador al incio de la siguiente ronda no estara preparado
                 scene.ronda++;                            //actualiza la ronda
-                scoreText.setText("RONDA: " + this.ronda);//actualiza la ronda
+                scoreText.setText("ronda " + this.ronda);//actualiza la ronda
                 this.contadorEnEjecucion = false;//finaliza la cuenta atras
 
             }else{
@@ -578,7 +597,9 @@ encimaDePlat(){
 escalerasDcha(){
 
     if(colliderEscalerasEliminado === 1){
-     
+        this.physics.world.removeCollider(this.colliderEscaleras);
+        this.physics.world.removeCollider(this.colliderEscaleras1);
+        this.physics.world.removeCollider(this.colliderEscaleras2);
         this.colliderEscaleras = this.physics.add.collider(player,escaleras);
         this.colliderEscaleras1 = this.physics.add.collider(player, escaleras1);
         this.colliderEscaleras2 = this.physics.add.collider(player, escaleras2);
@@ -594,8 +615,13 @@ zombiesPlatF(){
 
     if(colliderEnemigosEliminado === 1){
         this.colliderEnemPlat = this.physics.add.collider(this.enemigos,platforms);
-        this.colliderEnemTejas1 = this.physics.add.collider(this.enemigos,tejas);
-        this.colliderEnemTejas2 = this.physics.add.collider(this.enemigos,tejas2);
+        this.colliderEnemEscaleras1 =this.physics.add.collider(this.enemigos,escaleras);
+        this.colliderEnemEscaleras2 =this.physics.add.collider(this.enemigos,escaleras1);
+        this.colliderEnemEscaleras3 =this.physics.add.collider(this.enemigos,escaleras2);
+
+
+        /*this.colliderEnemTejas1 = this.physics.add.collider(this.enemigos,tejas);
+        this.colliderEnemTejas2 = this.physics.add.collider(this.enemigos,tejas2);*/
     
        // console.log("colliderEscalerasAñadido");
         colliderEnemigosEliminado = 0;
