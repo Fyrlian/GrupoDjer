@@ -14,7 +14,7 @@ class ChatScene extends Phaser.Scene {
         
         //element.style.position = "absolute";
 
-        this.text = this.add.bitmapText(config.width/3.15, config.height/1.5,'fuentes3',('Chat: '+ contenidoChat),32);
+        this.text = this.add.bitmapText(config.width/1900, config.height/1.75,'fuentes3',('Chat: '+ contenidoChat),15);
 
         this.formUtil = new FormUtil({scene:this,rows:35,cols:20});
         //this.formUtil.showNumbers();
@@ -22,7 +22,7 @@ class ChatScene extends Phaser.Scene {
         this.formUtil.placeElementAt(500, "divChat", true, false);
       
 
- //ENVIAR MENSAJE
+ //ENVIAR MENSAJE-------------------------------------------------------------------------------------------------------------
         
             //AQUI ENVIAMOS AL SERVIDOR
            // that.scene.start("sceneMenu"); 
@@ -42,16 +42,16 @@ class ChatScene extends Phaser.Scene {
 
                   $.ajax({
                     method: "PUT",
-                    url:"http://localhost:8080/",
-                    data: JSON.stringify({posicionx: player.x, posiciony: player.y, vida: player.vidas}),
+                    url:"http://localhost:8080/mensaje",
+                    data: JSON.stringify({texto: auxValorChat,usuario : nombreUsuario}),
                     processData: false,
                     headers: {
                     "Content-type":"application/json"
                     }
                     }).done(function(data, textStatus, jqXHR) {
-                    console.log(textStatus+" "+jqXHR.statusCode());
+                   // console.log(textStatus+" "+jqXHR.statusCode());
                     }).fail(function(data, textStatus, jqXHR){
-                    console.log(textStatus+" "+jqXHR.statusCode());
+                    //console.log(textStatus+" "+jqXHR.statusCode());
                     });
 
 
@@ -61,7 +61,11 @@ class ChatScene extends Phaser.Scene {
 
 
                 
-             };
+             };//------------------------------------------------------------------------------------------------------
+
+
+
+
              //cerrar el caht
              this.input.keyboard.on("keydown_T",() =>{
 
@@ -80,7 +84,9 @@ class ChatScene extends Phaser.Scene {
 contenidoChat++;
 
 //ACTUALIZAMOS EL CHAT
+
       this.text.setText('Chat: '+ contenidoChat);
+      
 
     }
 

@@ -33,15 +33,38 @@ that = this;
         //this.formUtil.setStyle('
         element.style.display = "inline-block";
 
-//Cuando tocamos el boton
-
-
+//Cuando tocamos el boton--------------------------------------------------------------------------------
     document.getElementById("loginButton").onclick = function(){
+
+
+
+//guardamos el usuario
+nombreUsuario = document.getElementById("nombreUsuarioForm").value;
+console.log(nombreUsuario);
+
     that.scene.start("sceneMenu");
     element.style.display = "none";
     
 
-};
+    //Enviamos informacion de usuario
+var auxContraseña = document.getElementById("contraseñaForm").value;
+    
+$.ajax({
+    method: "PUT",
+    url:"http://localhost:8080/cuenta",
+    data: JSON.stringify({usuario : nombreUsuario,contrasena: auxContraseña}),
+    processData: false,
+    headers: {
+    "Content-type":"application/json"
+    }
+    }).done(function(data, textStatus, jqXHR) {
+   // console.log(textStatus+" "+jqXHR.statusCode());
+    }).fail(function(data, textStatus, jqXHR){
+    //console.log(textStatus+" "+jqXHR.statusCode());
+    });
+
+
+};//----------------------------------------------------------------------------------------------------------------
 //this.boton.setAttribute("onclick", alert("blabla"));
 
 
