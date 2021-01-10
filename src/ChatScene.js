@@ -36,6 +36,26 @@ class ChatScene extends Phaser.Scene {
                   var auxValorChat = document.getElementById("chatButton").value = (""); //guardamos el texto que se desea enviar
                   document.getElementById("chatButton").value = ("");  //booramos el contenido del chat
 
+
+
+                  //ENVIAMOS MENSAJE
+
+                  $.ajax({
+                    method: "PUT",
+                    url:"http://localhost:8080/",
+                    data: JSON.stringify({posicionx: player.x, posiciony: player.y, vida: player.vidas}),
+                    processData: false,
+                    headers: {
+                    "Content-type":"application/json"
+                    }
+                    }).done(function(data, textStatus, jqXHR) {
+                    console.log(textStatus+" "+jqXHR.statusCode());
+                    }).fail(function(data, textStatus, jqXHR){
+                    console.log(textStatus+" "+jqXHR.statusCode());
+                    });
+
+
+
                 }
      
 
