@@ -41,5 +41,22 @@ public Cuenta[] getConectadas(){
 	return conectadas;
 
 }
+
+@RequestMapping(value = "/conectados", method = RequestMethod.DELETE)
+
+public ResponseEntity<Boolean> borrarConectada(@RequestBody Cuenta cuenta){
+	
+	if(conectadas[0].usuario.equals(cuenta.usuario)) {
+		
+		conectadas[0] = null; 
+		return new ResponseEntity<Boolean>(true, HttpStatus.ACCEPTED);
+
+	}else if(conectadas[1].usuario.equals(cuenta.usuario)) {
+		conectadas[1] = null; 
+		return new ResponseEntity<Boolean>(true, HttpStatus.ACCEPTED);
+
+	}else
+		return new ResponseEntity<Boolean>(false, HttpStatus.NOT_IMPLEMENTED);
+	}
 	
 }
