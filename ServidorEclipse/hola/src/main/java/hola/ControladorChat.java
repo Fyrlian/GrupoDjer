@@ -37,7 +37,7 @@ public class ControladorChat {
 	      }
 	      catch(Exception e){
 	         e.printStackTrace();
-	         return new ResponseEntity<Boolean>(true, HttpStatus.NOT_IMPLEMENTED);
+	         return new ResponseEntity<Boolean>(false, HttpStatus.NOT_IMPLEMENTED);
 	      }
 		
 		
@@ -103,13 +103,28 @@ public class ControladorChat {
 					
 				}
 				
-				
+				boolean masDeNum = false;
+				int numPequeno = 0;
+				if(pilaAux.size() < numMensajes) {//considera la opcion de que halla menos mensajes en el chat de los que consideramos
+					masDeNum = true;
+					numPequeno = pilaAux.size();
+					
+				}
 				//introducimos los ultimos en nuestro array
 				String mensaje = "";
 				for(int i = 0; i < numMensajes; i++) {
 					
-					mensaje = pilaAux.pop();
-					chat[numMensajes - 1 - i] = mensaje;
+					if(masDeNum) {
+						if(numPequeno > i) {
+							mensaje = pilaAux.pop();
+							chat[numMensajes - 1 - i] = mensaje;
+						}
+						
+					}else {
+						mensaje = pilaAux.pop();
+						chat[numMensajes - 1 - i] = mensaje;
+					}
+					
 					
 				}
 				
