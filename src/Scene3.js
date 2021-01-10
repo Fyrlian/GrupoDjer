@@ -15,6 +15,10 @@ class Scene3 extends Phaser.Scene {
     create(){//  A simple background for our game
         this.bg=this.add.image(config.width/2,config.height/2, 'fondo');
         
+
+
+
+        
         //Audio 
 
        
@@ -271,7 +275,7 @@ class Scene3 extends Phaser.Scene {
                 }  
 
                 this.balas.getChildren()[i].x = player.x;
-                this.balas.getChildren()[i].y = player.y+22;
+                this.balas.getChildren()[i].y = player.y+25;
                 this.balas.getChildren()[i].setVisible(true);
 
                 if(estado == 0){
@@ -293,6 +297,12 @@ class Scene3 extends Phaser.Scene {
         this.physics.add.overlap(player, this.enemigos, this.quitarVida, null, this);//jugador choca con enemigo
 
     
+
+
+
+
+
+
 
     }
     
@@ -397,6 +407,14 @@ class Scene3 extends Phaser.Scene {
             player.setVelocityY(-400);
         }
     }
+
+    
+        
+
+
+
+
+
 
         //PULSAR TECLA ABAJO(eliminar collider)
         if(player.vivo){

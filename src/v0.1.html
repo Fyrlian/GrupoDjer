@@ -21,16 +21,79 @@
     <script  type="text/javascript" src="Scene10.js"></script>
     <script  type="text/javascript" src="Scene11.js"></script>
     <script  type="text/javascript" src="Scene12.js"></script>
+    <script  type="text/javascript" src="ChatScene.js"></script>
+    <script  type="text/javascript" src="LoginScene.js"></script>
     <script  type="text/javascript" src="Bala.js"></script>
     <script  type="text/javascript" src="Enemigo.js"></script>
     <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="FormUtil.js" ></script>
+    <script type="text/javascript" src="AlignGrid.js" ></script>
     <style type="text/css">
         body {
+            
             margin: 0;
         }
+        
+    </style>
+    <style>
+         @font-face {
+            font-family: 'fuente';
+            font-style: normal;
+            font-weight: normal;
+            src: url(assets/Inheritance.ttf);
+      
+       }
+       @font-face {
+           font-family: 'fuente2';
+           src: url(assets/font2.fnt);
+       }
+       @font-face {
+           font-family: 'fuente3';
+           src: url(assets/font3.fnt);
+        }
+
+        .texto{
+            font-family: 'fuente';
+            font-size: 30px;
+        }
+
     </style>
 </head>
 <body>
 
+    <div id = "div" style="display:none" >
+
+        <form action="../form-result.php" target="_blank" id="formulario"> 
+    <fieldset>
+            <p class='texto'><label>username:<input type="text" name="nombre" id="formulario1" style='width:98%;'></label></p>
+    
+            <p class ='texto'> <label>password:<input type="text" name="direccion" style='width:98%;'></label></p>
+            
+        
+                <input  type="submit" value="Enviar la información" id="loginButton">
+            
+              
+            </fieldset>
+              
+          </form>
+    
+          
+        </div>
+
+
+        <div id = "divChat" style="display:none">
+
+            <form action="../form-result.php" target="_blank"> 
+        
+                <p><label><input id=chatButton type="text" name="nombre" style="width: 262%;"></label></p>
+                
+                  </p>
+              
+              </form>
+        
+              
+            </div>
+
+        
 </body>
 </html>

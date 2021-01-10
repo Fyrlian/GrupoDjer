@@ -4,8 +4,6 @@
 
 Jorge Galiano García correo: [j.galiano.2018@alumnos.urjc.es](mailto:j.galiano.2018@alumnos.urjc.es) github: Jorgee-sk
 
-Darío Martín Redondo correo: [d.martinr.2018@alumnos.urjc.es](mailto:d.martinr.2018@alumnos.urjc.es) github: Fyrlian
-
 Pablo Romero Hernández correo: [p.romero.2018@alumnos.urjc.es](mailto:p.romero.2018@alumnos.urjc.es) github: Kalomano
 
 Daniel Romero Hernández correo: [d.romeroh.2018@alumnos.urjc.es](mailto:d.romeroh.2018@alumnos.urjc.es) github: DanielinR

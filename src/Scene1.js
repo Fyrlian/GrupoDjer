@@ -7,6 +7,8 @@ class Scene1 extends Phaser.Scene {
   preload(){
    
    
+
+
     //IMAGENES DEL JUEGO
       this.load.image('sueloMapa','../assets/sueloMapa.png');
       this.load.image('suelo','../assets/suelo.png');
@@ -15,6 +17,7 @@ class Scene1 extends Phaser.Scene {
       this.load.image('escalon','../assets/escalon.png');
       this.load.image('escalonGrande','../assets/escalonGrande.png');
 
+      this.load.image('fondoLogin','../assets/fondoLogin.png');
       this.load.image('fondo','../assets/Nivel 1.png');
       this.load.image('sky', '../assets/sky.png');
       this.load.image('ground', '../assets/platform.png');
@@ -49,6 +52,8 @@ class Scene1 extends Phaser.Scene {
       this.load.image('icono1','../assets/iconoP1.png');
       this.load.image('icono2','../assets/iconoP2.png');
 
+
+      this.load.image('chat','../assets/chat.png');
       //fuentes
       this.load.bitmapFont('fuentes','../assets/font.png','../assets/font.fnt');
       this.load.bitmapFont('fuentes2','../assets/font2.png','../assets/font2.fnt');
@@ -172,7 +177,7 @@ init () {
 ready () {
       this.readyCount++;
   if (this.readyCount === 2) {
-      this.scene.start('sceneMenu');
+      this.scene.start('loginScene');
   }
 
 }

@@ -10,6 +10,16 @@ class Scene8 extends Phaser.Scene {
     }
     create(){
 
+
+      if(chatAbierto==true){
+
+          chatAbierto=false;
+      
+      }
+      this.scene.stop('chatScene');
+      
+
+
     this.score = 0;
     this.gameOver = false;
     this.lastFired = 0;

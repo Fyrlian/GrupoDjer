@@ -286,7 +286,7 @@ class Scene7 extends Phaser.Scene {
                         i = 0;
                 }      
                 this.balas.getChildren()[i].x = player.x;
-                this.balas.getChildren()[i].y = player.y+10;
+                this.balas.getChildren()[i].y = player.y+25;
                 this.balas.getChildren()[i].setVisible(true);
 
 
@@ -318,7 +318,7 @@ class Scene7 extends Phaser.Scene {
                         i = 0;
                 }      
                 this.balas.getChildren()[i].x = player2.x;
-                this.balas.getChildren()[i].y = player2.y+10;
+                this.balas.getChildren()[i].y = player2.y+25;
                 this.balas.getChildren()[i].setVisible(true);
 
                 if(estado2 == 0){
@@ -343,6 +343,30 @@ class Scene7 extends Phaser.Scene {
 
 
 
+
+        //TOCAR T PARA ABRIR EL CHAT
+       
+        this.input.keyboard.on("keydown_T",() =>{
+
+            if(chatAbierto == false){
+                this.scene.launch('chatScene');
+                chatAbierto = true;
+        
+            }else if(chatAbierto == true){
+                this.scene.stop('chatScene');
+                chatAbierto= false;
+            }
+
+
+        })
+
+
+
+
+
+
+
+/*
          //enviar la ubicacion jugador 1 al servidor
          $.ajax({
             method: "POST",
@@ -374,13 +398,13 @@ class Scene7 extends Phaser.Scene {
             }).fail(function(data, textStatus, jqXHR){
             console.log(textStatus+" "+jqXHR.statusCode());
             });
-
+*/
 
     }
     
 
     update(time,delta){
-
+        /*
         //enviar la ubicacion jugador 1 al servidor
         $.ajax({
             method: "PUT",
@@ -412,7 +436,7 @@ class Scene7 extends Phaser.Scene {
             }).fail(function(data, textStatus, jqXHR){
             console.log(textStatus+" "+jqXHR.statusCode());
             });
-
+*/
 
         //ACTUALIZAR VIDAS
         vidasText.setText('vidas   : '+player.vidas);
@@ -423,6 +447,8 @@ class Scene7 extends Phaser.Scene {
             this.audio1.pause();
             rondaFinal = this.ronda;
             game.scene.stop('sceneGame2');
+            var element = document.getElementById("divChat");
+            element.style.display = "none";
             game.scene.start('sceneGameOver');
         }
         
@@ -507,15 +533,22 @@ class Scene7 extends Phaser.Scene {
           player.anims.play('turn', true);
             
         }
-        //Pulsar tecla arriba
-        if (cursors.up.isDown && player.body.touching.down  && player.vivo)
-        {
-            player.setVelocityY(-400);
-            player.anims.stop();
-        }
 
-        //Pulsar tecla abajo(eliminar collider)
+        
+        
+
+        
         if(player.vivo){
+
+            //Pulsar tecla arriba
+            if (cursors.up.isDown && player.body.touching.down)
+            {
+                player.setVelocityY(-400);
+                player.anims.stop();
+            }
+
+
+            //Pulsar tecla abajo(eliminar collider)
             if (cursors.down.isDown && player.body.touching.down) 
             {
                 this.physics.world.removeCollider(this.colliderPlats);
@@ -631,28 +664,39 @@ class Scene7 extends Phaser.Scene {
             player2.anims.play('turn2', true);
 
         }
-        //Pulsar tecla arriba
-        if (Phaser.Input.Keyboard.DownDuration(this.w) && player2.body.touching.down && player2.vivo)
-        {
-            player2.setVelocityY(-400);
-            player.anims.stop();
-        }
 
-        //Pulsar tecla abajo(eliminar collider)
-        if ((Phaser.Input.Keyboard.DownDuration(this.s)) && player2.vivo && player2.body.touching.down)
-        {
-           
-            this.physics.world.removeCollider(this.colliderPlats2);
-            this.physics.world.removeCollider(this.colliderEscaleras_2);
-            this.physics.world.removeCollider(this.colliderEscaleras1_2);
-            this.physics.world.removeCollider(this.colliderEscaleras2_2);
-            // console.log("colliderEscalerasEliminado2");
-            //console.log("colliderEliminado2");
-            colliderEliminado2 = 1;
-            colliderEscalerasEliminado2 = 1;
-            this.time.delayedCall(800, this.encimaDePlat2, [], this);
+
+        if(player2.vivo){
+            //Pulsar tecla arriba
+            if (Phaser.Input.Keyboard.DownDuration(this.w) && player2.body.touching.down)
+            {
+                player2.setVelocityY(-400);
+                player.anims.stop();
+            }
+
+            //Pulsar tecla abajo(eliminar collider)
+            if ((Phaser.Input.Keyboard.DownDuration(this.s)) && player2.body.touching.down)
+            {
+            
+                this.physics.world.removeCollider(this.colliderPlats2);
+                this.physics.world.removeCollider(this.colliderEscaleras_2);
+                this.physics.world.removeCollider(this.colliderEscaleras1_2);
+                this.physics.world.removeCollider(this.colliderEscaleras2_2);
+                // console.log("colliderEscalerasEliminado2");
+                //console.log("colliderEliminado2");
+                colliderEliminado2 = 1;
+                colliderEscalerasEliminado2 = 1;
+                this.time.delayedCall(800, this.encimaDePlat2, [], this);
+
+            }
+
+
+
+
 
         }
+        
+        
 
  
         // EScLERAS POR LA DERECHA  JUGADOR 2
