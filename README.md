@@ -461,7 +461,8 @@ Los efectos de sonido se guardarán en .wav.
 - Phaser examples, proporcionados por phaser oficial.
 - Sonidos: http://recursostic.educacion.es/bancoimagenes/web/.
 - Mapa : https://opengameart.org/content/free-graveyard-platformer-tileset.
-
+- Codigo evitar comportamiento form: https://stackoverflow.com/questions/5384712/intercept-a-form-submit-in-javascript-and-prevent-normal-submission    Usuario Michael McTiernan
+- AlignGrid y FormUtil: https://phasergames.com/phaser-3-input-text-form-ui-part-1/
 
 
 
