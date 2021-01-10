@@ -6,23 +6,31 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 500 },
-            debug: true
+            debug: false
 
         },
         matter: {
             gravity: { y: 500 },
-            debug: true
+            debug: false
         },
     },
+    
     scale: {
         parent: 'yourgamediv',
         mode: 'resize',
         width: 1920,
         height: 1080
     },
-    scene:[Scene0,Scene1,Scene2,Scene3,Scene4,Scene5,Scene6,Scene7,Scene8,Scene9,Scene10,Scene11,Scene12]
+    parent: 'divId',
+    dom: {
+        createContainer: true
+    },
+    scene:[Scene0,Scene1,Scene2,Scene3,Scene4,Scene5,Scene6,Scene7,Scene8,Scene9,Scene10,Scene11,Scene12,ChatScene,LoginScene]
 };
-
+var that;
+var element;
+var chatAbierto = false;
+var contenidoChat;
 var player;
 var player2;
 var stars;
