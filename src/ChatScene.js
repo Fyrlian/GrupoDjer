@@ -82,16 +82,81 @@ class ChatScene extends Phaser.Scene {
     }
     update(){
 contenidoChat++;
+
 //recogemos lista de mensajes
+//GET PARA LOS MENSAJES
+    $.ajax({
+
+        url: "http://localhost:8080/chat"
+    }).then(function(data) {
+        /*
+      var auxChat1 = data.chat1; 
+      var auxChat2 = data.chat2;
+      var auxChat3 = data.chat3;
+      var auxChat4 = data.chat4;
+      var auxChat5 = data.chat5;
+      var auxChat6 = data.chat6;
+
+      */
+     var auxChat = new Array(6); 
+
+     for(var i=0;i<6;i++){
+        JSON.stringify(data);
+        data.replace('[','');
+        data.replace(']','');
+        auxChat[i] = data.split(",")[i];
+        console.log(data[i]);
+    }   
+
+     for(var i=0;i<6;i++){
+        if(auxChat[i] != null){
+            this.text.setText(this.text.getText() + auxChat[i]  + "\n");
+        }
+     }  
+   
+    
+    
+    })//FIN GETT
+
+
+
+    
+      // this.text.setText(auxChat1  + "\n" + auxChat2 + "\n" + auxChat3 + "\n" + auxChat4 + "\n" + auxChat5 + "\n" + auxChat6);
+/*
+if(auxChat1 != null){
+    this.text.setText(auxChat1  + "\n");
+}
+if(auxChat2 != null){
+    this.text.setText(auxChat2  + "\n");
+}
+if(auxChat3 != null){
+    this.text.setText(auxChat3  + "\n");
+}
+if(auxChat4 != null){
+    this.text.setText(auxChat4  + "\n");
+}
+if(auxChat5 != null){
+    this.text.setText(auxChat5  + "\n");
+}
+if(auxChat6 != null){
+    this.text.setText(auxChat6);
+}
+      */      
+
+/*
+        var auxChat = new Array(6); 
+        for(var i=0;i<6;i++){
+
+            if(auxChat[i]!=null){
+                this.text.setText(auxChat[i]  + "\n");
+            }
+            
+        }
+  */              
 
 
 
 
-//ACTUALIZAMOS EL CHAT
-
-      this.text.setText('Chat: '+ contenidoChat + "\n olaotro \n olaaa \n adasdda \n adasd \n asdad");
-      
-
-    }
+}
 
 }
