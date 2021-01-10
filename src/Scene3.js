@@ -353,7 +353,7 @@ class Scene3 extends Phaser.Scene {
         var probabilidadBajarEscaleras = 0.0017;
         var bajanEscaleras = Math.random() * (1 - 0) + 0;//numero aleatorio del 0 al 1
 
-        if(bajanEscaleras < probabilidadBajarEscaleras){
+        if(bajanEscaleras < probabilidadBajarEscaleras && colliderEnemigosEliminado == 0){
 
             this.physics.world.removeCollider(this.colliderEnemPlat);
             this.physics.world.removeCollider(this.colliderEnemEscaleras1);
