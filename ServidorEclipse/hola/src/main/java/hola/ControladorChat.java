@@ -90,7 +90,7 @@ public class ControladorChat {
 		
 		public String[] getChat(){
 			
-			int numMensajes = 10;
+			int numMensajes = 6;
 			String[] chat = new String[numMensajes];
 			
 			//guardamos todos los mensajes del chat en una pila
