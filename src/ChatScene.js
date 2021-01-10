@@ -85,7 +85,7 @@ contenidoChat++;
 
 //ACTUALIZAMOS EL CHAT
 
-      this.text.setText('Chat: '+ contenidoChat);
+      this.text.setText('Chat: '+ contenidoChat + "\n olaotro \n olaaa \n adasdda \n adasd \n asdad");
       
 
     }
