@@ -16,7 +16,7 @@ that = this;
         this.bg=this.add.image(config.width/2,config.height/2, 'fondoLogin');
 
         //var text = this.add.text(10, 10, 'Please login to play', { color: 'white', fontFamily: 'Arial', fontSize: '32px '});
-        var text = this.add.bitmapText(config.width/2.65, config.height/1.8,'fuentes',('log  to  play'),64);
+        var text = this.add.bitmapText(config.width/2.65, config.height/2.7,'fuentes',('log  to  play'),64);
      
 
 
@@ -28,7 +28,7 @@ that = this;
         this.formUtil = new FormUtil({scene:this,rows:12,cols:20});
         //this.formUtil.showNumbers();
 
-        this.formUtil.placeElementAt(147.5, "div", false, false);
+        this.formUtil.placeElementAt(107.25, "div", false, false);
         //this.formUtil.addChangeCallback("div", this.textAreaChanged, this);
         //this.formUtil.setStyle('
         element.style.display = "inline-block";

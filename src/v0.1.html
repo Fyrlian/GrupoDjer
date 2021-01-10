@@ -40,21 +40,29 @@
             font-family: 'fuente';
             font-style: normal;
             font-weight: normal;
-            src: url(assets/Inheritance.ttf);
+            src: url(../assets/Inheritance.ttf);
       
        }
        @font-face {
            font-family: 'fuente2';
-           src: url(assets/font2.fnt);
+           src: url(../assets/font2.fnt);
        }
        @font-face {
            font-family: 'fuente3';
-           src: url(assets/font3.fnt);
+           src: url(../assets/font3.fnt);
         }
 
         .texto{
             font-family: 'fuente';
             font-size: 30px;
+            color: white;
+        }
+        .textoBoton{
+            font-family: 'fuente';
+            font-size: 25px;
+            align-items: center;
+            
+
         }
 
     </style>
@@ -70,7 +78,7 @@
             <p class ='texto'> <label>password:<input type="text" name="direccion" id="contraseñaForm" style='width:98%;'></label></p>
             
         
-                <input  type="submit" value="Enviar la información" id="loginButton">
+                <input class='textoBoton' type="submit" value="login" id="loginButton" style="margin:0px auto; display:block;">
             
               
             </fieldset>

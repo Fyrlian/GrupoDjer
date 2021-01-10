@@ -82,6 +82,10 @@ class ChatScene extends Phaser.Scene {
     }
     update(){
 contenidoChat++;
+//recogemos lista de mensajes
+
+
+
 
 //ACTUALIZAMOS EL CHAT
 
