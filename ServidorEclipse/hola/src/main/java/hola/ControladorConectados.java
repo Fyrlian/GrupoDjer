@@ -21,20 +21,24 @@ public class ControladorConectados {
 	
 @RequestMapping(value = "/conectado", method = RequestMethod.PUT)
 	
-	public ResponseEntity<Boolean> addCuenta(@RequestBody Cuenta cuenta){
+	public int addCuenta(@RequestBody Cuenta cuenta){
+	
+	int jugadorConect = -1;
 		
 		if(conectadas[0] == null) {
 			conectadas[0] = cuenta; 
-			return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+			jugadorConect = 1;
+			return jugadorConect;
 		}else if(conectadas[1] == null) {
 			conectadas[1] = cuenta; 
-			return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+			jugadorConect = 2;
+			return jugadorConect;
 		}else
-			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_IMPLEMENTED);
+			return jugadorConect;
 		
 	}
 	
-@RequestMapping(value = "/conectados", method = RequestMethod.GET)
+@RequestMapping(value = "/conectado", method = RequestMethod.GET)
 
 public Cuenta[] getConectadas(){
 	
@@ -42,16 +46,16 @@ public Cuenta[] getConectadas(){
 
 }
 
-@RequestMapping(value = "/conectados", method = RequestMethod.DELETE)
+@RequestMapping(value = "/conectado", method = RequestMethod.DELETE)
 
 public ResponseEntity<Boolean> borrarConectada(@RequestBody Cuenta cuenta){
 	
-	if(conectadas[0].usuario.equals(cuenta.usuario)) {
+	if(conectadas[0]!= null && conectadas[0].usuario.equals(cuenta.usuario)) {
 		
 		conectadas[0] = null; 
 		return new ResponseEntity<Boolean>(true, HttpStatus.ACCEPTED);
 
-	}else if(conectadas[1].usuario.equals(cuenta.usuario)) {
+	}else if(conectadas[1]!= null && conectadas[1].usuario.equals(cuenta.usuario)) {
 		conectadas[1] = null; 
 		return new ResponseEntity<Boolean>(true, HttpStatus.ACCEPTED);
 
