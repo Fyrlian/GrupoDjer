@@ -351,10 +351,16 @@ class Scene7 extends Phaser.Scene {
             if(chatAbierto == false){
                 this.scene.launch('chatScene');
                 chatAbierto = true;
+                game.input.enabled = false;
+
+
+
+
         
             }else if(chatAbierto == true){
                 this.scene.stop('chatScene');
                 chatAbierto= false;
+                game.input.enabled = true;
             }
 
 
