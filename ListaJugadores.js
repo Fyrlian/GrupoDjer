@@ -2,10 +2,10 @@ class ChatScene extends Phaser.Scene {
 
     constructor(){
 
-        super({ key: "chatScene" });
+        super({ key: "listajugadores" });
     }
 
-    //pablo es tontito
+    
     preload(){}
     create(){
         that = this;
@@ -29,11 +29,11 @@ class ChatScene extends Phaser.Scene {
            // that.scene.start("sceneMenu"); 
             //element.style.display = "none";
         
-//Aqui evitamos que el input reinicia la ventana
+
             function processForm(e) {
                 if (e.preventDefault) e.preventDefault();
             
-                /*
+                
             
                // if(e.keyCode == 13){
                     console.log("ENVIO MENSAJE");
@@ -62,9 +62,12 @@ class ChatScene extends Phaser.Scene {
   
                  // }
        
-  // You must return false to prevent the default form behavior
-  */
+  
+  
                   
+            
+            
+                    // You must return false to prevent the default form behavior
                     return false;
                 }
 
@@ -78,14 +81,14 @@ class ChatScene extends Phaser.Scene {
 
             
 
-            //Aqui detecta si pulsamos enter
+            /*
             document.getElementById('divChat').onkeydown = function(e){
                 if(e.keyCode == 13){
                   console.log("ENVIO MENSAJE");
 
 
                   var auxValorChat = document.getElementById("chatButton").value; //guardamos el texto que se desea enviar
-                  document.getElementById("chatButton").value = ("");  //booramos el contenido del chat
+                  document.getElementById("chatButton").value;  //booramos el contenido del chat
                   
 
 
@@ -110,7 +113,7 @@ class ChatScene extends Phaser.Scene {
 
 
                 
-             } 
+             } */
             ;//------------------------------------------------------------------------------------------------------
 
 
