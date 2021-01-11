@@ -68,7 +68,7 @@ function processForm(e) {
 
             }else{
                 alert("Contraseña incorrecta");
-                that.scene.start("loginScene");
+                that.scene.start("listajugadores");//cambiar importante
 
             }
             
