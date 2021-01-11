@@ -301,8 +301,10 @@ class Scene7 extends Phaser.Scene {
             }
             
         })
-
-        //DISPARO PLAYER 2
+        
+        
+      //DISPARO JUGADOR 2
+        
         this.input.keyboard.on("keydown_SPACE",() => {//pulsar el boton de disparo
                 
             this.disparoSound.play();
@@ -332,40 +334,54 @@ class Scene7 extends Phaser.Scene {
             }
             
         })
+        
+
+
 
         //Deteccion de teclas del movimiento del jugador 2
         this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.a = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-    
+        var esp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+        
 
 
 
 
 
-        //TOCAR T PARA ABRIR EL CHAT
+        //TOCAR ESC PARA ABRIR EL CHAT
        
         this.input.keyboard.on("keydown_ESC",() =>{
 
             if(chatAbierto == false){
                 this.scene.launch('chatScene');
                 chatAbierto = true;
-                game.input.enabled = false;
-
-
-
-
+             
+                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.W)
+                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.A)
+                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.S)
+                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.D)
+                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+               
         
             }else if(chatAbierto == true){
                 this.scene.stop('chatScene');
                 chatAbierto= false;
-                game.input.enabled = true;
+                this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+                this.a = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+                this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+                this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+                this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+                
+
+                
             }
 
 
         })
-
 
 
 
@@ -673,6 +689,9 @@ class Scene7 extends Phaser.Scene {
 
 
         if(player2.vivo){
+
+          
+
             //Pulsar tecla arriba
             if (Phaser.Input.Keyboard.DownDuration(this.w) && player2.body.touching.down)
             {
