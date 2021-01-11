@@ -346,7 +346,7 @@ class Scene7 extends Phaser.Scene {
 
         //TOCAR T PARA ABRIR EL CHAT
        
-        this.input.keyboard.on("keydown_T",() =>{
+        this.input.keyboard.on("keydown_ESC",() =>{
 
             if(chatAbierto == false){
                 this.scene.launch('chatScene');
