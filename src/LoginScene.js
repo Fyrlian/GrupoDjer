@@ -44,7 +44,6 @@ function processForm(e) {
 
     //guardamos el usuario
     nombreUsuario = document.getElementById("nombreUsuarioForm").value;
-    console.log(nombreUsuario);
 
 
         element.style.display = "none";
@@ -62,16 +61,21 @@ function processForm(e) {
         "Content-type":"application/json"
         }
         }).done(function(data, textStatus, jqXHR) {
-        // console.log(textStatus+" "+jqXHR.statusCode());
+
+            if(data == true){
+
+                that.scene.start("sceneMenu");
+
+            }else{
+                alert("Contraseña incorrecta");
+                that.scene.start("listajugadores");//cambiar importante
+
+            }
+            
+
         }).fail(function(data, textStatus, jqXHR){
-        //console.log(textStatus+" "+jqXHR.statusCode());
+            
         });
-
-        that.scene.start("sceneMenu");
-
-
-
-
 
         // You must return false to prevent the default form behavior
         return false;
@@ -95,7 +99,7 @@ function processForm(e) {
 
     textAreaChanged() {
         var text = this.formUtil.getTextAreaValue("area51");
-        console.log(text);
+
     }
 
     update(){

@@ -69,7 +69,7 @@ private File archivo = new File ("../hola/src/main/resources/usuarios.txt");
 					return new ResponseEntity<Boolean>(true, HttpStatus.ACCEPTED);
 				}else {
 				
-					return new ResponseEntity<Boolean>(false, HttpStatus.NOT_IMPLEMENTED);
+					return new ResponseEntity<Boolean>(false, HttpStatus.ACCEPTED);
 					
 				}
 
