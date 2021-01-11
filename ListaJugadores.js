@@ -2,10 +2,10 @@ class ChatScene extends Phaser.Scene {
 
     constructor(){
 
-        super({ key: "chatScene" });
+        super({ key: "listajugadores" });
     }
 
-    //pablo es tontito
+    
     preload(){}
     create(){
         that = this;
