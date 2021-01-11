@@ -204,8 +204,8 @@ class Scene7 extends Phaser.Scene {
         //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
 
         //VIDAS
-        vidasText = this.add.bitmapText(16, 16,'fuentes3','vidas        : ',40);
-        vidasText2 = this.add.bitmapText(16, 76,'fuentes3','vidas        : ',40);
+        vidasText2 = this.add.bitmapText(16, 16,'fuentes3','vidas        : ',40);
+        vidasText = this.add.bitmapText(16, 76,'fuentes3','vidas        : ',40);
 
         //  The score
         this.ronda = 0;
@@ -569,7 +569,7 @@ class Scene7 extends Phaser.Scene {
         //Pulsar tecla izquierda
         if (cursors.left.isDown && player.vivo)
         {
-            player.setVelocityX(-220);
+            player.setVelocityX(-260);
     
             player.anims.play('left', true);
     
@@ -578,7 +578,7 @@ class Scene7 extends Phaser.Scene {
         //Pulsar tecla derecha
         else if (cursors.right.isDown && player.vivo)
         {
-            player.setVelocityX(220);
+            player.setVelocityX(260);
     
             player.anims.play('right', true);
     
@@ -699,7 +699,7 @@ class Scene7 extends Phaser.Scene {
         //Pulsar tecla izquierda
         if (Phaser.Input.Keyboard.DownDuration(this.a)  && player2.vivo)
         {
-            player2.setVelocityX(-220);
+            player2.setVelocityX(-260);
     
             player2.anims.play('left2', true);
     
@@ -709,7 +709,7 @@ class Scene7 extends Phaser.Scene {
         else if (Phaser.Input.Keyboard.DownDuration(this.d) && player2.vivo)
         {
 
-            player2.setVelocityX(220);
+            player2.setVelocityX(260);
     
             player2.anims.play('right2', true);
     

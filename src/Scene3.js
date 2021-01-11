@@ -378,7 +378,7 @@ class Scene3 extends Phaser.Scene {
 
         if (cursors.left.isDown && player.vivo)
         {
-            player.setVelocityX(-220);
+            player.setVelocityX(-260);
     
             player.anims.play('left', true);
     
@@ -386,7 +386,7 @@ class Scene3 extends Phaser.Scene {
         }
         else if (cursors.right.isDown && player.vivo)
         {
-            player.setVelocityX(220);
+            player.setVelocityX(260);
     
             player.anims.play('right', true);
     
