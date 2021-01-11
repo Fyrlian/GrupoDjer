@@ -27,8 +27,8 @@ class Scene7 extends Phaser.Scene {
         
 
 
-        this.add.image(250,50,'icono1');
-        this.add.image(250,125,'icono2');
+        this.add.image(250,50,'icono2');
+        this.add.image(250,125,'icono1');
 
 
 
@@ -111,6 +111,11 @@ class Scene7 extends Phaser.Scene {
                 
                 this.scene.pause('sceneGame2');
                 this.scene.launch('scenePause2');
+                if( listaJugAbierta== true){
+                    this.scene.stop('listaJugadores');
+                    listaJugAbierta= false;
+                    
+                }
                 
             }.bind(this));
 
@@ -343,8 +348,35 @@ class Scene7 extends Phaser.Scene {
 
 
 
+        //TOCAR TAB PARA ABRIR LISTAJUGADORES
+        
+        this.input.keyboard.on("keydown_CTRL",() =>{
 
-        //TOCAR T PARA ABRIR EL CHAT
+            if(listaJugAbierta == false){
+
+        this.scene.launch('listaJugadores');
+         listaJugAbierta = true;
+
+
+
+            }else if( listaJugAbierta== true){
+                this.scene.stop('listaJugadores');
+                listaJugAbierta= false;
+                
+            }
+
+
+
+        })
+
+        
+
+
+
+
+
+        
+        //TOCAR ESC PARA ABRIR EL CHAT
        
         this.input.keyboard.on("keydown_ESC",() =>{
 
@@ -455,6 +487,11 @@ class Scene7 extends Phaser.Scene {
             game.scene.stop('sceneGame2');
             var element = document.getElementById("divChat");
             element.style.display = "none";
+            if( listaJugAbierta== true){
+                this.scene.stop('listaJugadores');
+                listaJugAbierta= false;
+                
+            }
             game.scene.start('sceneGameOver');
         }
         

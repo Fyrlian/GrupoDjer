@@ -152,6 +152,7 @@ class Scene1 extends Phaser.Scene {
   }
   create(){
 
+
       this.background=this.add.image(config.width/2,config.height/2, 'logoHWK');
       
 
