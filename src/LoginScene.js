@@ -33,38 +33,58 @@ that = this;
         //this.formUtil.setStyle('
         element.style.display = "inline-block";
 
-//Cuando tocamos el boton--------------------------------------------------------------------------------
-    document.getElementById("loginButton").onclick = function(){
+//Cuando tocamos el boton-----------------------------------------------------------------------------------------
+function processForm(e) {
+    if (e.preventDefault) e.preventDefault();
+
+    /* do what you want with the form */
 
 
 
-//guardamos el usuario
-nombreUsuario = document.getElementById("nombreUsuarioForm").value;
-console.log(nombreUsuario);
 
-    that.scene.start("sceneMenu");
-    element.style.display = "none";
-    
+    //guardamos el usuario
+    nombreUsuario = document.getElementById("nombreUsuarioForm").value;
+    console.log(nombreUsuario);
 
-    //Enviamos informacion de usuario
-var auxContraseña = document.getElementById("contraseñaForm").value;
-    
-$.ajax({
-    method: "PUT",
-    url:"http://localhost:8080/cuenta",
-    data: JSON.stringify({usuario : nombreUsuario,contrasena: auxContraseña}),
-    processData: false,
-    headers: {
-    "Content-type":"application/json"
+
+        element.style.display = "none";
+
+
+        //Enviamos informacion de usuario
+    var auxContraseña = document.getElementById("contraseñaForm").value;
+
+    $.ajax({
+        method: "PUT",
+        url:"http://localhost:8080/cuenta",
+        data: JSON.stringify({usuario : nombreUsuario,contrasena: auxContraseña}),
+        processData: false,
+        headers: {
+        "Content-type":"application/json"
+        }
+        }).done(function(data, textStatus, jqXHR) {
+        // console.log(textStatus+" "+jqXHR.statusCode());
+        }).fail(function(data, textStatus, jqXHR){
+        //console.log(textStatus+" "+jqXHR.statusCode());
+        });
+
+        that.scene.start("sceneMenu");
+
+
+
+
+
+        // You must return false to prevent the default form behavior
+        return false;
     }
-    }).done(function(data, textStatus, jqXHR) {
-   // console.log(textStatus+" "+jqXHR.statusCode());
-    }).fail(function(data, textStatus, jqXHR){
-    //console.log(textStatus+" "+jqXHR.statusCode());
-    });
 
+    var form = document.getElementById('formulario');
+    if (form.attachEvent) {
+        form.attachEvent("submit", processForm);
+    } else {
+        form.addEventListener("submit", processForm);
+}
 
-};//----------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------
 //this.boton.setAttribute("onclick", alert("blabla"));
 
 

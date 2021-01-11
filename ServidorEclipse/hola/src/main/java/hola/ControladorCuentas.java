@@ -21,7 +21,7 @@ private File archivo = new File ("../hola/src/main/resources/usuarios.txt");
 	
 	@RequestMapping(value = "/cuenta", method = RequestMethod.PUT)
 	
-	public ResponseEntity<Boolean> introucirMensaje(@RequestBody Cuenta cuenta){
+	public ResponseEntity<Boolean> introucirCuenta(@RequestBody Cuenta cuenta){
 		
 		 try {
 			 
@@ -43,7 +43,7 @@ private File archivo = new File ("../hola/src/main/resources/usuarios.txt");
 					
 					aux = br.readLine();
 					
-					if(aux.equals(cuenta.contrasena)) {
+					if(aux != null && aux.equals(cuenta.contrasena)) {
 						contraCorrecta = true;
 					}
 					
@@ -66,7 +66,7 @@ private File archivo = new File ("../hola/src/main/resources/usuarios.txt");
 				
 				if(contraCorrecta)//ha introcido bien la contrasena
 				{
-					return new ResponseEntity<Boolean>(true, HttpStatus.NOT_IMPLEMENTED);
+					return new ResponseEntity<Boolean>(true, HttpStatus.ACCEPTED);
 				}else {
 				
 					return new ResponseEntity<Boolean>(false, HttpStatus.NOT_IMPLEMENTED);

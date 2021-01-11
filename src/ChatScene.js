@@ -8,13 +8,14 @@ class ChatScene extends Phaser.Scene {
     
     preload(){}
     create(){
+        that = this;
+
         this.add.image(config.width/8.12,config.height/1.5,'chat');
-        contenidoChat = 1;
         var element = document.getElementById("divChat");
         
         //element.style.position = "absolute";
 
-        this.text = this.add.bitmapText(config.width/1900, config.height/1.75,'fuentes3',('Chat: '+ contenidoChat),15);
+        this.text = this.add.bitmapText(config.width/1900, config.height/1.75,'fuentes3',(""),15);
 
         this.formUtil = new FormUtil({scene:this,rows:35,cols:20});
         //this.formUtil.showNumbers();
@@ -33,9 +34,9 @@ class ChatScene extends Phaser.Scene {
                   console.log("ENVIO MENSAJE");
 
 
-                  var auxValorChat = document.getElementById("chatButton").value = (""); //guardamos el texto que se desea enviar
-                  document.getElementById("chatButton").value = ("");  //booramos el contenido del chat
-
+                  var auxValorChat = document.getElementById("chatButton").value; //guardamos el texto que se desea enviar
+                  document.getElementById("chatButton").value;  //booramos el contenido del chat
+                  
 
 
                   //ENVIAMOS MENSAJE
@@ -54,8 +55,6 @@ class ChatScene extends Phaser.Scene {
                     //console.log(textStatus+" "+jqXHR.statusCode());
                     });
 
-
-
                 }
      
 
@@ -67,7 +66,7 @@ class ChatScene extends Phaser.Scene {
 
 
              //cerrar el caht
-             this.input.keyboard.on("keydown_T",() =>{
+             this.input.keyboard.on("keydown_ESC",() =>{
 
                 element.style.display = "none";
 
@@ -81,7 +80,6 @@ class ChatScene extends Phaser.Scene {
        // this.text = this.add.bitmapText(config.width/3.15, config.height/1.5,'fuentes3',('Chat: '+ contenidoChat),32);
     }
     update(){
-contenidoChat++;
 
 //recogemos lista de mensajes
 //GET PARA LOS MENSAJES
@@ -89,30 +87,28 @@ contenidoChat++;
 
         url: "http://localhost:8080/chat"
     }).then(function(data) {
-        /*
-      var auxChat1 = data.chat1; 
-      var auxChat2 = data.chat2;
-      var auxChat3 = data.chat3;
-      var auxChat4 = data.chat4;
-      var auxChat5 = data.chat5;
-      var auxChat6 = data.chat6;
+   
+    that.text.setText("");//vaciamos el chat para actualizarlo
 
-      */
      var auxChat = new Array(6); 
-
+     JSON.stringify(data);
+             
+     data.toString().replace("[","");
+     data.toString().replace("]","");
      for(var i=0;i<6;i++){
-        JSON.stringify(data);
-        data.replace('[','');
-        data.replace(']','');
-        auxChat[i] = data.split(",")[i];
-        console.log(data[i]);
-    }   
+        
+        auxChat[i] = data.toString().split(",")[i];
 
-     for(var i=0;i<6;i++){
+
         if(auxChat[i] != null){
-            this.text.setText(this.text.getText() + auxChat[i]  + "\n");
+            that.text.setText(that.text.text + auxChat[i]  + "\n");
         }
-     }  
+       
+    }   
+    
+    
+        
+     
    
     
     
