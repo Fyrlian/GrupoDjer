@@ -74,9 +74,9 @@
 
         <form id="formulario"> 
     <fieldset>
-            <p class='texto'><label>username:<input type="text" name="nombre" id="nombreUsuarioForm" style='width:98%;'></label></p>
+            <p class='texto'><label>username:<input type="text" name="nombre" id="nombreUsuarioForm" style='width:98%;' required></label></p>
     
-            <p class ='texto'> <label>password:<input type="text" name="direccion" id="contraseñaForm" style='width:98%;'></label></p>
+            <p class ='texto'> <label>password:<input type="text" name="direccion" id="contraseñaForm" style='width:98%;'required></label></p>
                 
         
                 <input class='textoBoton' type="submit" value="login" id="loginButton" style="margin:0px auto; display:block;">
@@ -92,7 +92,7 @@
 
         <div id = "divChat" style="display:none">
 
-            <form action="../form-result.php" target="_blank"> 
+            <form id="formularioChat"> 
         
                 <p><label><input id=chatButton type="text" name="nombre" style="width: 262%;"></label></p>
                 
