@@ -16,6 +16,8 @@ class Scene1 extends Phaser.Scene {
       this.load.image('sueloMedio2','../assets/sueloMedio2.png');
       this.load.image('escalon','../assets/escalon.png');
       this.load.image('escalonGrande','../assets/escalonGrande.png');
+      this.load.image('equis','../assets/equisalternativa.png');
+
 
       this.load.image('fondoLogin','../assets/fondoLogin.png');
       this.load.image('fondo','../assets/Nivel 1.png');
