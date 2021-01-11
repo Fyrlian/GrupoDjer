@@ -29,6 +29,59 @@ class ChatScene extends Phaser.Scene {
            // that.scene.start("sceneMenu"); 
             //element.style.display = "none";
         
+
+            function processForm(e) {
+                if (e.preventDefault) e.preventDefault();
+            
+                
+            
+               // if(e.keyCode == 13){
+                    console.log("ENVIO MENSAJE");
+  
+  
+                    var auxValorChat = document.getElementById("chatButton").value; //guardamos el texto que se desea enviar
+                    document.getElementById("chatButton").value = ("");//booramos el contenido del chat
+                    
+  
+  
+                    //ENVIAMOS MENSAJE
+  
+                    $.ajax({
+                      method: "PUT",
+                      url:"http://localhost:8080/mensaje",
+                      data: JSON.stringify({texto: auxValorChat,usuario : nombreUsuario}),
+                      processData: false,
+                      headers: {
+                      "Content-type":"application/json"
+                      }
+                      }).done(function(data, textStatus, jqXHR) {
+                     // console.log(textStatus+" "+jqXHR.statusCode());
+                      }).fail(function(data, textStatus, jqXHR){
+                      //console.log(textStatus+" "+jqXHR.statusCode());
+                      });
+  
+                 // }
+       
+  
+  
+                  
+            
+            
+                    // You must return false to prevent the default form behavior
+                    return false;
+                }
+
+
+                var form = document.getElementById('formularioChat');
+                if (form.attachEvent) {
+                    form.attachEvent("submit", processForm);
+                } else {
+                    form.addEventListener("submit", processForm);
+            }
+
+            
+
+            /*
             document.getElementById('divChat').onkeydown = function(e){
                 if(e.keyCode == 13){
                   console.log("ENVIO MENSAJE");
@@ -60,7 +113,8 @@ class ChatScene extends Phaser.Scene {
 
 
                 
-             };//------------------------------------------------------------------------------------------------------
+             } */
+            ;//------------------------------------------------------------------------------------------------------
 
 
 
