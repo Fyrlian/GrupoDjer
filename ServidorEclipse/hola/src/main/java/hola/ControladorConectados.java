@@ -22,20 +22,20 @@ public class ControladorConectados {
 	
 @RequestMapping(value = "/conectado", method = RequestMethod.PUT)
 	
-	public int addCuenta(@RequestBody Cuenta cuenta){
+	public ResponseEntity<Integer> addCuenta(@RequestBody Cuenta cuenta){
 	
 	int jugadorConect = -1;
 		
 		if(conectadas[0] == null) {
 			conectadas[0] = cuenta; 
 			jugadorConect = 1;
-			return jugadorConect;
+			return new ResponseEntity<Integer>(jugadorConect, HttpStatus.CREATED);
 		}else if(conectadas[1] == null) {
 			conectadas[1] = cuenta; 
 			jugadorConect = 2;
-			return jugadorConect;
+			return new ResponseEntity<Integer>(jugadorConect, HttpStatus.CREATED);
 		}else
-			return jugadorConect;
+			return new ResponseEntity<Integer>(jugadorConect, HttpStatus.NOT_IMPLEMENTED);
 		
 	}
 	

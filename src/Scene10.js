@@ -100,6 +100,20 @@ class Scene10 extends Phaser.Scene {
         this.centerButtonText(this.gameTextExit, this.gameButtonExit); 
         
         this.gameButtonExit.on('pointerdown', function (pointer) {
+          $.ajax({
+            method: "DELETE",
+            url:"http://localhost:8080/conectado",
+            data: JSON.stringify({usuario : nombreUsuario,contrasena: "auxContraseña"}),
+            processData: false,
+            headers: {
+            "Content-type":"application/json"
+            }
+            }).done(function(data, textStatus, jqXHR) {
+
+            }).fail(function(data, textStatus, jqXHR){
+
+            });
+
             this.scene.stop('sceneGame2');
             this.scene.start('sceneMenu');
             audio1.stop();

@@ -67,7 +67,8 @@ var audio1;
 var audio;
 var vueltaAlJuego = false;
 var rondaFinal = 0;
-
+var jugadorRepresentado = -1;
+var that2;
 
 
 var game = new Phaser.Game(config);

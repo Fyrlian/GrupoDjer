@@ -13,6 +13,32 @@ class Scene7 extends Phaser.Scene {
 
     }
     create(){//  A simple background for our game
+        that2 = this;
+        //se añade a la lista de jugadores
+        $.ajax({
+            method: "PUT",
+            url:"http://localhost:8080/conectado",
+            data: JSON.stringify({usuario : nombreUsuario,contrasena: "auxContraseña"}),
+            processData: false,
+            headers: {
+            "Content-type":"application/json"
+            }
+            }).done(function(data, textStatus, jqXHR) {
+
+                if(data == 1){//entra como el jugador 1
+                    jugadorRepresentado = 1;
+                }else{//entra como el jugador 2
+                    jugadorRepresentado = 2;
+                }
+    
+            }).fail(function(data, textStatus, jqXHR){
+                alert("Servidor actualmente lleno");
+                that2.scene.stop('sceneGame2');
+                that2.scene.start('sceneMenu');
+            });
+
+
+
         this.bg=this.add.image(config.width/2,config.height/2, 'fondo');
         
         //Audio 
@@ -468,6 +494,7 @@ class Scene7 extends Phaser.Scene {
         if(!player.vivo && !player2.vivo){
             this.audio1.pause();
             rondaFinal = this.ronda;
+            game.scene.stop('chatScene');
             game.scene.stop('sceneGame2');
             var element = document.getElementById("divChat");
             element.style.display = "none";
@@ -527,7 +554,7 @@ class Scene7 extends Phaser.Scene {
             new Enemigo(this,0,0);
         }
         
-
+        
         //CONTROLES JUGADOR 1
         //Pulsar tecla izquierda
         if (cursors.left.isDown && player.vivo)

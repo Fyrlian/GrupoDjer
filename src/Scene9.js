@@ -87,6 +87,7 @@ class Scene9 extends Phaser.Scene {
         this.centerButtonText(this.gameTextExit, this.gameButtonExit); 
         
         this.gameButtonExit.on('pointerdown', function (pointer) {
+         
             this.scene.stop('sceneGame');
             this.scene.start('sceneMenu');
             audio1.stop();
