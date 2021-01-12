@@ -128,8 +128,8 @@ class Scene7 extends Phaser.Scene {
         //  Our player animations, turning, walking left and walking right.
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('mainchizq', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainchizq', { start: 0, end: 16 }),
+            frameRate: 27,
             repeat: -1
             
         });
@@ -137,8 +137,8 @@ class Scene7 extends Phaser.Scene {
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('mainch', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainch', { start: 0, end: 16 }),
+            frameRate: 27,
             repeat: -1
             
 
@@ -147,8 +147,8 @@ class Scene7 extends Phaser.Scene {
 
         this.anims.create({
             key: 'left2',
-            frames: this.anims.generateFrameNumbers('mainchizq2', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainchizq2', { start: 0, end: 16 }),
+            frameRate: 27,
             repeat: -1
             
         });
@@ -156,8 +156,8 @@ class Scene7 extends Phaser.Scene {
 
         this.anims.create({
             key: 'right2',
-            frames: this.anims.generateFrameNumbers('mainch2', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainch2', { start: 0, end: 16 }),
+            frameRate: 27,
             repeat: -1
             
 
