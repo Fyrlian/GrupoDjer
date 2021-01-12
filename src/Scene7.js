@@ -53,8 +53,8 @@ class Scene7 extends Phaser.Scene {
         
 
 
-        this.add.image(250,50,'icono1');
-        this.add.image(250,125,'icono2');
+        this.add.image(250,50,'icono2');
+        this.add.image(250,125,'icono1');
 
 
 
@@ -137,6 +137,11 @@ class Scene7 extends Phaser.Scene {
                 
                 this.scene.pause('sceneGame2');
                 this.scene.launch('scenePause2');
+                if( listaJugAbierta== true){
+                    this.scene.stop('listaJugadores');
+                    listaJugAbierta= false;
+                    
+                }
                 
             }.bind(this));
 
@@ -149,8 +154,8 @@ class Scene7 extends Phaser.Scene {
         //  Our player animations, turning, walking left and walking right.
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('mainchizq', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainchizq', { start: 0, end: 16 }),
+            frameRate: 27,
             repeat: -1
             
         });
@@ -158,8 +163,8 @@ class Scene7 extends Phaser.Scene {
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('mainch', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainch', { start: 0, end: 16 }),
+            frameRate: 27,
             repeat: -1
             
 
@@ -168,8 +173,8 @@ class Scene7 extends Phaser.Scene {
 
         this.anims.create({
             key: 'left2',
-            frames: this.anims.generateFrameNumbers('mainchizq2', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainchizq2', { start: 0, end: 16 }),
+            frameRate: 27,
             repeat: -1
             
         });
@@ -177,8 +182,8 @@ class Scene7 extends Phaser.Scene {
 
         this.anims.create({
             key: 'right2',
-            frames: this.anims.generateFrameNumbers('mainch2', { start: 0, end: 3 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('mainch2', { start: 0, end: 16 }),
+            frameRate: 27,
             repeat: -1
             
 
@@ -225,8 +230,8 @@ class Scene7 extends Phaser.Scene {
         //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
 
         //VIDAS
-        vidasText = this.add.bitmapText(16, 16,'fuentes3','vidas        : ',40);
-        vidasText2 = this.add.bitmapText(16, 76,'fuentes3','vidas        : ',40);
+        vidasText2 = this.add.bitmapText(16, 16,'fuentes3','vidas        : ',40);
+        vidasText = this.add.bitmapText(16, 76,'fuentes3','vidas        : ',40);
 
         //  The score
         this.ronda = 0;
@@ -376,7 +381,34 @@ class Scene7 extends Phaser.Scene {
 
 
 
+        //TOCAR TAB PARA ABRIR LISTAJUGADORES
+        
+        this.input.keyboard.on("keydown_CTRL",() =>{
 
+            if(listaJugAbierta == false){
+
+        this.scene.launch('listaJugadores');
+         listaJugAbierta = true;
+
+
+
+            }else if( listaJugAbierta== true){
+                this.scene.stop('listaJugadores');
+                listaJugAbierta= false;
+                
+            }
+
+
+
+        })
+
+        
+
+
+
+
+
+        
         //TOCAR ESC PARA ABRIR EL CHAT
        
         this.input.keyboard.on("keydown_ESC",() =>{
@@ -498,6 +530,11 @@ class Scene7 extends Phaser.Scene {
             game.scene.stop('sceneGame2');
             var element = document.getElementById("divChat");
             element.style.display = "none";
+            if( listaJugAbierta== true){
+                this.scene.stop('listaJugadores');
+                listaJugAbierta= false;
+                
+            }
             game.scene.start('sceneGameOver');
         }
         
@@ -559,7 +596,7 @@ class Scene7 extends Phaser.Scene {
         //Pulsar tecla izquierda
         if (cursors.left.isDown && player.vivo)
         {
-            player.setVelocityX(-220);
+            player.setVelocityX(-260);
     
             player.anims.play('left', true);
     
@@ -568,7 +605,7 @@ class Scene7 extends Phaser.Scene {
         //Pulsar tecla derecha
         else if (cursors.right.isDown && player.vivo)
         {
-            player.setVelocityX(220);
+            player.setVelocityX(260);
     
             player.anims.play('right', true);
     
@@ -689,7 +726,7 @@ class Scene7 extends Phaser.Scene {
         //Pulsar tecla izquierda
         if (Phaser.Input.Keyboard.DownDuration(this.a)  && player2.vivo)
         {
-            player2.setVelocityX(-220);
+            player2.setVelocityX(-260);
     
             player2.anims.play('left2', true);
     
@@ -699,7 +736,7 @@ class Scene7 extends Phaser.Scene {
         else if (Phaser.Input.Keyboard.DownDuration(this.d) && player2.vivo)
         {
 
-            player2.setVelocityX(220);
+            player2.setVelocityX(260);
     
             player2.anims.play('right2', true);
     

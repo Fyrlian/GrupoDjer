@@ -142,7 +142,7 @@ class Scene3 extends Phaser.Scene {
         this.anims.create({
             key: 'left',
             frames: this.anims.generateFrameNumbers('mainchizq', { start: 0, end: 16 }),
-            frameRate: 17,
+            frameRate: 27,
             repeat: -1
             
         });
@@ -150,7 +150,7 @@ class Scene3 extends Phaser.Scene {
         this.anims.create({
             key: 'right',
             frames: this.anims.generateFrameNumbers('mainch', { start: 0, end: 16 }),
-            frameRate: 17,
+            frameRate: 27,
             repeat: -1
             
 
@@ -378,7 +378,7 @@ class Scene3 extends Phaser.Scene {
 
         if (cursors.left.isDown && player.vivo)
         {
-            player.setVelocityX(-220);
+            player.setVelocityX(-260);
     
             player.anims.play('left', true);
     
@@ -386,7 +386,7 @@ class Scene3 extends Phaser.Scene {
         }
         else if (cursors.right.isDown && player.vivo)
         {
-            player.setVelocityX(220);
+            player.setVelocityX(260);
     
             player.anims.play('right', true);
     

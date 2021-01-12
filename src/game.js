@@ -27,7 +27,7 @@ var config = {
     },
     scene:[Scene0,Scene1,Scene2,Scene3,Scene4,Scene5,Scene6,Scene7,Scene8,Scene9,Scene10,Scene11,Scene12,ChatScene,LoginScene,ListaJugadores]
 };
-
+var listaJugAbierta = false;
 var nombreUsuario;
 var that;
 var element;

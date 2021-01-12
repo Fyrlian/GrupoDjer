@@ -5,7 +5,7 @@ class ChatScene extends Phaser.Scene {
         super({ key: "chatScene" });
     }
 
-    //pablo es tontito
+    
     preload(){}
     create(){
         that = this;

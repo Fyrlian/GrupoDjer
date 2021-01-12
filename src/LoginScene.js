@@ -68,13 +68,13 @@ function processForm(e) {
 
             }else{
                 alert("Contraseña incorrecta");
-                that.scene.start("listajugadores");//cambiar importante
+                
 
             }
             
 
         }).fail(function(data, textStatus, jqXHR){
-            
+            that.scene.start("sceneMenu");//cambiar importante
         });
 
         // You must return false to prevent the default form behavior

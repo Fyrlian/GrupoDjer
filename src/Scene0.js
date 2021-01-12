@@ -11,7 +11,6 @@ class Scene0 extends Phaser.Scene {
    
     }
     create(){
-
         this.scene.start("sceneLogoCarga");
     }
     update(){}
