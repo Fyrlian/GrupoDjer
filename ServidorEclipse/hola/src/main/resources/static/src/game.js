@@ -70,5 +70,9 @@ var rondaFinal = 0;
 var jugadorRepresentado = -1;
 var that2;
 var that3;
-
+var estaConectadoPlayer1 = false;
+var estaConectadoPlayer2 = false;
+var estaConectadoPlayer1aux= false;
+var estaConectadoPlayer2aux = false;
+var textEstadoServidor;
 var game = new Phaser.Game(config);

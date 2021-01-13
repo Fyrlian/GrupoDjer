@@ -12,7 +12,9 @@ class ListaJugadores extends Phaser.Scene {
     }
     create(){
 
+
         
+
         that3 = this;
         this.add.image(config.width/2,config.height/3,'chat');
         this.add.image(config.width/2,config.height/1.5,'chat');

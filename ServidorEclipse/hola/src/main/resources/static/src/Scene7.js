@@ -9,11 +9,13 @@ class Scene7 extends Phaser.Scene {
   
     
     preload(){
-       
+
 
     }
     create(){//  A simple background for our game
         that2 = this;
+        
+        
         //se añade a la lista de jugadores
         $.ajax({
             method: "PUT",
@@ -232,6 +234,9 @@ class Scene7 extends Phaser.Scene {
         //VIDAS
         vidasText2 = this.add.bitmapText(16, 16,'fuentes3','vidas        : ',40);
         vidasText = this.add.bitmapText(16, 76,'fuentes3','vidas        : ',40);
+        
+		//incluimjos el texto que contiene el estado del servidor
+        textEstadoServidor = this.add.bitmapText(0,config.height - 30,'fuentes3','',15);
 
         //  The score
         this.ronda = 0;
@@ -480,43 +485,126 @@ class Scene7 extends Phaser.Scene {
             });
 */
 
+this.servidorEstado = false;
+
     }
     
 
     update(time,delta){
-        /*
-        //enviar la ubicacion jugador 1 al servidor
-        $.ajax({
-            method: "PUT",
-            url:"http://localhost:8080/jugador/0",
-            data: JSON.stringify({posicionx: player.x, posiciony: player.y, vida: player.vidas}),
-            processData: false,
-            headers: {
-            "Content-type":"application/json"
-            }
-            }).done(function(data, textStatus, jqXHR) {
-            console.log(textStatus+" "+jqXHR.statusCode());
-            }).fail(function(data, textStatus, jqXHR){
-            console.log(textStatus+" "+jqXHR.statusCode());
-            });
+    
+    	//GET PARA LOS MENSAJES++++++++++++++++++++++++++++++++++++++++++++
+$.ajax({
+
+    url: "http://localhost:8080/conectado"
+}).then(function(data) {
+ 
+
+ 
+    //EL JUGADOR1 EXISTE
+    if(data[0] != null){
+
+        estaConectadoPlayer1 = true;
+   
+        if(estaConectadoPlayer1 != estaConectadoPlayer1aux){
+    
+            alert("Se ha conectado Jugador 1: " + data[0].usuario);
+    
+        }
+        estaConectadoPlayer1aux = true;
+
+
+        
+    //EL JUGADOR1 NO EXISTE
+    }else{
+
+        estaConectadoPlayer1 = false;
+   
+        if(estaConectadoPlayer1 != estaConectadoPlayer1aux){
+    
+            alert("Se ha desconectado Jugador 1: " );
+    
+        }
+        estaConectadoPlayer1aux = false;
+
+
+      
+
+    }
+
+    
+    //EL JUGADOR2 EXISTE
+    
+ 
+    
+    if(data[1] != null){
+
+        estaConectadoPlayer2 = true;
+   
+        if(estaConectadoPlayer2 != estaConectadoPlayer2aux){
+    
+            alert("Se ha conectado Jugador 2: " + data[1].usuario);
+    
+        }
+        estaConectadoPlayer2aux = true;
 
 
 
-        //enviar la ubicacion jugador 2 al servidor
-        $.ajax({
-            method: "PUT",
-            url:"http://localhost:8080/jugador/1",
-            data: JSON.stringify({posicionx: player2.x, posiciony: player2.y, vida: player2.vidas}),
-            processData: false,
-            headers: {
-            "Content-type":"application/json"
-            }
-            }).done(function(data, textStatus, jqXHR) {
-            console.log(textStatus+" "+jqXHR.statusCode());
-            }).fail(function(data, textStatus, jqXHR){
-            console.log(textStatus+" "+jqXHR.statusCode());
-            });
-*/
+
+
+
+    //EL JUGADOR2 NO EXISTE
+    }else{
+
+        estaConectadoPlayer2 = false;
+        if(estaConectadoPlayer2 != estaConectadoPlayer2aux){
+    
+            alert("Se ha desconectado Jugador 2: ");
+    
+        }
+        estaConectadoPlayer2aux = false;
+
+
+
+    }
+
+    
+   
+ 
+ 
+	})//FIN GETT+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    
+    
+    
+        
+
+		//Actualiza el estado del servidor
+		 $.ajax({
+
+		            url: "http://localhost:8080/juego"
+		        }).then(function(data) {
+		        	
+		            if(data == true){
+		           
+		                textEstadoServidor.setText("Servidor conectado");
+		                //that2.textoEstadoServidor.addColor("008F39",20);
+		                that2.servidorEstado = true;
+		                
+		                
+		 
+		                
+		            }
+
+	
+		}).fail(function(data, textStatus, jqXHR){
+		
+			               		
+		        	textEstadoServidor.setText("Servidor desconectado");
+		        	//that2.textoEstadoServidor.addColor("FF000",20);
+		        
+
+        });
+	
+ 
 
         //ACTUALIZAR VIDAS
         vidasText.setText('vidas   : '+player.vidas);

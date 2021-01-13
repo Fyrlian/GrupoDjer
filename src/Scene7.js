@@ -14,6 +14,9 @@ class Scene7 extends Phaser.Scene {
     }
     create(){//  A simple background for our game
         that2 = this;
+
+
+
         //se añade a la lista de jugadores
         $.ajax({
             method: "PUT",
@@ -232,6 +235,7 @@ class Scene7 extends Phaser.Scene {
         //VIDAS
         vidasText2 = this.add.bitmapText(16, 16,'fuentes3','vidas        : ',40);
         vidasText = this.add.bitmapText(16, 76,'fuentes3','vidas        : ',40);
+        texto = this.add.bitmapText(config.width,config.height - 30,'fuentes3',("Player 1: "),30);
 
         //  The score
         this.ronda = 0;
@@ -484,6 +488,19 @@ class Scene7 extends Phaser.Scene {
     
 
     update(time,delta){
+
+        $.ajax({
+
+            url: "http://localhost:8080/juego"
+        }).then(function(data) {
+        
+            if(data ===true){
+            }
+         
+        })
+        
+
+
         /*
         //enviar la ubicacion jugador 1 al servidor
         $.ajax({

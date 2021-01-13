@@ -60,20 +60,12 @@ function processForm(e) {
         }
         }).done(function(data, textStatus, jqXHR) {
 
-            if(data == true){
-
-                that.scene.start("sceneMenu");
-
-            }else{
-                that.scene.start("loginScene");
-                alert("Contraseña incorrecta");
-            }
-            
+          
 
         }).fail(function(data, textStatus, jqXHR){
 
         });
-
+        that.scene.start("sceneMenu");
         // You must return false to prevent the default form behavior
         return false;
     }

@@ -45,6 +45,7 @@ var score = 0;
 var scoreText;
 var vidasText;
 var vidasText2;
+var textoEstadoServidor;
 var cuentaAtras;
 var fireButton;
 var bullets;
@@ -74,5 +75,6 @@ var estaConectadoPlayer1 = false;
 var estaConectadoPlayer2 = false;
 var estaConectadoPlayer1aux= false;
 var estaConectadoPlayer2aux = false;
+var texto;
 
 var game = new Phaser.Game(config);
