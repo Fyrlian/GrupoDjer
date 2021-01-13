@@ -67,14 +67,13 @@ function processForm(e) {
                 that.scene.start("sceneMenu");
 
             }else{
+                that.scene.start("loginScene");
                 alert("Contraseña incorrecta");
-                
-
             }
             
 
         }).fail(function(data, textStatus, jqXHR){
-            that.scene.start("sceneMenu");//cambiar importante
+
         });
 
         // You must return false to prevent the default form behavior
