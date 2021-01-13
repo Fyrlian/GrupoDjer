@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.util.Stack;
 
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ControladorChat {
 
-
-	private File archivo = new File ("../hola/src/main/resources/chat.txt");
+	
+	File archivo = new File("chat.txt");
+	//private File archivo = new File ("/hola/src/main/resources/chat.txt");
 	
 	
 	@RequestMapping(value = "/mensaje", method = RequestMethod.PUT)

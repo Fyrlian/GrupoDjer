@@ -6,8 +6,6 @@ class LoginScene extends Phaser.Scene {
     }
     preload(){
 
-        //HTML
-        this.load.html('formularioLogin', 'formularioLogin.html');
         
     }
     create(){
@@ -67,14 +65,24 @@ function processForm(e) {
                 that.scene.start("sceneMenu");
 
             }else{
-                alert("Contraseña incorrecta");
-                
+            	 //COLOCAMOS EL FORMULARIO
 
+        //var element = this.add.dom(400, 600).createFromCache('formularioLogin');
+          element = document.getElementById("div");
+        //element.style.position = "absolute";
+        this.formUtil = new FormUtil({scene:this,rows:12,cols:20});
+        //this.formUtil.showNumbers();
+
+        this.formUtil.placeElementAt(107.25, "div", false, false);
+        //this.formUtil.addChangeCallback("div", this.textAreaChanged, this);
+        //this.formUtil.setStyle('
+        element.style.display = "inline-block";
+                alert("Contraseña incorrecta");
             }
             
 
         }).fail(function(data, textStatus, jqXHR){
-            that.scene.start("sceneMenu");//cambiar importante
+
         });
 
         // You must return false to prevent the default form behavior
@@ -103,7 +111,7 @@ function processForm(e) {
     }
 
     update(){
-
+	
 
 
 

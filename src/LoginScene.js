@@ -6,8 +6,6 @@ class LoginScene extends Phaser.Scene {
     }
     preload(){
 
-        //HTML
-        this.load.html('formularioLogin', 'formularioLogin.html');
         
     }
     create(){

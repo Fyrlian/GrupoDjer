@@ -69,6 +69,6 @@ var vueltaAlJuego = false;
 var rondaFinal = 0;
 var jugadorRepresentado = -1;
 var that2;
-
+var that3;
 
 var game = new Phaser.Game(config);

@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ControladorCuentas {
 
-private File archivo = new File ("../hola/src/main/resources/usuarios.txt");
-	
+	File archivo = new File("usuarios.txt");
+//private File archivo = new File ("/hola/src/main/resources/usuarios.txt");
+
 	
 	@RequestMapping(value = "/cuenta", method = RequestMethod.PUT)
 	

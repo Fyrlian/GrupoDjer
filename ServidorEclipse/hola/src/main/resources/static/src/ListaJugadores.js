@@ -11,6 +11,7 @@ class ListaJugadores extends Phaser.Scene {
         
     }
     create(){
+        that3 = this;
         this.add.image(config.width/2,config.height/3,'chat');
         this.add.image(config.width/2,config.height/1.5,'chat');
         this.add.image(config.width/2,config.height/3,'chat');
@@ -39,38 +40,29 @@ $.ajax({
     url: "http://localhost:8080/conectado"
 }).then(function(data) {
 
-
-
- var auxPlayers = new Array(2); 
- JSON.stringify(data);
-         
- data.toString().replace("[","");
- data.toString().replace("]","");
-
-    
-    auxPlayers[i] = data.toString().split(",")[i];
-
+   
     //EL JUGADOR1 EXISTE
-    if(auxPlayers[0] != null){
-        that.textPlayer1.setText("Player 1: "+ auxPlayers[0]);
-        this.equisPlayer1.setVisible(false);
+    if(data[0] != null){
+        that3.textPlayer1.setText("Player 1: "+ data[0].usuario);
+        that3.equisPlayer1.setVisible(false);
 
         
     //EL JUGADOR1 NO EXISTE
     }else{
-        this.equisPlayer1.setVisible(true);
+        that3.equisPlayer1.setVisible(true);
     }
 
     
     //EL JUGADOR2 EXISTE
-    if(auxPlayers[1] != null){
-        that.textPlayer2.setText("Player 2: "+ auxPlayers[1]);
-        this.equisPlayer2.setVisible(false);
+    
+    if(data[1] != null){
+        that3.textPlayer2.setText("Player 2: "+ data[1].usuario);
+        that3.equisPlayer2.setVisible(false);
 
 
     //EL JUGADOR2 NO EXISTE
     }else{
-        this.equisPlayer1.setVisible(true);
+        that3.equisPlayer2.setVisible(true);
     }
 
     
