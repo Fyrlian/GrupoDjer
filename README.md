@@ -12,9 +12,39 @@ Daniel Romero Hernández correo: [d.romeroh.2018@alumnos.urjc.es](mailto:d.romer
 
 ![](RackMultipart20201021-4-3lj6h4_html_768a528ad3a49d0d.png)
 
-## **1.-Cambios**
+## **COMENTARIOS IMPORTANTES SOBRE LA ENTREGA**
+Al tener problemas con el git large file storage, hemos utilizado Google drive para la carpeta que contiene el servidor.
+
+LINK: https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view?usp=sharing
+
+## **INICIAR APLICACION**
+
+Tras intentar utilizar Git Large File, no hemos tenido éxito, no nos funciona en ningún ordenador actualmente. 
+Hemos decidido utilizar un enlace de drive que contiene la carpeta con el juego y el servidor.
+Sentimos las molestias por no poder incluirlo en el GitHub.
+Enlace:
+
+https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view?usp=sharing
+
+La carpeta "ServidorEclipse" deberá sustituirse dentro del zip de nuestra entrega por la carperta con su mismo nombre 
+para que aparezcan todos los archivos necesarios de la entrega (.jar,etc...).
+
+Para ejecutar el servidor, se puede hacer de dos formas: 
+
+  -Desde el cmd accediendo al directorio donde se encuentra el archivo .jar y ejecutando la siguiente línea de comandos: java -jar hola-1.5.8.RELEASE.jar
+  después se abrirá el servidor en el cmd y se podrá ejecutar en el navegador el juego con localhost:8080.
+
+  -También se puede ejecutar haciendo doble click sobre el .jar pero se tiene menos control sobre el servidor (no tienes consola). Y después abrir el
+  navegador y ejecutar el juego con localhost:8080.
+
+
+## **1.-CAMBIOS FASE 2**
 Al comienzo queríamos hacer un juego demasiado complejo, por lo que hemos decidido en esta fase simplificarlo, algunas de las ideas iniciales por el momento las dejaremos en "Posibles cambios futuros".
 Para simplificar el juego se ha eliminado el scroll lateral, la variedad de armas y enemigos, las mejoras, las habilidades y el modo daltónico.
+
+## **1.1-CAMBIOS FASE 3**
+Se ha cambiado totalmente el aspecto del juego y se han corregido algunos errores.
+
 
 ## **1.2-Posibles futuros cambios**
 
