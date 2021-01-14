@@ -41,12 +41,12 @@ Para ejecutar el servidor, se puede hacer de dos formas:
 
 ## **NAVEGACION**
 
-![](https://cdn.discordapp.com/attachments/798862661047025664/799064021022015508/unknown.png)
+![](https://cdn.discordapp.com/attachments/798862661047025664/798892172619415582/DIAGRAMA_DE_FLUJO.png)
 
 
 ## **DIAGRAMA DE CLASES Y API REST**
-![](https://cdn.discordapp.com/attachments/798862661047025664/798892172619415582/DIAGRAMA_DE_FLUJO.png)
 
+![](https://cdn.discordapp.com/attachments/798862661047025664/799064021022015508/unknown.png)
 
 ## **1.-CAMBIOS FASE 2**
 Al comienzo queríamos hacer un juego demasiado complejo, por lo que hemos decidido en esta fase simplificarlo, algunas de las ideas iniciales por el momento las dejaremos en "Posibles cambios futuros".
