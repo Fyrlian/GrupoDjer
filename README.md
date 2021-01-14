@@ -17,6 +17,7 @@ Al tener problemas con el git large file storage, hemos utilizado Google drive p
 
 LINK: https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view?usp=sharing
 
+
 ## **INICIAR APLICACION**
 
 Tras intentar utilizar Git Large File, no hemos tenido éxito, no nos funciona en ningún ordenador actualmente. 
@@ -36,6 +37,15 @@ Para ejecutar el servidor, se puede hacer de dos formas:
 
   -También se puede ejecutar haciendo doble click sobre el .jar pero se tiene menos control sobre el servidor (no tienes consola). Y después abrir el
   navegador y ejecutar el juego con localhost:8080.
+
+
+## **NAVEGACION**
+
+![](https://cdn.discordapp.com/attachments/798862661047025664/799064021022015508/unknown.png)
+
+
+## **DIAGRAMA DE CLASES Y API REST**
+![](https://cdn.discordapp.com/attachments/798862661047025664/798892172619415582/DIAGRAMA_DE_FLUJO.png)
 
 
 ## **1.-CAMBIOS FASE 2**
@@ -402,13 +412,6 @@ Jugador 2
 - Salir al juego: Botón para reanudar el juego.
 - Salir al menú principal: Botón para finalizar la partida y volver al menú principal.
 
-**4.5 MENU DE PAUSA**
-
-
-- Usuario: El cliente podra poner usuario.
-- Contraseña: El cliente podra poner su contraseña de usuario.
-- Salir al juego: Para entrar al juego, debe coincidir contraseña y usuario, si no existe usuario se crea con esa contraseña.
-
 
 **5.- Arte**
 
@@ -492,17 +495,15 @@ Los efectos de sonido se guardarán en .wav.
   - Ruido daño al jugador: sonido sufrimiento de personaje.
   
   **5.- Referencias**
-
 - Fuente cuenta atras: https://www.dafont.com/es/digital-7.font.
 - Fente Menu : https://www.dafont.com/es/inheritance.font.
-- Fuente letra2: https://www.viralizalo.com/pop/7652-que-personaje-de-los-juegos-del-hambre-eres
 - Sprite zombies: https://www.gameart2d.com/the-zombies-free-sprites.html
 - Phaser examples, proporcionados por phaser oficial.
 - Sonidos: http://recursostic.educacion.es/bancoimagenes/web/.
 - Mapa : https://opengameart.org/content/free-graveyard-platformer-tileset.
 - Codigo evitar comportamiento form: https://stackoverflow.com/questions/5384712/intercept-a-form-submit-in-javascript-and-prevent-normal-submission    Usuario Michael McTiernan
 - AlignGrid y FormUtil: https://phasergames.com/phaser-3-input-text-form-ui-part-1/
-- Filtro Cors propocionado por el profesor.
+
 
 
 
