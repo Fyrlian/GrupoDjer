@@ -313,7 +313,7 @@ class Scene3 extends Phaser.Scene {
 
         //CONDICION DE DERROTA
         if(!player.vivo){
-            audio1.pause();
+            this.sound.removeByKey('audioScene1');
             rondaFinal = this.ronda;
             game.scene.stop('sceneGame');
             game.scene.start('sceneGameOver');
