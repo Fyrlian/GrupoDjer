@@ -49,10 +49,14 @@ class Scene7 extends Phaser.Scene {
         this.gameOverSound= this.sound.add('gameOverSound',{volume: 0.09});
         this.perderUnaVidaSound= this.sound.add('perderUnaVidaSound',{volume: 0.02});
        
-        this.audio1.play();
-
-        this.audio1.resume();
-        
+        if(estadoMusica === true){
+            audio1.play();
+            audio1.resume();
+           
+        }else{
+            audio1.stop();
+            
+        }
 
 
         this.add.image(250,50,'icono2');
