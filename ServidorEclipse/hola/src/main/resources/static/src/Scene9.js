@@ -12,7 +12,7 @@ class Scene9 extends Phaser.Scene {
 
       this.background = this.add.image(config.width/2,config.height/2,'fondoPausa');
      
-      audio = this.sound.add('audioMenu',{volume: 0.04,loop: true});
+      
       audio1 = this.sound.add('audioScene1',{volume: 0.05,loop: true});
 
       
@@ -87,10 +87,11 @@ class Scene9 extends Phaser.Scene {
         this.centerButtonText(this.gameTextExit, this.gameButtonExit); 
         
         this.gameButtonExit.on('pointerdown', function (pointer) {
-         
             this.scene.stop('sceneGame');
             this.scene.start('sceneMenu');
-            audio1.stop();
+            this.sound.pauseAll();
+            if(estadoMusica === false)
+            this.sound.removeByKey('audioScene1');
             
         }.bind(this));
  
@@ -114,13 +115,15 @@ class Scene9 extends Phaser.Scene {
 
           this.musicButton.setTexture('botonEnabled');
           this.sound.resumeAll();
-          audio.stop();
+          this.sound.removeByKey('audioMenu');
+         
           
 
         } else {
           
           this.musicButton.setTexture('botonDisabled');
           this.sound.pauseAll();
+          
          
         
         }
@@ -133,26 +136,24 @@ class Scene9 extends Phaser.Scene {
 
           this.soundButton.setTexture('botonEnabled');
           this.sound.resumeAll();
-         
+          this.sound.removeByKey('audioMenu');
+          if(estadoMusica===false)
+          this.sound.removeByKey('audioScene1');
+        
+          
           
 
         } else {
         
           this.soundButton.setTexture('botonDisabled');
           this.sound.pauseAll();
-        
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+
+          if(estadoMusica===true){
+            this.sound.resumeAll();
+            this.sound.removeByKey('audioMenu');
+          }
+
+         
           
           
 
