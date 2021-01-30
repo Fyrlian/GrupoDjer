@@ -59,11 +59,11 @@ class Scene3 extends Phaser.Scene {
      
         
         //platforms.create(config.width/2.07, config.height/1.09, 'suelo');
-        //SUELO DEL MEDIO
+          //SUELO DEL MEDIO
         platforms.create(config.width/1.48, config.height/1.60, 'sueloMedio2');
         platforms.create(config.width/2.97, config.height/1.535, 'sueloMedio');
         platforms.create(config.width/1.22,config.height/2.72,'sueloTejado');
-        platforms.create(config.width/1, config.height/1.48, 'sueloMedio2');
+        platforms.create(config.width/0.97, config.height/1.525, 'sueloMedio2');
         platforms.create(config.width/18, config.height/1.9, 'sueloMedio2');
 
 
@@ -85,7 +85,7 @@ class Scene3 extends Phaser.Scene {
         
         //GRUPO ESCALERAS PLANTA DE ABAJO
         escaleras2= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 400 });
-        Phaser.Actions.PlaceOnLine(escaleras2.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.1,config.height/1.49));
+        Phaser.Actions.PlaceOnLine(escaleras2.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.07,config.height/1.525));
         escaleras2.refresh();
 
        /* //TEJADO CON GRUPO DE TEJAS IZQUIERDA Y DERECHA
