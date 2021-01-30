@@ -102,7 +102,9 @@ class Scene10 extends Phaser.Scene {
         this.gameButtonExit.on('pointerdown', function (pointer) {
             this.scene.stop('sceneGame2');
             this.scene.start('sceneMenu');
-            audio1.stop();
+            this.sound.pauseAll();
+            if(estadoMusica === false)
+            this.sound.removeByKey('audioScene1');
             
         }.bind(this));
  
