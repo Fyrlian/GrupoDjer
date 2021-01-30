@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
-    width: window.innerWidth * window.devicePixelRatio,
-    height: window.innerHeight * window.devicePixelRatio,
+    width: 1920,
+    height: 1080,
     physics: {
         default: 'arcade',
         arcade: {
@@ -15,12 +15,6 @@ var config = {
         },
     },
     
-    scale: {
-        parent: 'yourgamediv',
-        mode: 'resize',
-        width: 1920,
-        height: 1080
-    },
     parent: 'divId',
     dom: {
         createContainer: true
