@@ -612,7 +612,7 @@ $.ajax({
 
         //CONDICION DE DERROTA
         if(!player.vivo && !player2.vivo){
-            this.audio1.pause();
+	    this.sound.removeByKey('audioScene1');
             rondaFinal = this.ronda;
             game.scene.stop('chatScene');
             game.scene.stop('sceneGame2');
