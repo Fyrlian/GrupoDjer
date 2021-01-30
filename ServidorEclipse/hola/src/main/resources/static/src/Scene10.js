@@ -100,20 +100,6 @@ class Scene10 extends Phaser.Scene {
         this.centerButtonText(this.gameTextExit, this.gameButtonExit); 
         
         this.gameButtonExit.on('pointerdown', function (pointer) {
-          $.ajax({
-            method: "DELETE",
-            url:"http://localhost:8080/conectado",
-            data: JSON.stringify({usuario : nombreUsuario,contrasena: "auxContraseña"}),
-            processData: false,
-            headers: {
-            "Content-type":"application/json"
-            }
-            }).done(function(data, textStatus, jqXHR) {
-
-            }).fail(function(data, textStatus, jqXHR){
-
-            });
-
             this.scene.stop('sceneGame2');
             this.scene.start('sceneMenu');
             audio1.stop();
@@ -138,7 +124,7 @@ class Scene10 extends Phaser.Scene {
 
           this.musicButton.setTexture('botonEnabled');
           this.sound.resumeAll();
-          audio.stop();
+          this.sound.removeByKey('audioMenu');
           
 
         } else {
@@ -157,13 +143,23 @@ class Scene10 extends Phaser.Scene {
 
           this.soundButton.setTexture('botonEnabled');
           this.sound.resumeAll();
-         
+          this.sound.removeByKey('audioMenu');
+          if(estadoMusica===false)
+              this.sound.removeByKey('audioScene1');
+        
           
 
         } else {
         
           this.soundButton.setTexture('botonDisabled');
           this.sound.pauseAll();
+
+          if(estadoMusica===true){
+            this.sound.resumeAll();
+            this.sound.removeByKey('audioMenu');
+          }
+
+         
           
 
         }
