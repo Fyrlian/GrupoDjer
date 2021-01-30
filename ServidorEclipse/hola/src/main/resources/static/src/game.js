@@ -6,7 +6,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 500 },
-            debug: false
+            debug: true
 
         },
         matter: {
@@ -75,4 +75,10 @@ var estaConectadoPlayer2 = false;
 var estaConectadoPlayer1aux= false;
 var estaConectadoPlayer2aux = false;
 var textEstadoServidor;
+var overlapPlataformasBool = false;
+var overlapEscalerasBool = false;
+
+
+
+
 var game = new Phaser.Game(config);

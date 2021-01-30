@@ -215,12 +215,16 @@ class Scene3 extends Phaser.Scene {
 
     
        this.colliderPlats= this.physics.add.collider(player, platforms);
+       this.overlapPlats= this.physics.add.overlap(player, platforms,funcionOverlapPlat);
        this.physics.add.collider(player, this.sueloMapa);
         
 
        this.colliderEscaleras = this.physics.add.collider(player,escaleras);
        this.colliderEscaleras1 = this.physics.add.collider(player, escaleras1);
        this.colliderEscaleras2 = this.physics.add.collider(player, escaleras2);
+       this.oberlapEscaleras = this.physics.add.overlap(player,escaleras,funcionOverlapEscaleras);
+       this.overlapEscaleras1 = this.physics.add.overlap(player, escaleras1,funcionOverlapEscaleras);
+       this.overlapEscaleras2 = this.physics.add.overlap(player, escaleras2,funcionOverlapEscaleras);
        /*this.physics.add.collider(player, tejas);
        this.physics.add.collider(player, tejas2);*/
         
@@ -415,11 +419,12 @@ class Scene3 extends Phaser.Scene {
 
 
 
-
-        //PULSAR TECLA ABAJO(eliminar collider)
+    this.encimaDePlat(); //ESTO ESTA FUERA DEL IF, CREA LAS PLATAFORMAS SI HAN SIDO BORRADA Y NO ESTAN EN CONTACTO
+        //PULSAR TECLA ABAJO(eliminar collider) CAMBIADO-----------------------------------
         if(player.vivo){
         if (cursors.down.isDown && player.body.touching.down) 
         {
+            console.log("pala Eliminada")
             this.physics.world.removeCollider(this.colliderPlats);
             this.physics.world.removeCollider(this.colliderEscaleras);
             this.physics.world.removeCollider(this.colliderEscaleras1);
@@ -427,11 +432,17 @@ class Scene3 extends Phaser.Scene {
             
             colliderEliminado = 1;
             colliderEscalerasEliminado = 1;
-            this.time.delayedCall(800, this.encimaDePlat, [], this);
+            //this.time.delayedCall(800, this.encimaDePlat, [], this); CAMBIO            
 
         }
 
+
+
+        
     }
+
+
+    this.escalerasDcha();
         // EScLERAS POR LA DERECHA
         this.colliderEscalerasEliminadoAux = 0;
         for(var i = 0; i < escaleras.getChildren().length; i++){
@@ -452,7 +463,8 @@ class Scene3 extends Phaser.Scene {
             this.physics.world.removeCollider(this.colliderEscaleras2);
             this.physics.world.removeCollider(this.colliderEscaleras);
             colliderEscalerasEliminado = 1;
-            this.time.delayedCall(400, this.escalerasDcha, [], this);
+
+            //this.time.delayedCall(400, this.escalerasDcha, [], this); CAMBIOOOOO
         }
         // EScLERAS1 POR LA DERECHA
         this.colliderEscalerasEliminadoAux = 0;
@@ -476,16 +488,16 @@ class Scene3 extends Phaser.Scene {
             this.physics.world.removeCollider(this.colliderEscaleras2);
             this.physics.world.removeCollider(this.colliderEscaleras);
             colliderEscalerasEliminado = 1;
-            this.time.delayedCall(400, this.escalerasDcha, [], this);
+            //this.time.delayedCall(400, this.escalerasDcha, [], this);
         }
 
         // EScLERAS2 POR LA DERECHA
         this.colliderEscalerasEliminadoAux = 0;
         for(var i = 0; i < escaleras2.getChildren().length; i++){
-            var enem = escaleras2.getChildren()[i];
+            var escalerillas = escaleras2.getChildren()[i];
 
-            if (enem.body.touching.right && player.body.touching.left && player.vivo
-                || (enem.body.touching.right && player.body.touching.top && player.vivo))
+            if (escalerillas.body.touching.right && player.body.touching.left && player.vivo
+                || (escalerillas.body.touching.right && player.body.touching.top && player.vivo))
             {
            
                 this.colliderEscalerasEliminadoAux = 1;
@@ -501,10 +513,14 @@ class Scene3 extends Phaser.Scene {
             this.physics.world.removeCollider(this.colliderEscaleras2);
             this.physics.world.removeCollider(this.colliderEscaleras);
             colliderEscalerasEliminado = 1;
-            this.time.delayedCall(400, this.escalerasDcha, [], this);
+            //this.time.delayedCall(400, this.escalerasDcha, [], this);
         }
 
 
+
+         //SIRVE PARA CREAR DE NUEVO LOS COLLIDER SI SE ELIMINAN Y YA NO ESTAS TOCANDO (false si no estas tocando)
+        overlapPlataformasBool = false;
+        overlapEscalerasBool = false;
     
     }
 
@@ -591,13 +607,23 @@ reiniciarContador(scene){
 
 encimaDePlat(){
 
-    if(colliderEliminado === 1){
+    if(colliderEliminado === 1){ //SUJETO A CAMBIO--------------
+
+        if(overlapPlataformasBool == false){
+            console.log("pala creada");
+            this.physics.world.removeCollider(this.colliderPlats);
     this.colliderPlats = this.physics.add.collider(player, platforms);
-    
     colliderEliminado = 0;
 
+        }
+
+
     }
+
     if(colliderEscalerasEliminado === 1){
+
+        if(overlapEscalerasBool === false){
+
         this.physics.world.removeCollider(this.colliderEscaleras);
         this.physics.world.removeCollider(this.colliderEscaleras1);
         this.physics.world.removeCollider(this.colliderEscaleras2);
@@ -605,7 +631,11 @@ encimaDePlat(){
     this.colliderEscaleras1 = this.physics.add.collider(player, escaleras1);
     this.colliderEscaleras2 = this.physics.add.collider(player, escaleras2);
     colliderEscalerasEliminado = 0;
+
+        }
+
     }
+    
    
 }
  
@@ -615,6 +645,7 @@ encimaDePlat(){
 escalerasDcha(){
 
     if(colliderEscalerasEliminado === 1){
+        if(overlapEscalerasBool === false){
         this.physics.world.removeCollider(this.colliderEscaleras);
         this.physics.world.removeCollider(this.colliderEscaleras1);
         this.physics.world.removeCollider(this.colliderEscaleras2);
@@ -623,7 +654,7 @@ escalerasDcha(){
         this.colliderEscaleras2 = this.physics.add.collider(player, escaleras2);
         
         colliderEscalerasEliminado = 0;
-
+        }
 
     }
 }
@@ -649,6 +680,7 @@ zombiesPlatF(){
     }
 
 }
+
 centerButton (gameObject, offsetw = 0, offseth = 0) {
     Phaser.Display.Align.In.Center(
       gameObject,
@@ -659,4 +691,14 @@ centerButton (gameObject, offsetw = 0, offseth = 0) {
 
 
 }
+function funcionOverlapPlat(player, platforms){
 
+    overlapPlataformasBool = true;
+
+}
+
+function funcionOverlapEscaleras(player, platforms){
+
+    overlapEscalerasBool = true;
+
+}

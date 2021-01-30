@@ -10,80 +10,80 @@ class Scene1 extends Phaser.Scene {
 
 
     //IMAGENES DEL JUEGO
-      this.load.image('sueloMapa','../assets/sueloMapa.png');
-      this.load.image('suelo','../assets/suelo.png');
-      this.load.image('sueloMedio','../assets/sueloMedio.png');
-      this.load.image('sueloMedio2','../assets/sueloMedio2.png');
-      this.load.image('escalon','../assets/escalon.png');
-      this.load.image('escalonGrande','../assets/escalonGrande.png');
-      this.load.image('equis','../assets/equisalternativa.png');
+      this.load.image('sueloMapa','./assets/sueloMapa.png');
+      this.load.image('suelo','./assets/suelo.png');
+      this.load.image('sueloMedio','./assets/sueloMedio.png');
+      this.load.image('sueloMedio2','./assets/sueloMedio2.png');
+      this.load.image('escalon','./assets/escalon.png');
+      this.load.image('escalonGrande','./assets/escalonGrande.png');
+      this.load.image('equis','./assets/equisalternativa.png');
 
 
-      this.load.image('fondoLogin','../assets/fondoLogin.png');
-      this.load.image('fondo','../assets/Nivel 1.png');
-      this.load.image('sky', '../assets/sky.png');
-      this.load.image('ground', '../assets/platform.png');
-      this.load.image('star', '../assets/star.png');
-      this.load.image('bomb', '../assets/bomb.png');
+      this.load.image('fondoLogin','./assets/fondoLogin.png');
+      this.load.image('fondo','./assets/Nivel 1.png');
+      this.load.image('sky', './assets/sky.png');
+      this.load.image('ground', './assets/platform.png');
+      this.load.image('star', './assets/star.png');
+      this.load.image('bomb', './assets/bomb.png');
       
-      this.load.image('botonPausa','../assets/botonPausa.png');
-      this.load.image('botonGrande','../assets/botonGrande.png');
-      this.load.image('botonPeque','../assets/botonPeque.png');
-      this.load.image('fondoMenu','../assets/fondoMenu.png');
-      this.load.image('controles','../assets/menuControles.png');
-      this.load.image('botonGrandeOver','../assets/botonGrandeOver.png');
-      this.load.image('botonGrandeNotOver','../assets/botonGrandeNotOver.png');
+      this.load.image('botonPausa','./assets/botonPausa.png');
+      this.load.image('botonGrande','./assets/botonGrande.png');
+      this.load.image('botonPeque','./assets/botonPeque.png');
+      this.load.image('fondoMenu','./assets/fondoMenu.png');
+      this.load.image('controles','./assets/menuControles.png');
+      this.load.image('botonGrandeOver','./assets/botonGrandeOver.png');
+      this.load.image('botonGrandeNotOver','./assets/botonGrandeNotOver.png');
       
-      this.load.image('rampaEscalera','../assets/collideEscaleras.png');
-      this.load.image('paredFondo','../assets/paredFondo.png');
-      this.load.image('sueloTejado','../assets/sueloTejado.png');
-      this.load.image('tejado','../assets/tejadoEscalera.png');
-      this.load.image('gameOv','../assets/gameOver.png');
+      this.load.image('rampaEscalera','./assets/collideEscaleras.png');
+      this.load.image('paredFondo','./assets/paredFondo.png');
+      this.load.image('sueloTejado','./assets/sueloTejado.png');
+      this.load.image('tejado','./assets/tejadoEscalera.png');
+      this.load.image('gameOv','./assets/gameOver.png');
       
-      this.load.image('opciones','../assets/fondoConfig.png');
-      this.load.image('botonAtrasNotOver','../assets/botonAtrasGris.png');
-      this.load.image('botonAtrasOver','../assets/botonAtrasBlanco.png');
-      this.load.image('botonExitNotOver','../assets/botonAtrasGris.png');
-      this.load.image('botonExitOver','../assets/botonAtrasBlanco.png');
-      this.load.image('botonEnabled','../assets/botonesEnabled.png');
-      this.load.image('botonDisabled','../assets/botonDisabled.png');
-      this.load.image('fondoPausa','../assets/menuPausa.png');
+      this.load.image('opciones','./assets/fondoConfig.png');
+      this.load.image('botonAtrasNotOver','./assets/botonAtrasGris.png');
+      this.load.image('botonAtrasOver','./assets/botonAtrasBlanco.png');
+      this.load.image('botonExitNotOver','./assets/botonAtrasGris.png');
+      this.load.image('botonExitOver','./assets/botonAtrasBlanco.png');
+      this.load.image('botonEnabled','./assets/botonesEnabled.png');
+      this.load.image('botonDisabled','./assets/botonDisabled.png');
+      this.load.image('fondoPausa','./assets/menuPausa.png');
 
 
 
-      this.load.image('icono1','../assets/iconoP1.png');
-      this.load.image('icono2','../assets/iconoP2.png');
+      this.load.image('icono1','./assets/iconoP1.png');
+      this.load.image('icono2','./assets/iconoP2.png');
 
 
-      this.load.image('chat','../assets/chat.png');
+      this.load.image('chat','./assets/chat.png');
       //fuentes
-      this.load.bitmapFont('fuentes','../assets/font.png','../assets/font.fnt');
-      this.load.bitmapFont('fuentes2','../assets/font2.png','../assets/font2.fnt');
-      this.load.bitmapFont('fuentes3','../assets/font3.png','../assets/font3.fnt');
+      this.load.bitmapFont('fuentes','./assets/font.png','./assets/font.fnt');
+      this.load.bitmapFont('fuentes2','./assets/font2.png','./assets/font2.fnt');
+      this.load.bitmapFont('fuentes3','./assets/font3.png','./assets/font3.fnt');
 
 
       //SPRITES DEL JUEGO
-      this.load.spritesheet('zombieRight','../assets/zombieRight.png',{ frameWidth: 106, frameHeight: 118});
-      this.load.spritesheet('zombieLeft','../assets/zombieLeft.png',{ frameWidth: 106, frameHeight: 118});
+      this.load.spritesheet('zombieRight','./assets/zombieRight.png',{ frameWidth: 106, frameHeight: 118});
+      this.load.spritesheet('zombieLeft','./assets/zombieLeft.png',{ frameWidth: 106, frameHeight: 118});
 
-      this.load.spritesheet('balaLeft','../assets/balaIzq.png',{ frameWidth: 16, frameHeight: 8});            
-      this.load.spritesheet('balaRight','../assets/bala.png',{ frameWidth: 16, frameHeight: 8});
+      this.load.spritesheet('balaLeft','./assets/balaIzq.png',{ frameWidth: 16, frameHeight: 8});            
+      this.load.spritesheet('balaRight','./assets/bala.png',{ frameWidth: 16, frameHeight: 8});
       
-      this.load.spritesheet('dude', '../assets/mainch.png', { frameWidth: 60, frameHeight: 100 });
+      this.load.spritesheet('dude', './assets/mainch.png', { frameWidth: 60, frameHeight: 100 });
 
-      this.load.spritesheet('mainch', '../assets/mainchAK-47.png', { frameWidth: 106, frameHeight: 120 });
-      this.load.spritesheet('mainchizq', '../assets/mainchAK-47Izq.png', { frameWidth: 106, frameHeight: 120 });
+      this.load.spritesheet('mainch', './assets/mainchAK-47.png', { frameWidth: 106, frameHeight: 120 });
+      this.load.spritesheet('mainchizq', './assets/mainchAK-47Izq.png', { frameWidth: 106, frameHeight: 120 });
       //Sprite jugador 2
-      this.load.spritesheet('mainch2', '../assets/mainchAK-47-2.png', { frameWidth: 106, frameHeight: 120 });
-      this.load.spritesheet('mainchizq2', '../assets/mainchAK-47Izq-2.png', { frameWidth: 106, frameHeight: 120 });
+      this.load.spritesheet('mainch2', './assets/mainchAK-47-2.png', { frameWidth: 106, frameHeight: 120 });
+      this.load.spritesheet('mainchizq2', './assets/mainchAK-47Izq-2.png', { frameWidth: 106, frameHeight: 120 });
 
       
       //AUDIO DEL JUEGO
-      this.load.audio('audioMenu','../assets/MusicaTenebrosa.mp3');
-      this.load.audio('audioScene1','../assets/MusicaFondoScene1.mp3');
-      this.load.audio('perderUnaVidaSound','../assets/PerderUnaVida.mp3');
-      this.load.audio('disparoSound','../assets/disparo.mp3');
-      this.load.audio('gameOverSound','../assets/GameOver.mp3');
+      this.load.audio('audioMenu','./assets/MusicaTenebrosa.mp3');
+      this.load.audio('audioScene1','./assets/MusicaFondoScene1.mp3');
+      this.load.audio('perderUnaVidaSound','./assets/PerderUnaVida.mp3');
+      this.load.audio('disparoSound','./assets/disparo.mp3');
+      this.load.audio('gameOverSound','./assets/GameOver.mp3');
 
       
       

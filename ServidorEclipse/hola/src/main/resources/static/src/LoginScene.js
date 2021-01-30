@@ -82,7 +82,7 @@ function processForm(e) {
             
 
         }).fail(function(data, textStatus, jqXHR){
-
+            that.scene.start("sceneMenu");
         });
 
         // You must return false to prevent the default form behavior
