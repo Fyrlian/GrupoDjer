@@ -9,7 +9,7 @@ class Scene4 extends Phaser.Scene {
    
     }
     create(){
-
+      this.cameras.main.fadeIn(1000);
       this.background = this.add.image(config.width/2,config.height/2,'opciones');
      
       audio1 = this.sound.add('audioScene1',{volume: 0.05,loop: true});
