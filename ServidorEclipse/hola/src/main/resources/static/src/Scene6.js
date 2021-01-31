@@ -9,7 +9,7 @@ class Scene6 extends Phaser.Scene {
    
     }
     create(){
-      
+      this.cameras.main.fadeIn(1000);
       this.background = this.add.image(config.width/2,config.height/2,'controles');
 
 
