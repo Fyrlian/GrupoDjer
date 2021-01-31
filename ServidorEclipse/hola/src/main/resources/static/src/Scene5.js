@@ -10,7 +10,7 @@ class Scene5 extends Phaser.Scene {
     }
     create(){
 
-
+      this.cameras.main.fadeIn(1000);
       this.creditsText = this.add.text(0, 0, 'Credits: ', { fontSize: '82px', fill: '#fff' });
 
       this.Fuentes1 = this.add.text(0, 0, 'Menu font: https://www.dafont.com/es/inheritance.font. ', { fontSize: '32px', fill: '#fff' });
