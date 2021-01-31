@@ -66,7 +66,7 @@ class Scene7 extends Phaser.Scene {
         this.bg=this.add.image(config.width/2,config.height/2, 'fondo');
         
         //Audio 
-        this.audio1 = this.sound.add('audioScene1',{volume: 0.05,loop: true});
+        audio1 = this.sound.add('audioScene1',{volume: 0.05,loop: true});
         this.disparoSound= this.sound.add('disparoSound',{volume: 0.02});
         this.gameOverSound= this.sound.add('gameOverSound',{volume: 0.09});
         this.perderUnaVidaSound= this.sound.add('perderUnaVidaSound',{volume: 0.02});
@@ -103,6 +103,8 @@ class Scene7 extends Phaser.Scene {
         //( The platforms group contains the ground and the 2 ledges we can jump on
 
         platforms = this.physics.add.staticGroup();
+        platformsz = this.physics.add.staticGroup();
+        platformsd = this.physics.add.staticGroup();
         
         //  Here we create the ground.
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
@@ -149,6 +151,12 @@ class Scene7 extends Phaser.Scene {
 
         //GRUPO DE LAS PRIMERAS ESCALERAS
         escaleras = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
+        escalerasz = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
+        escalerasd = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
+        escaleras1z = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
+        escaleras1d = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
+        escaleras2z = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
+        escaleras2d = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
         //Phaser.Actions.PlaceOnLine(escaleras.getChildren(), new Phaser.Geom.Line(config.width/8.34, config.height/1.13,config.width/4.04,config.height/1.550));
         Phaser.Actions.PlaceOnLine(escaleras.getChildren(), new Phaser.Geom.Line(config.width/20, config.height/1.06,config.width/3.6,config.height/1.54));
         escaleras.refresh();
