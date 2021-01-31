@@ -6,7 +6,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 500 },
-            debug: false
+            debug: true
 
         },
         matter: {
@@ -15,6 +15,7 @@ var config = {
         },
     },
     
+ 
     parent: 'divId',
     dom: {
         createContainer: true
@@ -33,7 +34,11 @@ var stars;
 var bombs;
 var enemigos;
 var platforms;
+var platformsz;
+var platformsd;
 var escaleras,escaleras1,escaleras2,tejas,tejas2;
+var escalerasz,escaleras1z,escaleras2z;
+var escalerasd,escaleras1d,escaleras2d;
 var cursors;
 var score = 0;
 var scoreText;
@@ -69,4 +74,10 @@ var estaConectadoPlayer2 = false;
 var estaConectadoPlayer1aux= false;
 var estaConectadoPlayer2aux = false;
 var textEstadoServidor;
+var overlapPlataformasBool = false;
+var overlapEscalerasBool = false;
+
+
+
+
 var game = new Phaser.Game(config);
