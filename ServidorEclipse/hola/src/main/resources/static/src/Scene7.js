@@ -1598,7 +1598,7 @@ zombiesPlatF(){
 
 
     if(colliderEnemigosEliminado === 1){
-        this.colliderEnemPlat = this.physics.add.collider(this.enemigos,platforms);
+        this.colliderEnemPlat = this.physics.add.collider(this.enemigos,platformsz);
         this.physics.world.removeCollider(this.colliderEnemEscaleras1);
         this.physics.world.removeCollider(this.colliderEnemEscaleras2);
         this.physics.world.removeCollider(this.colliderEnemEscaleras3);
