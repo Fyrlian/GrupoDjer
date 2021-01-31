@@ -387,7 +387,7 @@ class Scene3 extends Phaser.Scene {
             enem.update(player.x,-1, player.vivo, false);
         }
         //ENEMIGOS BAJAN PLATAFORMAS
-        var probabilidadBajarEscaleras = 0.0017;
+        var probabilidadBajarEscaleras = 0.0014;
         var bajanEscaleras = Math.random() * (1 - 0) + 0;//numero aleatorio del 0 al 1
 
         //si da la casualidad de que esa probabilidad toca
