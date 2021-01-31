@@ -87,7 +87,7 @@ class Scene7 extends Phaser.Scene {
      
         
         //platforms.create(config.width/2.07, config.height/1.09, 'suelo');
-          //SUELO DEL MEDIO
+        //SUELO DEL MEDIO
         platforms.create(config.width/1.48, config.height/1.60, 'sueloMedio2');
         platforms.create(config.width/2.97, config.height/1.535, 'sueloMedio');
         platforms.create(config.width/1.22,config.height/2.72,'sueloTejado');
@@ -97,6 +97,31 @@ class Scene7 extends Phaser.Scene {
 
         platforms.create(config.width/6,config.height/3.8,'sueloTejado');
         platforms.create(config.width/4,config.height/3.8,'sueloTejado');
+
+
+          //platforms.create(config.width/2.07, config.height/1.09, 'suelo');
+        //SUELO DEL MEDIO
+        platformsz.create(config.width/1.48, config.height/1.60, 'sueloMedio2');
+        platformsz.create(config.width/2.97, config.height/1.535, 'sueloMedio');
+        platformsz.create(config.width/1.22,config.height/2.72,'sueloTejado');
+        platformsz.create(config.width/1, config.height/1.48, 'sueloMedio2');
+        platformsz.create(config.width/18, config.height/1.9, 'sueloMedio2');
+
+
+        platformsz.create(config.width/6,config.height/3.8,'sueloTejado');
+        platformsz.create(config.width/4,config.height/3.8,'sueloTejado');
+
+                  //platforms.create(config.width/2.07, config.height/1.09, 'suelo');
+        //SUELO DEL MEDIO
+        platformsd.create(config.width/1.48, config.height/1.60, 'sueloMedio2');
+        platformsd.create(config.width/2.97, config.height/1.535, 'sueloMedio');
+        platformsd.create(config.width/1.22,config.height/2.72,'sueloTejado');
+        platformsd.create(config.width/1, config.height/1.48, 'sueloMedio2');
+        platformsd.create(config.width/18, config.height/1.9, 'sueloMedio2');
+
+
+        platformsd.create(config.width/6,config.height/3.8,'sueloTejado');
+        platformsd.create(config.width/4,config.height/3.8,'sueloTejado');
 
 
 
@@ -115,6 +140,37 @@ class Scene7 extends Phaser.Scene {
         escaleras2= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 400 });
         Phaser.Actions.PlaceOnLine(escaleras2.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.07,config.height/1.525));
         escaleras2.refresh();
+
+        //GRUPO DE LAS PRIMERAS ESCALERAS PARA ZOMBIES
+        escalerasd = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
+        //Phaser.Actions.PlaceOnLine(escaleras.getChildren(), new Phaser.Geom.Line(config.width/8.34, config.height/1.13,config.width/4.04,config.height/1.550));
+        Phaser.Actions.PlaceOnLine(escalerasz.getChildren(), new Phaser.Geom.Line(config.width/20, config.height/1.06,config.width/3.6,config.height/1.54));
+        escalerasz.refresh();
+        
+        //GRUPO ESCALERAS A LA PLANTA SUPERIOR PARA ZOMBIES
+        escaleras1d= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 500 });
+        Phaser.Actions.PlaceOnLine(escaleras1z.getChildren(), new Phaser.Geom.Line(config.width/2.7, config.height/1.54,config.width/1.7,config.height/2.7));
+        escaleras1z.refresh();
+        
+        //GRUPO ESCALERAS PLANTA DE ABAJO PARA ZOMBIES
+        escaleras2d= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 400 });
+        Phaser.Actions.PlaceOnLine(escaleras2z.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.1,config.height/1.49));
+        escaleras2z.refresh();
+        //GRUPO DE LAS PRIMERAS ESCALERAS PARA ZOMBIES
+        escalerasz = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
+        //Phaser.Actions.PlaceOnLine(escaleras.getChildren(), new Phaser.Geom.Line(config.width/8.34, config.height/1.13,config.width/4.04,config.height/1.550));
+        Phaser.Actions.PlaceOnLine(escalerasz.getChildren(), new Phaser.Geom.Line(config.width/20, config.height/1.06,config.width/3.6,config.height/1.54));
+        escalerasz.refresh();
+        
+        //GRUPO ESCALERAS A LA PLANTA SUPERIOR PARA ZOMBIES
+        escaleras1z= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 500 });
+        Phaser.Actions.PlaceOnLine(escaleras1z.getChildren(), new Phaser.Geom.Line(config.width/2.7, config.height/1.54,config.width/1.7,config.height/2.7));
+        escaleras1z.refresh();
+        
+        //GRUPO ESCALERAS PLANTA DE ABAJO PARA ZOMBIES
+        escaleras2z= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 400 });
+        Phaser.Actions.PlaceOnLine(escaleras2z.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.1,config.height/1.49));
+        escaleras2z.refresh();
         
 
         // JUGADORES
@@ -673,7 +729,7 @@ $.ajax({
             colliderEnemigosEliminado = 1;
             //console.log("colliderEscalerasElimnado");
             //console.log("colliderElimnado");
-            this.time.delayedCall(1300, this.zombiesPlatF, [], this);       
+            this.time.delayedCall(1600, this.zombiesPlatF, [], this);       
             
         }
         //APARICION ENEMIGOS 
@@ -729,6 +785,7 @@ $.ajax({
             //Pulsar tecla abajo(eliminar collider)
             if (cursors.down.isDown && player.body.touching.down) 
             {
+                /*
                 this.physics.world.removeCollider(this.colliderPlats);
                 this.physics.world.removeCollider(this.colliderEscaleras);
                 this.physics.world.removeCollider(this.colliderEscaleras1);
@@ -737,10 +794,55 @@ $.ajax({
                 colliderEliminado = 1;
                 colliderEscalerasEliminado = 1;
                 this.time.delayedCall(800, this.encimaDePlat, [], this);
-    
-            }
+*/
 
-        }
+
+       //este for sirve paara eliminar los colliders
+       for(var i = 0; i < platforms.getChildren().length; i++){
+        var enem = platforms.getChildren()[i];
+
+        
+            enem.disableBody(true,false);
+           
+    }
+
+       //este for sirve paara eliminar los colliders
+       for(var i = 0; i < escaleras.getChildren().length; i++){
+        var enem = escaleras.getChildren()[i];
+
+     
+        enem.disableBody(true,false);
+           
+    }
+
+       //este for sirve paara eliminar los colliders
+       for(var i = 0; i < escaleras1.getChildren().length; i++){
+        var enem = escaleras1.getChildren()[i];
+
+     
+        enem.disableBody(true,false);
+           
+    }
+
+       //este for sirve paara eliminar los colliders
+       for(var i = 0; i < escaleras2.getChildren().length; i++){
+        var enem = escaleras2.getChildren()[i];
+
+     
+        enem.disableBody(true,false);
+           
+    }
+
+
+    
+            }// FIN PULSAR TECLA ABAJO
+
+        }// FIN PULSAR TECLA ABAJO mas o menos
+
+
+
+
+
         // EScLERAS POR LA DERECHA JUGADOR 1
         this.colliderEscalerasEliminadoAux = 0;
         for(var i = 0; i < escaleras.getChildren().length; i++){
@@ -757,11 +859,28 @@ $.ajax({
 
         }
         if(this.colliderEscalerasEliminadoAux==1){
-            this.physics.world.removeCollider(this.colliderEscaleras1);
-            this.physics.world.removeCollider(this.colliderEscaleras2);
-            this.physics.world.removeCollider(this.colliderEscaleras);
-            colliderEscalerasEliminado = 1;
-            this.time.delayedCall(400, this.escalerasDcha, [], this);
+
+ //este for sirve paara eliminar los colliders
+ for(var i = 0; i < escaleras.getChildren().length; i++){
+    var enem = escaleras.getChildren()[i];
+
+ 
+    enem.disableBody(true,false);
+       
+}
+
+
+/*
+this.physics.world.removeCollider(this.colliderEscaleras1);
+this.physics.world.removeCollider(this.colliderEscaleras2);
+this.physics.world.removeCollider(this.colliderEscaleras);
+//colliderEscalerasEliminado = 1;
+
+//this.time.delayedCall(400, this.escalerasDcha, [], this); CAMBIOOOOO pues si se ha cambiado si
+
+
+*/
+
         }
         // EScLERAS1 POR LA DERECHA JUGADOR 1
         this.colliderEscalerasEliminadoAux = 0;
@@ -781,11 +900,23 @@ $.ajax({
 
         }
         if(this.colliderEscalerasEliminadoAux==1){
+   /*
             this.physics.world.removeCollider(this.colliderEscaleras1);
             this.physics.world.removeCollider(this.colliderEscaleras2);
             this.physics.world.removeCollider(this.colliderEscaleras);
-            colliderEscalerasEliminado = 1;
-            this.time.delayedCall(400, this.escalerasDcha, [], this);
+           // colliderEscalerasEliminado = 1;
+            //this.time.delayedCall(400, this.escalerasDcha, [], this);
+
+            */
+
+   //este for sirve paara eliminar los colliders
+   for(var i = 0; i < escaleras1.getChildren().length; i++){
+    var enem = escaleras1.getChildren()[i];
+
+ 
+    enem.disableBody(true,false);
+       
+}
         }
 
         // EScLERAS2 POR LA DERECHA JUGADOR 1
@@ -806,11 +937,22 @@ $.ajax({
 
         }
         if(this.colliderEscalerasEliminadoAux ===1){
+           /*
             this.physics.world.removeCollider(this.colliderEscaleras1);
             this.physics.world.removeCollider(this.colliderEscaleras2);
             this.physics.world.removeCollider(this.colliderEscaleras);
-            colliderEscalerasEliminado = 1;
-            this.time.delayedCall(400, this.escalerasDcha, [], this);
+            //colliderEscalerasEliminado = 1;
+            //this.time.delayedCall(400, this.escalerasDcha, [], this);
+            */
+
+   //este for sirve paara eliminar los colliders
+   for(var i = 0; i < escaleras2.getChildren().length; i++){
+    var enem = escaleras2.getChildren()[i];
+
+ 
+    enem.disableBody(true,false);
+       
+}
         }
 
 
@@ -858,7 +1000,7 @@ $.ajax({
             //Pulsar tecla abajo(eliminar collider)
             if ((Phaser.Input.Keyboard.DownDuration(this.s)) && player2.body.touching.down)
             {
-            
+            /*
                 this.physics.world.removeCollider(this.colliderPlats2);
                 this.physics.world.removeCollider(this.colliderEscaleras_2);
                 this.physics.world.removeCollider(this.colliderEscaleras1_2);
@@ -868,22 +1010,59 @@ $.ajax({
                 colliderEliminado2 = 1;
                 colliderEscalerasEliminado2 = 1;
                 this.time.delayedCall(800, this.encimaDePlat2, [], this);
-
-            }
-
+*/
 
 
+                
+       //este for sirve paara eliminar los colliders
+       for(var i = 0; i < platformsd.getChildren().length; i++){
+        var enem = platformsd.getChildren()[i];
 
+        
+            enem.disableBody(true,false);
+           
+    }
 
-        }
+       //este for sirve paara eliminar los colliders
+       for(var i = 0; i < escalerasd.getChildren().length; i++){
+        var enem = escalerasd.getChildren()[i];
+
+     
+        enem.disableBody(true,false);
+           
+    }
+
+       //este for sirve paara eliminar los colliders
+       for(var i = 0; i < escaleras1d.getChildren().length; i++){
+        var enem = escaleras1d.getChildren()[i];
+
+     
+        enem.disableBody(true,false);
+           
+    }
+
+       //este for sirve paara eliminar los colliders
+       for(var i = 0; i < escaleras2d.getChildren().length; i++){
+        var enem = escaleras2d.getChildren()[i];
+
+     
+        enem.disableBody(true,false);
+           
+    }
+
+     
+    
+            }// FIN PULSAR TECLA ABAJO
+
+        }// FIN PULSAR TECLA ABAJO mas o menos
         
         
 
  
         // EScLERAS POR LA DERECHA  JUGADOR 2
         this.colliderEscalerasEliminadoAux2 = 0;
-        for(var i = 0; i < escaleras.getChildren().length; i++){
-            var enem = escaleras.getChildren()[i];
+        for(var i = 0; i < escalerasd.getChildren().length; i++){
+            var enem = escalerasd.getChildren()[i];
 
             if (enem.body.touching.right && player2.body.touching.left && player2.vivo
                 || (enem.body.touching.right && player2.body.touching.top && player2.vivo))
@@ -896,16 +1075,29 @@ $.ajax({
 
         }
         if(this.colliderEscalerasEliminadoAux2==1){
+            /*
             this.physics.world.removeCollider(this.colliderEscaleras1_2);
             this.physics.world.removeCollider(this.colliderEscaleras2_2);
             this.physics.world.removeCollider(this.colliderEscaleras_2);
             colliderEscalerasEliminado2 = 1;
             this.time.delayedCall(400, this.escalerasDcha2, [], this);
+
+            */
+
+ //este for sirve paara eliminar los colliders
+ for(var i = 0; i < escalerasd.getChildren().length; i++){
+    var enem = escalerasd.getChildren()[i];
+
+ 
+    enem.disableBody(true,false);
+       
+}
+
         }
         // EScLERAS1 POR LA DERECHA JUGADOR 2
         this.colliderEscalerasEliminadoAux2 = 0;
-        for(var i = 0; i < escaleras1.getChildren().length; i++){
-            var enem = escaleras1.getChildren()[i];
+        for(var i = 0; i < escaleras1d.getChildren().length; i++){
+            var enem = escaleras1d.getChildren()[i];
 
             if (enem.body.touching.right && player2.body.touching.left && player2.vivo
                 || (enem.body.touching.right && player2.body.touching.top && player2.vivo))
@@ -920,17 +1112,30 @@ $.ajax({
 
         }
         if(this.colliderEscalerasEliminadoAux2==1){
+
+            /*
             this.physics.world.removeCollider(this.colliderEscaleras1_2);
             this.physics.world.removeCollider(this.colliderEscaleras2_2);
             this.physics.world.removeCollider(this.colliderEscaleras_2);
             colliderEscalerasEliminado2 = 1;
             this.time.delayedCall(400, this.escalerasDcha2, [], this);
+            */
+
+ //este for sirve paara eliminar los colliders
+ for(var i = 0; i < escaleras1d.getChildren().length; i++){
+    var enem = escaleras1d.getChildren()[i];
+
+ 
+    enem.disableBody(true,false);
+       
+}
+
         }
 
         // EScLERAS2 POR LA DERECHA JUGADOR2
         this.colliderEscalerasEliminadoAux2 = 0;
-        for(var i = 0; i < escaleras2.getChildren().length; i++){
-            var enem = escaleras2.getChildren()[i];
+        for(var i = 0; i < escaleras2d.getChildren().length; i++){
+            var enem = escaleras2d.getChildren()[i];
 
             if (enem.body.touching.right && player2.body.touching.left && player2.vivo
                 || (enem.body.touching.right && player2.body.touching.top && player2.vivo))
@@ -945,18 +1150,270 @@ $.ajax({
 
         }
         if(this.colliderEscalerasEliminadoAux2==1){
+            /*
             this.physics.world.removeCollider(this.colliderEscaleras1_2);
             this.physics.world.removeCollider(this.colliderEscaleras2_2);
             this.physics.world.removeCollider(this.colliderEscaleras_2);
             colliderEscalerasEliminado2 = 1;
             this.time.delayedCall(400, this.escalerasDcha2, [], this);
+*/
+
+ //este for sirve paara eliminar los colliders
+ for(var i = 0; i < escaleras2d.getChildren().length; i++){
+    var enem = escaleras2d.getChildren()[i];
+
+ 
+    enem.disableBody(true,false);
+       
+}
+
         }
 
 
         
 
+
+         //SIRVE PARA CREAR DE NUEVO LOS COLLIDER SI SE ELIMINAN Y YA NO ESTAS TOCANDO (false si no estas tocando)
+       //  overlapPlataformasBool = false;
+       // overlapEscalerasBool = false;
     
-    }
+
+                  //OVERLAP CON PLATAFORMAS????????????????????????????????????????????????????
+                  for(var i = 0; i < platforms.getChildren().length; i++){
+                    var escalerillas = platforms.getChildren()[i];
+            
+            if(checkOverlap(player,escalerillas)){
+                        this.auxoverlapchoca = true;
+                        //console.log("colliderElimnado"); 
+            }
+                    
+            
+                }//fin for
+                                //OVERLAP CON ESCALERAS????????????????????????????????????????????????????
+                for(var i = 0; i < escaleras.getChildren().length; i++){
+                    var escalerillas = escaleras.getChildren()[i];
+            
+            if(checkOverlap(player,escalerillas)){
+                        this.auxoverlapchoca = true;
+                        //console.log("colliderElimnado"); 
+            }
+                    
+            
+                }//fin for
+                                    //OVERLAP CON ESCALERAS1????????????????????????????????????????????????????
+                for(var i = 0; i < escaleras1.getChildren().length; i++){
+                    var escalerillas = escaleras1.getChildren()[i];
+            
+            if(checkOverlap(player,escalerillas)){
+                        this.auxoverlapchoca = true;
+                        //console.log("colliderElimnado"); 
+            }
+                    
+            
+                }//fin for
+                                //OVERLAP CON ESCALERAS2????????????????????????????????????????????????????
+                for(var i = 0; i < escaleras2.getChildren().length; i++){
+                    var escalerillas = escaleras2.getChildren()[i];
+            
+            if(checkOverlap(player,escalerillas)){
+                        this.auxoverlapchoca = true;
+                        //console.log("colliderElimnado"); 
+            }
+                    
+            
+                }//fin for
+            
+                //CREAMOS COLISIONES DE NUEVO++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            if( this.auxoverlapchoca === true){
+            //
+            }else{
+               
+            
+                /*
+            this.physics.world.removeCollider(this.colliderPlats);
+            this.colliderPlats = this.physics.add.collider(player, platforms);
+            
+            
+            this.physics.world.removeCollider(this.colliderEscaleras);
+            this.colliderEscaleras = this.physics.add.collider(player,escaleras);
+            
+            this.physics.world.removeCollider(this.colliderEscaleras1);
+            this.colliderEscaleras1 = this.physics.add.collider(player, escaleras1);
+            
+            this.physics.world.removeCollider(this.colliderEscaleras2);
+            this.colliderEscaleras2 = this.physics.add.collider(player, escaleras2);
+            */
+            
+            //EN ESTOS FOR ESTAMOS CREANDO LAS COLISIONES (EN VERDAD SE ACTIVA EL BODY)
+            for(var i = 0; i < platforms.getChildren().length; i++){
+                var enem = platforms.getChildren()[i];
+            
+                    enem.enableBody(false,false);
+            
+            }
+               //este for sirve paara eliminar los colliders
+               for(var i = 0; i < escaleras.getChildren().length; i++){
+                var enem = escaleras.getChildren()[i];
+            
+             
+                enem.enableBody(false,false);
+                   
+            }
+               //este for sirve paara eliminar los colliders
+               for(var i = 0; i < escaleras1.getChildren().length; i++){
+                var enem = escaleras1.getChildren()[i];
+            
+             
+                enem.enableBody(false,false);
+                   
+            }
+               //este for sirve paara eliminar los colliders
+               for(var i = 0; i < escaleras2.getChildren().length; i++){
+                var enem = escaleras2.getChildren()[i];
+            
+                enem.enableBody(false,false);
+                   
+            }
+            
+            
+            }//FIN ELSE
+            
+            this.auxoverlapchoca = false;
+            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            
+            
+
+            
+
+
+
+                     //SIRVE PARA CREAR DE NUEVO LOS COLLIDER SI SE ELIMINAN Y YA NO ESTAS TOCANDO (false si no estas tocando)
+       //  overlapPlataformasBool = false;
+       // overlapEscalerasBool = false;
+    
+
+                  //OVERLAP CON PLATAFORMAS????????????????????????????????????????????????????
+     for(var i = 0; i < platformsd.getChildren().length; i++){
+        var escalerillas = platformsd.getChildren()[i];
+
+if(checkOverlap(player2,escalerillas)){
+            this.auxoverlapchoca2 = true;
+            //console.log("colliderElimnado"); 
+}
+        
+
+    }//fin for
+                    //OVERLAP CON ESCALERAS????????????????????????????????????????????????????
+    for(var i = 0; i < escalerasd.getChildren().length; i++){
+        var escalerillas = escalerasd.getChildren()[i];
+
+if(checkOverlap(player2,escalerillas)){
+            this.auxoverlapchoca2 = true;
+            //console.log("colliderElimnado"); 
+}
+        
+
+    }//fin for
+                        //OVERLAP CON ESCALERAS1????????????????????????????????????????????????????
+    for(var i = 0; i < escaleras1d.getChildren().length; i++){
+        var escalerillas = escaleras1d.getChildren()[i];
+
+if(checkOverlap(player2,escalerillas)){
+            this.auxoverlapchoca2 = true;
+            //console.log("colliderElimnado"); 
+}
+        
+
+    }//fin for
+                    //OVERLAP CON ESCALERAS2????????????????????????????????????????????????????
+    for(var i = 0; i < escaleras2d.getChildren().length; i++){
+        var escalerillas = escaleras2d.getChildren()[i];
+
+if(checkOverlap(player2,escalerillas)){
+            this.auxoverlapchoca2 = true;
+            //console.log("colliderElimnado"); 
+}
+        
+
+    }//fin for
+
+    //CREAMOS COLISIONES DE NUEVO++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+if( this.auxoverlapchoca2 === true){
+//
+}else{
+   
+
+    /*
+this.physics.world.removeCollider(this.colliderPlats);
+this.colliderPlats = this.physics.add.collider(player, platforms);
+
+
+this.physics.world.removeCollider(this.colliderEscaleras);
+this.colliderEscaleras = this.physics.add.collider(player,escaleras);
+
+this.physics.world.removeCollider(this.colliderEscaleras1);
+this.colliderEscaleras1 = this.physics.add.collider(player, escaleras1);
+
+this.physics.world.removeCollider(this.colliderEscaleras2);
+this.colliderEscaleras2 = this.physics.add.collider(player, escaleras2);
+*/
+
+//EN ESTOS FOR ESTAMOS CREANDO LAS COLISIONES (EN VERDAD SE ACTIVA EL BODY)
+for(var i = 0; i < platformsd.getChildren().length; i++){
+    var enem = platformsd.getChildren()[i];
+
+        enem.enableBody(false,false);
+
+}
+   //este for sirve paara eliminar los colliders
+   for(var i = 0; i < escalerasd.getChildren().length; i++){
+    var enem = escalerasd.getChildren()[i];
+
+ 
+    enem.enableBody(false,false);
+       
+}
+   //este for sirve paara eliminar los colliders
+   for(var i = 0; i < escaleras1d.getChildren().length; i++){
+    var enem = escaleras1d.getChildren()[i];
+
+ 
+    enem.enableBody(false,false);
+       
+}
+   //este for sirve paara eliminar los colliders
+   for(var i = 0; i < escaleras2d.getChildren().length; i++){
+    var enem = escaleras2d.getChildren()[i];
+
+    enem.enableBody(false,false);
+       
+}
+
+
+}//FIN ELSE
+
+this.auxoverlapchoca2 = false;
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    }//FIN UPDATE
 
 
 
@@ -1030,7 +1487,7 @@ reiniciarContador(scene){
     //console.log("despues " + scene.ready);
 }
 
-
+/*
 encimaDePlat(){
 
     if(colliderEliminado === 1){
@@ -1107,7 +1564,7 @@ if(colliderEscalerasEliminado2 === 1){
 
 }
 }
-
+*/
 zombiesPlatF(){
 
 
@@ -1116,9 +1573,9 @@ zombiesPlatF(){
         this.physics.world.removeCollider(this.colliderEnemEscaleras1);
         this.physics.world.removeCollider(this.colliderEnemEscaleras2);
         this.physics.world.removeCollider(this.colliderEnemEscaleras3);
-        this.colliderEnemEscaleras1 =this.physics.add.collider(this.enemigos,escaleras);
-        this.colliderEnemEscaleras2 =this.physics.add.collider(this.enemigos,escaleras1);
-        this.colliderEnemEscaleras3 =this.physics.add.collider(this.enemigos,escaleras2);
+        this.colliderEnemEscaleras1 =this.physics.add.collider(this.enemigos,escalerasz);
+        this.colliderEnemEscaleras2 =this.physics.add.collider(this.enemigos,escaleras1z);
+        this.colliderEnemEscaleras3 =this.physics.add.collider(this.enemigos,escaleras2z);
     
        // console.log("colliderEscalerasAñadido");
         colliderEnemigosEliminado = 0;
