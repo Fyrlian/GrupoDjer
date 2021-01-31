@@ -13,6 +13,7 @@ class Scene7 extends Phaser.Scene {
 
     }
     create(){//  A simple background for our game
+	 this.cameras.main.fadeIn(1000);
         that2 = this;
         
         
@@ -104,7 +105,7 @@ class Scene7 extends Phaser.Scene {
         platformsz.create(config.width/1.48, config.height/1.60, 'sueloMedio2');
         platformsz.create(config.width/2.97, config.height/1.535, 'sueloMedio');
         platformsz.create(config.width/1.22,config.height/2.72,'sueloTejado');
-        platformsz.create(config.width/1, config.height/1.48, 'sueloMedio2');
+        platformsz.create(config.width/0.97, config.height/1.525, 'sueloMedio2');
         platformsz.create(config.width/18, config.height/1.9, 'sueloMedio2');
 
 
@@ -116,7 +117,7 @@ class Scene7 extends Phaser.Scene {
         platformsd.create(config.width/1.48, config.height/1.60, 'sueloMedio2');
         platformsd.create(config.width/2.97, config.height/1.535, 'sueloMedio');
         platformsd.create(config.width/1.22,config.height/2.72,'sueloTejado');
-        platformsd.create(config.width/1, config.height/1.48, 'sueloMedio2');
+        platformsd.create(config.width/0.97, config.height/1.525, 'sueloMedio2');
         platformsd.create(config.width/18, config.height/1.9, 'sueloMedio2');
 
 
@@ -154,7 +155,7 @@ class Scene7 extends Phaser.Scene {
         
         //GRUPO ESCALERAS PLANTA DE ABAJO PARA ZOMBIES
         escaleras2d= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 400 });
-        Phaser.Actions.PlaceOnLine(escaleras2z.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.1,config.height/1.49));
+        Phaser.Actions.PlaceOnLine(escaleras2z.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.07,config.height/1.525));
         escaleras2z.refresh();
         //GRUPO DE LAS PRIMERAS ESCALERAS PARA ZOMBIES
         escalerasz = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
@@ -169,7 +170,7 @@ class Scene7 extends Phaser.Scene {
         
         //GRUPO ESCALERAS PLANTA DE ABAJO PARA ZOMBIES
         escaleras2z= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 400 });
-        Phaser.Actions.PlaceOnLine(escaleras2z.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.1,config.height/1.49));
+        Phaser.Actions.PlaceOnLine(escaleras2z.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.07,config.height/1.525));
         escaleras2z.refresh();
         
 
