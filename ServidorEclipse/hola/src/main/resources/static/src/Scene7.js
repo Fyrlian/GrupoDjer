@@ -399,9 +399,8 @@ class Scene7 extends Phaser.Scene {
         //DISPARO PLAYER 1
         this.input.keyboard.on("keydown_SHIFT",() =>{//pulsar el boton de disparo
                 
-            this.disparoSound.play();
-
             if(player.vivo){
+                this.disparoSound.play();
                 var i = 0;
                 while(this.balas.getChildren()[i].x != -100){//encontramos la bala que usaremos
 
@@ -432,10 +431,9 @@ class Scene7 extends Phaser.Scene {
       //DISPARO JUGADOR 2
         
         this.input.keyboard.on("keydown_SPACE",() => {//pulsar el boton de disparo
-                
-            this.disparoSound.play();
-
+            
             if(player2.vivo){
+                this.disparoSound.play();
                 var i = 0;
                 while(this.balas.getChildren()[i].x != -100){//encontramos la bala que usaremos
 
