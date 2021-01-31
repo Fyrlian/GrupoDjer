@@ -9,6 +9,7 @@ class LoginScene extends Phaser.Scene {
         
     }
     create(){
+	    this.cameras.main.fadeIn(1000);
 that = this;
         
         this.bg=this.add.image(config.width/2,config.height/2, 'fondoLogin');
