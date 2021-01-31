@@ -1,3 +1,24 @@
+$(window).on('beforeunload',function(){
+
+
+
+    $.ajax({
+        method: "DELETE",
+        url:"http://localhost:8080/conectado",
+        data: JSON.stringify({usuario : nombreUsuario,contrasena: "auxContraseña"}),
+        processData: false,
+        headers: {
+        "Content-type":"application/json"
+        }
+        }).done(function(data, textStatus, jqXHR) {
+        }).fail(function(data, textStatus, jqXHR){
+        });
+
+        that2.scene.start("sceneMenu");
+
+        return "string";
+
+});
 class Scene7 extends Phaser.Scene {
   
     constructor(){
@@ -7,7 +28,7 @@ class Scene7 extends Phaser.Scene {
         
     }
   
-    
+
     preload(){
 
 
@@ -310,7 +331,7 @@ class Scene7 extends Phaser.Scene {
         this.contadorTimeMedido = false;
         this.inicioContador = 0;
         this.contadorEnEjecucion = false;
-        
+        this.tiempo = 0;
         //tiempo en el que empiezan a aparecer los enemigos
         this.tiempoEnemigo = 99999999;
 
@@ -553,6 +574,7 @@ this.servidorEstado = false;
 
     update(time,delta){
     
+        this.tiempo += delta;
     	//GET PARA LOS MENSAJES++++++++++++++++++++++++++++++++++++++++++++
 $.ajax({
 
@@ -694,14 +716,14 @@ $.ajax({
             vueltaAlJuego = false;
         }
         if(!this.contadorTimeMedido && this.ready){//ajusta el momento en el que empieza la escena
-            this.inicioContador = time;
+            this.inicioContador = this.tiempo;
             this.contadorTimeMedido = true;
         }
         if(!this.enemigosSpawn && this.ready){
             this.contadorEnEjecucion = true;
-            this.cuentaAtrasFunc(5, cuentaAtras, time, this.inicioContador, delta, this);//crea la cuenta atras que empieza en el numero 5 introducido en la funcion
+            this.cuentaAtrasFunc(5, cuentaAtras, this.tiempo, this.inicioContador, delta, this);//crea la cuenta atras que empieza en el numero 5 introducido en la funcion
         }
-        if( (((time - this.tiempoEnemigo) >= 15000) && ((time - this.tiempoEnemigo) <= 15000 + delta)) && this.enemigosSpawn){//la ronda ha acabado
+        if( (((this.tiempo - this.tiempoEnemigo) >= 15000) && ((this.tiempo - this.tiempoEnemigo) <= 15000 + delta)) && this.enemigosSpawn){//la ronda ha acabado
             this.enemigosSpawn = false;
             setTimeout(this.reiniciarContador, 4000, this);
         }
@@ -735,7 +757,7 @@ $.ajax({
         }
         //APARICION ENEMIGOS 
         var tiempoEntreZombies = 5000/this.ronda;  
-        if(this.enemigosSpawn && (((time - this.tiempoEnemigo)%tiempoEntreZombies >= 0) && ((time - this.tiempoEnemigo)%tiempoEntreZombies < delta) )){
+        if(this.enemigosSpawn && (((this.tiempo - this.tiempoEnemigo)%tiempoEntreZombies >= 0) && ((this.tiempo - this.tiempoEnemigo)%tiempoEntreZombies < delta) )){
             new Enemigo(this,this.sys.game.config.width,0);
             new Enemigo(this,0,0);
         }
@@ -1449,21 +1471,21 @@ quitarVida(player){
     
 }
 
-cuentaAtrasFunc(num, cuentaAtras, time, inicioContador, delta, scene){
+cuentaAtrasFunc(num, cuentaAtras, tiempo, inicioContador, delta, scene){
 
     //  console.log("tiempoInicial " + inicioContador);
-    //  console.log("tiempoActual " + time);
+    //  console.log("tiempoActual " + tiempo);
 
     num++;
 
     for(var i = 0; i <= num; i++){
 
-        if(time > (((i * 1000) + inicioContador) - delta) &&  time < (((i * 1000) + inicioContador) + delta)){
+        if(tiempo > (((i * 1000) + inicioContador) - delta) &&  tiempo < (((i * 1000) + inicioContador) + delta)){
             
             if(i == num){//la cuenta atras ya ha terminado
                 cuentaAtras.setText("");
                 scene.enemigosSpawn = true;//se activa que emiecen a aparecer enemigos
-                scene.tiempoEnemigo = time;//se guarda el tiempo en el que se activa su aparicion
+                scene.tiempoEnemigo = tiempo;//se guarda el tiempo en el que se activa su aparicion
                 scene.ready = false; //El jugador al incio de la siguiente ronda no estara preparado
                 scene.ronda++;                            //actualiza la ronda
                 scoreText.setText('ronda ' + this.ronda);
