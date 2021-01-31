@@ -5,7 +5,7 @@ class Scene1 extends Phaser.Scene {
       super({ key: "sceneLogoCarga" });
   }
   preload(){
-   
+   this.cameras.main.fadeIn(1000);
    
 
 
