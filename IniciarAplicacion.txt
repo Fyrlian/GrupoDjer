@@ -8,11 +8,17 @@ https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view?usp=shari
 La carpeta "ServidorEclipse" deberá sustituirse dentro del zip de nuestra entrega por la carpeta con su mismo nombre 
 para que aparezcan todos los archivos necesarios de la entrega (.jar,etc...).
 
-Para ejecutar el servidor, se puede hacer de dos formas: 
+
+EL ARCHIVO .JAR SE ENCUENTRA EN LA RUTA ServidorEclipse/hola/target 
+
+Para ejecutar el servidor, se puede hacer de tres formas: 
+
+-Con el .bat haciendo doble click y ejecutando el comando en el cmd
 
 -Desde el cmd accediendo al directorio donde se encuentra el archivo .jar y ejecutando la siguiente línea de comandos: java -jar hola-1.5.8.RELEASE.jar
 después se abrirá el servidor en el cmd y se podrá ejecutar en el navegador el juego con localhost:8080.
 
 -También se puede ejecutar haciendo doble click sobre el .jar pero se tiene menos control sobre el servidor (no tienes consola). Y después abrir el
 navegador y ejecutar el juego con localhost:8080. El archivo .jar se encuentra en la ruta ServidorEclipse/hola/target, ahí se encontrará el .jar
+
 
