@@ -1,0 +1,6 @@
+Para iniciar el videojuego last nightfall, se debe de iniciar a partir del live server de visual studio code, debemos asegurarnos de que
+el framework de phaser esté correctamente instalado, así como todos los assets en una carpeta denominada "assets" y todos los scripts y
+codigo del juego dentro de una carpeta llamada juego con la carpeta de assets incluida dentro de esta. 
+
+
+
