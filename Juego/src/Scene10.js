@@ -10,17 +10,6 @@ class Scene10 extends Phaser.Scene {
     }
     create(){
 
-      if(chatAbierto==true){
-          
-        chatAbierto=false;
-      
-      }
-      
-      var element = document.getElementById("divChat");
-
-      this.scene.stop('chatScene');
-      
-      element.style.display = "none";
 
 
       this.background = this.add.image(config.width/2,config.height/2,'fondoPausa');

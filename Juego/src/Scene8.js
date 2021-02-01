@@ -10,27 +10,6 @@ class Scene8 extends Phaser.Scene {
     }
     create(){ 
       
-      $.ajax({
-        method: "DELETE",
-        url:"http://localhost:8080/conectado",
-        data: JSON.stringify({usuario : nombreUsuario,contrasena: "auxContraseña"}),
-        processData: false,
-        headers: {
-        "Content-type":"application/json"
-        }
-        }).done(function(data, textStatus, jqXHR) {
-
-        }).fail(function(data, textStatus, jqXHR){
-
-        });
-
-      if(chatAbierto==true){
-
-          chatAbierto=false;
-      
-      }
-      this.scene.stop('chatScene');
-      
 
 
     this.score = 0;

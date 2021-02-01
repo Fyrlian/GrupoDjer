@@ -20,7 +20,7 @@ var config = {
     dom: {
         createContainer: true
     },
-    scene:[Scene0,Scene1,Scene2,Scene3,Scene4,Scene5,Scene6,Scene7,Scene8,Scene9,Scene10,Scene11,Scene12,ChatScene,LoginScene,ListaJugadores]
+    scene:[Scene0,Scene1,Scene2,Scene3,Scene4,Scene5,Scene6,Scene7,Scene8,Scene9,Scene10,Scene11,Scene12]
 };
 var listaJugAbierta = false;
 var nombreUsuario;

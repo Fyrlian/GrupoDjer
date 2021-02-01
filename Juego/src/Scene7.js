@@ -1,24 +1,3 @@
-$(window).on('beforeunload',function(){
-
-
-
-    $.ajax({
-        method: "DELETE",
-        url:"http://localhost:8080/conectado",
-        data: JSON.stringify({usuario : nombreUsuario,contrasena: "auxContraseña"}),
-        processData: false,
-        headers: {
-        "Content-type":"application/json"
-        }
-        }).done(function(data, textStatus, jqXHR) {
-        }).fail(function(data, textStatus, jqXHR){
-        });
-
-        that2.scene.start("sceneMenu");
-
-        return "string";
-
-});
 class Scene7 extends Phaser.Scene {
   
     constructor(){
@@ -38,30 +17,6 @@ class Scene7 extends Phaser.Scene {
         that2 = this;
         
         //creamos loop para comprobar estado del server
-        this.actualizarServidor = this.time.addEvent({ delay: 1600, callback: servidor, callbackScope: this, loop: true });
-
-        //se añade a la lista de jugadores
-        $.ajax({
-            method: "PUT",
-            url:"http://localhost:8080/conectado",
-            data: JSON.stringify({usuario : nombreUsuario,contrasena: "auxContraseña"}),
-            processData: false,
-            headers: {
-            "Content-type":"application/json"
-            }
-            }).done(function(data, textStatus, jqXHR) {
-
-                if(data == 1){//entra como el jugador 1
-                    jugadorRepresentado = 1;
-                }else{//entra como el jugador 2
-                    jugadorRepresentado = 2;
-                }
-    
-            }).fail(function(data, textStatus, jqXHR){
-                alert("Servidor actualmente lleno");
-                that2.scene.stop('sceneGame2');
-                that2.scene.start('sceneMenu');
-            });
 
 
 
@@ -231,11 +186,7 @@ class Scene7 extends Phaser.Scene {
                 
                 this.scene.pause('sceneGame2');
                 this.scene.launch('scenePause2');
-                if( listaJugAbierta== true){
-                    this.scene.stop('listaJugadores');
-                    listaJugAbierta= false;
-                    
-                }
+                
                 
             }.bind(this));
 
@@ -326,9 +277,6 @@ class Scene7 extends Phaser.Scene {
         //VIDAS
         vidasText2 = this.add.bitmapText(16, 16,'fuentes3','vidas        : ',40);
         vidasText = this.add.bitmapText(16, 76,'fuentes3','vidas        : ',40);
-        
-		//incluimjos el texto que contiene el estado del servidor
-        textEstadoServidor = this.add.bitmapText(0,config.height - 30,'fuentes3','',15);
 
         //  The score
         this.ronda = 0;
@@ -473,107 +421,7 @@ class Scene7 extends Phaser.Scene {
 
         
 
-
-
-
-        //TOCAR TAB PARA ABRIR LISTAJUGADORES
-        
-        this.input.keyboard.on("keydown_CTRL",() =>{
-
-            if(listaJugAbierta == false){
-
-        this.scene.launch('listaJugadores');
-         listaJugAbierta = true;
-
-
-
-            }else if( listaJugAbierta== true){
-                this.scene.stop('listaJugadores');
-                listaJugAbierta= false;
-                
-            }
-
-
-
-        })
-
-        
-
-
-
-
-
-        
-        //TOCAR ESC PARA ABRIR EL CHAT
-       
-        this.input.keyboard.on("keydown_ESC",() =>{
-
-            if(chatAbierto == false){
-                this.scene.launch('chatScene');
-                chatAbierto = true;
-             
-                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.W)
-                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.A)
-                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.S)
-                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.D)
-                this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-               
-        
-            }else if(chatAbierto == true){
-                this.scene.stop('chatScene');
-                chatAbierto= false;
-                this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-                this.a = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-                this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-                this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-                this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
-                
-
-                
-            }
-
-
-        })
-
-
-
-
-
-
-/*
-         //enviar la ubicacion jugador 1 al servidor
-         $.ajax({
-            method: "POST",
-            url:"http://localhost:8080/jugador/0",
-            data: JSON.stringify({posicionx: player.x, posiciony: player.y, vida: player.vidas}),
-            processData: false,
-            headers: {
-            "Content-type":"application/json"
-            }
-            }).done(function(data, textStatus, jqXHR) {
-            console.log(textStatus+" "+jqXHR.statusCode());
-            }).fail(function(data, textStatus, jqXHR){
-            console.log(textStatus+" "+jqXHR.statusCode());
-            });
-
-
-
-        //enviar la ubicacion jugador 2 al servidor
-        $.ajax({
-            method: "POST",
-            url:"http://localhost:8080/jugador/1",
-            data: JSON.stringify({posicionx: player2.x, posiciony: player2.y, vida: player2.vidas}),
-            processData: false,
-            headers: {
-            "Content-type":"application/json"
-            }
-            }).done(function(data, textStatus, jqXHR) {
-            console.log(textStatus+" "+jqXHR.statusCode());
-            }).fail(function(data, textStatus, jqXHR){
-            console.log(textStatus+" "+jqXHR.statusCode());
-            });
-*/
+    
 
 this.servidorEstado = false;
 
@@ -583,87 +431,6 @@ this.servidorEstado = false;
     update(time,delta){
     
         this.tiempo += delta;
-    	//GET PARA LOS MENSAJES++++++++++++++++++++++++++++++++++++++++++++
-$.ajax({
-
-    url: "http://localhost:8080/conectado"
-}).then(function(data) {
- 
-
- 
-    //EL JUGADOR1 EXISTE
-    if(data[0] != null){
-
-        estaConectadoPlayer1 = true;
-   
-        if(estaConectadoPlayer1 != estaConectadoPlayer1aux){
-    
-            alert("Se ha conectado Jugador 1: " + data[0].usuario);
-    
-        }
-        estaConectadoPlayer1aux = true;
-
-
-        
-    //EL JUGADOR1 NO EXISTE
-    }else{
-
-        estaConectadoPlayer1 = false;
-   
-        if(estaConectadoPlayer1 != estaConectadoPlayer1aux){
-    
-            alert("Se ha desconectado Jugador 1: " );
-    
-        }
-        estaConectadoPlayer1aux = false;
-
-
-      
-
-    }
-
-    
-    //EL JUGADOR2 EXISTE
-    
- 
-    
-    if(data[1] != null){
-
-        estaConectadoPlayer2 = true;
-   
-        if(estaConectadoPlayer2 != estaConectadoPlayer2aux){
-    
-            alert("Se ha conectado Jugador 2: " + data[1].usuario);
-    
-        }
-        estaConectadoPlayer2aux = true;
-
-
-
-
-
-
-    //EL JUGADOR2 NO EXISTE
-    }else{
-
-        estaConectadoPlayer2 = false;
-        if(estaConectadoPlayer2 != estaConectadoPlayer2aux){
-    
-            alert("Se ha desconectado Jugador 2: ");
-    
-        }
-        estaConectadoPlayer2aux = false;
-
-
-
-    }
-
-    
-   
- 
- 
-	})//FIN GETT+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    
 	
  
 
@@ -675,15 +442,7 @@ $.ajax({
         if(!player.vivo && !player2.vivo){
 	    this.sound.removeByKey('audioScene1');
             rondaFinal = this.ronda;
-            game.scene.stop('chatScene');
             game.scene.stop('sceneGame2');
-            var element = document.getElementById("divChat");
-            element.style.display = "none";
-            if( listaJugAbierta== true){
-                this.scene.stop('listaJugadores');
-                listaJugAbierta= false;
-                
-            }
             game.scene.start('sceneGameOver');
         }
         
@@ -1028,7 +787,6 @@ this.physics.world.removeCollider(this.colliderEscaleras);
        //este for sirve paara eliminar los colliders
        for(var i = 0; i < escalerasd.getChildren().length; i++){
         var enem = escalerasd.getChildren()[i];
-        console.log("esto se elimina");
      
         enem.disableBody(true,false);
            
@@ -1607,36 +1365,5 @@ centerButtonText (gameText, gameButton){
 
 
         
-
-}
-
-function servidor(){
-
-    		//Actualiza el estado del servidor
-		 $.ajax({
-
-            url: "http://localhost:8080/juego"
-        }).then(function(data) {
-            
-            if(data == true){
-           
-                textEstadoServidor.setText("Servidor conectado");
-                //that2.textoEstadoServidor.addColor("008F39",20);
-                that2.servidorEstado = true;
-                
-                
- 
-                
-            }
-
-
-}).fail(function(data, textStatus, jqXHR){
-
-                           
-            textEstadoServidor.setText("Servidor desconectado");
-            //that2.textoEstadoServidor.addColor("FF000",20);
-        
-
-});
 
 }

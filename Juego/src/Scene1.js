@@ -180,7 +180,7 @@ init () {
 ready () {
       this.readyCount++;
   if (this.readyCount === 2) {
-      this.scene.start('loginScene');
+      this.scene.start('sceneMenu');
   }
 
 }
