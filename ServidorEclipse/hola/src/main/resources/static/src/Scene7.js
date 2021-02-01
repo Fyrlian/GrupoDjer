@@ -174,18 +174,18 @@ class Scene7 extends Phaser.Scene {
         //GRUPO DE LAS PRIMERAS ESCALERAS PARA ZOMBIES
         escalerasd = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
         //Phaser.Actions.PlaceOnLine(escaleras.getChildren(), new Phaser.Geom.Line(config.width/8.34, config.height/1.13,config.width/4.04,config.height/1.550));
-        Phaser.Actions.PlaceOnLine(escalerasz.getChildren(), new Phaser.Geom.Line(config.width/20, config.height/1.06,config.width/3.6,config.height/1.54));
-        escalerasz.refresh();
+        Phaser.Actions.PlaceOnLine(escalerasd.getChildren(), new Phaser.Geom.Line(config.width/20, config.height/1.06,config.width/3.6,config.height/1.54));
+        escalerasd.refresh();
         
         //GRUPO ESCALERAS A LA PLANTA SUPERIOR PARA ZOMBIES
         escaleras1d= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 500 });
-        Phaser.Actions.PlaceOnLine(escaleras1z.getChildren(), new Phaser.Geom.Line(config.width/2.7, config.height/1.54,config.width/1.7,config.height/2.7));
-        escaleras1z.refresh();
+        Phaser.Actions.PlaceOnLine(escaleras1d.getChildren(), new Phaser.Geom.Line(config.width/2.7, config.height/1.54,config.width/1.7,config.height/2.7));
+        escaleras1d.refresh();
         
         //GRUPO ESCALERAS PLANTA DE ABAJO PARA ZOMBIES
         escaleras2d= this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 400 });
-        Phaser.Actions.PlaceOnLine(escaleras2z.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.07,config.height/1.525));
-        escaleras2z.refresh();
+        Phaser.Actions.PlaceOnLine(escaleras2d.getChildren(), new Phaser.Geom.Line(config.width/1.4, config.height/1.08,config.width/1.07,config.height/1.525));
+        escaleras2d.refresh();
         //GRUPO DE LAS PRIMERAS ESCALERAS PARA ZOMBIES
         escalerasz = this.physics.add.staticGroup({ key: 'tejado', frameQuantity: 300 });
         //Phaser.Actions.PlaceOnLine(escaleras.getChildren(), new Phaser.Geom.Line(config.width/8.34, config.height/1.13,config.width/4.04,config.height/1.550));
@@ -208,13 +208,13 @@ class Scene7 extends Phaser.Scene {
         player2 = this.physics.add.sprite(config.width/2.1, 700, 'dude');
 
         //jugador1
-        player.setBounce(0.2);
+
         player.setCollideWorldBounds(true);
         player.vidas = 3;
         player.vivo = true;
         player.inmortalidad = false;
         //jugador2
-        player2.setBounce(0.2);
+
         player2.setCollideWorldBounds(true);
         player2.vidas = 3;
         player2.vivo = true;
@@ -355,12 +355,12 @@ class Scene7 extends Phaser.Scene {
         this.physics.add.collider(player, tejas2);
 
           //COLLIDERS DE LAS PLATAFORMAS CON EL JUGADOR 2
-       this.colliderPlats2 = this.physics.add.collider(player2, platforms);
+       this.colliderPlats2 = this.physics.add.collider(player2, platformsd);
        this.physics.add.collider(player2, this.sueloMapa);
         
-       this.colliderEscaleras_2 = this.physics.add.collider(player2,escaleras);
-       this.colliderEscaleras1_2 = this.physics.add.collider(player2, escaleras1);
-       this.colliderEscaleras2_2 = this.physics.add.collider(player2, escaleras2);
+       this.colliderEscaleras_2 = this.physics.add.collider(player2,escalerasd);
+       this.colliderEscaleras1_2 = this.physics.add.collider(player2, escaleras1d);
+       this.colliderEscaleras2_2 = this.physics.add.collider(player2, escaleras2d);
         this.physics.add.collider(player2, tejas);
         this.physics.add.collider(player2, tejas2);
         
@@ -1042,10 +1042,11 @@ this.physics.world.removeCollider(this.colliderEscaleras);
 */
 
 
-                
        //este for sirve paara eliminar los colliders
        for(var i = 0; i < platformsd.getChildren().length; i++){
+
         var enem = platformsd.getChildren()[i];
+       
 
         
             enem.disableBody(true,false);
@@ -1055,7 +1056,7 @@ this.physics.world.removeCollider(this.colliderEscaleras);
        //este for sirve paara eliminar los colliders
        for(var i = 0; i < escalerasd.getChildren().length; i++){
         var enem = escalerasd.getChildren()[i];
-
+        console.log("esto se elimina");
      
         enem.disableBody(true,false);
            
@@ -1326,6 +1327,7 @@ this.physics.world.removeCollider(this.colliderEscaleras);
         var escalerillas = platformsd.getChildren()[i];
 
 if(checkOverlap(player2,escalerillas)){
+
             this.auxoverlapchoca2 = true;
             //console.log("colliderElimnado"); 
 }
@@ -1337,6 +1339,8 @@ if(checkOverlap(player2,escalerillas)){
         var escalerillas = escalerasd.getChildren()[i];
 
 if(checkOverlap(player2,escalerillas)){
+
+
             this.auxoverlapchoca2 = true;
             //console.log("colliderElimnado"); 
 }
@@ -1348,6 +1352,8 @@ if(checkOverlap(player2,escalerillas)){
         var escalerillas = escaleras1d.getChildren()[i];
 
 if(checkOverlap(player2,escalerillas)){
+
+
             this.auxoverlapchoca2 = true;
             //console.log("colliderElimnado"); 
 }
