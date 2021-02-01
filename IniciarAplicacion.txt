@@ -5,7 +5,7 @@ Enlace:
 
 https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view?usp=sharing
 
-La carpeta "ServidorEclipse" deberá sustituirse dentro del zip de nuestra entrega por la carperta con su mismo nombre 
+La carpeta "ServidorEclipse" deberá sustituirse dentro del zip de nuestra entrega por la carpeta con su mismo nombre 
 para que aparezcan todos los archivos necesarios de la entrega (.jar,etc...).
 
 Para ejecutar el servidor, se puede hacer de dos formas: 
