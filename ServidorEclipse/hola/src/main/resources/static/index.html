@@ -1,0 +1,108 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    
+    <meta charset="UTF-8" />
+    <title>LAST NIGHTFALL</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    
+
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script> 
+    <script  type="text/javascript" src="src/Scene0.js"></script>
+    <script  type="text/javascript" src="src/Scene1.js"></script>
+    <script  type="text/javascript" src="src/Scene2.js"></script>
+    <script  type="text/javascript" src="src/Scene3.js"></script>
+    <script  type="text/javascript" src="src/Scene4.js"></script>
+    <script  type="text/javascript" src="src/Scene5.js"></script>
+    <script  type="text/javascript" src="src/Scene6.js"></script>
+    <script  type="text/javascript" src="src/Scene7.js"></script>
+    <script  type="text/javascript" src="src/Scene8.js"></script>
+    <script  type="text/javascript" src="src/Scene9.js"></script>
+    <script  type="text/javascript" src="src/Scene10.js"></script>
+    <script  type="text/javascript" src="src/Scene11.js"></script>
+    <script  type="text/javascript" src="src/Scene12.js"></script>
+    <script  type="text/javascript" src="src/ChatScene.js"></script>
+    <script  type="text/javascript" src="src/LoginScene.js"></script>
+    <script  type="text/javascript" src="src/ListaJugadores.js"></script>
+    <script  type="text/javascript" src="src/Bala.js"></script>
+    <script  type="text/javascript" src="src/Enemigo.js"></script>
+    <script type="text/javascript" src="src/game.js"></script>
+    <script type="text/javascript" src="src/FormUtil.js" ></script>
+    <script type="text/javascript" src="src/AlignGrid.js" ></script>
+    <style type="text/css">
+        body {
+            
+            margin: 0;
+        }
+        
+    </style>
+    <style>
+         @font-face {
+            font-family: 'fuente';
+            font-style: normal;
+            font-weight: normal;
+            src: url(../assets/Inheritance.ttf);
+      
+       }
+       @font-face {
+           font-family: 'fuente2';
+           src: url(../assets/font2.fnt);
+       }
+       @font-face {
+           font-family: 'fuente3';
+           src: url(../assets/font3.fnt);
+        }
+
+        .texto{
+            font-family: 'fuente';
+            font-size: 30px;
+            color: white;
+        }
+        .textoBoton{
+            font-family: 'fuente';
+            font-size: 25px;
+            align-items: center;
+            
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id = "div" style="display:none" >
+
+        <form id="formulario"> 
+    <fieldset>
+            <p class='texto'><label>username:<input type="text" name="nombre" id="nombreUsuarioForm" style='width:98%;' required></label></p>
+    
+            <p class ='texto'> <label>password:<input type="password" name="direccion" id="contraseñaForm" style='width:98%;'required></label></p>
+                
+        
+                <input class='textoBoton' type="submit" value="login" id="loginButton" style="margin:0px auto; display:block;">
+            
+              
+            </fieldset>
+              
+          </form>
+    
+          
+        </div>
+
+
+        <div id = "divChat" style="display:none">
+
+            <form id="formularioChat"> 
+        
+                <p><label><input id=chatButton type="text" name="nombre" style="width: 262%;"></label></p>
+                
+                  </p>
+              
+              </form>
+        
+              
+            </div>
+
+        
+</body>
+</html>
