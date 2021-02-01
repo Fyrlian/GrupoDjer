@@ -455,3 +455,15 @@ Los efectos de sonido se guardarán en .wav.
   - Efecto de recarga: sonido de recarga de arma.
   - Efecto navegar por el menú: Al mover el ratón por las opciones de los menús.
   - Ruido daño al jugador: sonido sufrimiento de personaje.
+  
+   **6.- Referencias**
+- Fuente cuenta atras: https://www.dafont.com/es/digital-7.font.
+- Fuente Menu : https://www.dafont.com/es/inheritance.font.
+- Sprite zombies: https://www.gameart2d.com/the-zombies-free-sprites.html
+- Fuente letra2: https://www.viralizalo.com/pop/7652-que-personaje-de-los-juegos-del-hambre-eres
+- Phaser examples, proporcionados por phaser oficial.
+- Sonidos: http://recursostic.educacion.es/bancoimagenes/web/.
+- Mapa : https://opengameart.org/content/free-graveyard-platformer-tileset.
+- Codigo evitar comportamiento form: https://stackoverflow.com/questions/5384712/intercept-a-form-submit-in-javascript-and-prevent-normal-submission    Usuario Michael McTiernan
+- AlignGrid y FormUtil: https://phasergames.com/phaser-3-input-text-form-ui-part-1/
+- Filtro Cors propocionado por el profesor.
