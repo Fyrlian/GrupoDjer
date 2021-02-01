@@ -37,7 +37,9 @@ class Scene7 extends Phaser.Scene {
 	 this.cameras.main.fadeIn(1000);
         that2 = this;
         
-        
+        //creamos loop para comprobar estado del server
+        this.actualizarServidor = this.time.addEvent({ delay: 1600, callback: servidor, callbackScope: this, loop: true });
+
         //se añade a la lista de jugadores
         $.ajax({
             method: "PUT",
@@ -662,36 +664,6 @@ $.ajax({
  
 	})//FIN GETT+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     
-    
-    
-        
-
-		//Actualiza el estado del servidor
-		 $.ajax({
-
-		            url: "http://localhost:8080/juego"
-		        }).then(function(data) {
-		        	
-		            if(data == true){
-		           
-		                textEstadoServidor.setText("Servidor conectado");
-		                //that2.textoEstadoServidor.addColor("008F39",20);
-		                that2.servidorEstado = true;
-		                
-		                
-		 
-		                
-		            }
-
-	
-		}).fail(function(data, textStatus, jqXHR){
-		
-			               		
-		        	textEstadoServidor.setText("Servidor desconectado");
-		        	//that2.textoEstadoServidor.addColor("FF000",20);
-		        
-
-        });
 	
  
 
@@ -1635,4 +1607,36 @@ centerButtonText (gameText, gameButton){
 
 
         
+
+}
+
+function servidor(){
+
+    		//Actualiza el estado del servidor
+		 $.ajax({
+
+            url: "http://localhost:8080/juego"
+        }).then(function(data) {
+            
+            if(data == true){
+           
+                textEstadoServidor.setText("Servidor conectado");
+                //that2.textoEstadoServidor.addColor("008F39",20);
+                that2.servidorEstado = true;
+                
+                
+ 
+                
+            }
+
+
+}).fail(function(data, textStatus, jqXHR){
+
+                           
+            textEstadoServidor.setText("Servidor desconectado");
+            //that2.textoEstadoServidor.addColor("FF000",20);
+        
+
+});
+
 }
