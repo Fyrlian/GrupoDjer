@@ -15,7 +15,7 @@ Daniel Romero Hernández correo: [d.romeroh.2018@alumnos.urjc.es](mailto:d.romer
 ## **COMENTARIOS IMPORTANTES SOBRE LA ENTREGA**
 Al tener problemas con el git large file storage, hemos utilizado Google drive para la carpeta que contiene el servidor.
 
-LINK: https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view?usp=sharing
+LINK: https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view
 
 
 ## **INICIAR APLICACION**
@@ -25,7 +25,7 @@ Hemos decidido utilizar un enlace de drive que contiene la carpeta con el juego 
 Sentimos las molestias por no poder incluirlo en el GitHub.
 Enlace:
 
-https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view?usp=sharing
+https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view
 
 La carpeta "ServidorEclipse" deberá sustituirse dentro del zip de nuestra entrega por la carperta con su mismo nombre 
 para que aparezcan todos los archivos necesarios de la entrega (.jar,etc...).
