@@ -10,6 +10,78 @@ class Scene10 extends Phaser.Scene {
     }
     create(){
 
+      that4 = this;
+
+    
+      this.time.addEvent({
+        delay: 500, callback: function() {
+          
+         
+          //GET PARA LOS MENSAJES++++++++++++++++++++++++++++++++++++++++++++
+          $.ajax({
+            url: "http://localhost:8080/conectado",
+          }).then(function (data) {
+           
+
+            //EL JUGADOR2 EXISTE
+      
+            if (data[1] != null) {
+
+              estaConectadoPlayer2 = true;
+              if(jugadorRepresentado == 1){
+                  that2.ready = true;
+              }
+              player2.setVisible(true);
+              if (estaConectadoPlayer2 != estaConectadoPlayer2aux) {
+      
+                if(jugadorRepresentado == 1){
+      
+                  var arrayIndices= new Array();
+                  var indice = 0;
+      
+                  for (var i = 0; i < that2.enemigos.getChildren().length; i++) {
+      
+                    var enem = that2.enemigos.getChildren()[i];
+                
+                    arrayIndices[indice] = enem.indice;
+                      indice++;
+                  }
+      
+                  var mensaje = { nombre: "conec2", numZombies: that2.enemigos.getChildren().length, viditas1: player.vidas, viditas2: player2.vidas, ronditas: that2.ronda, indicesZ:arrayIndices }
+                  try {
+                    if(connection.readyState === connection.OPEN){
+                      connection.send(JSON.stringify(mensaje));
+                    }
+                  } catch (error) {
+                   
+                  }
+                  alert("Se ha conectado Jugador 2: " + data[1].usuario);
+      
+                  
+                      }
+               
+      
+      
+          
+              }
+              estaConectadoPlayer2aux = true;
+      
+              //EL JUGADOR2 NO EXISTE
+            } else {
+              estaConectadoPlayer2 = false;
+              if (estaConectadoPlayer2 != estaConectadoPlayer2aux) {
+                alert("Se ha desconectado Jugador 2");
+                
+              }
+              estaConectadoPlayer2aux = false;
+            }
+          }); //FIN GETT+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+      
+      
+        }, callbackScope: this, loop: true });
+
+
+
       if(chatAbierto==true){
           
         chatAbierto=false;
@@ -77,6 +149,16 @@ class Scene10 extends Phaser.Scene {
         this.centerButtonText(this.gameTextBack, this.gameButtonBack); 
         
         this.gameButtonBack.on('pointerdown', function (pointer) {
+
+            var mensaje = { nombre: "noPausa" }
+            try {
+              if(connection.readyState === connection.OPEN){
+                connection.send(JSON.stringify(mensaje));
+              }
+            } catch (error) {
+            
+            }
+
             this.scene.resume('sceneGame2');
             vueltaAlJuego = true;
             this.scene.stop("scenePause2");

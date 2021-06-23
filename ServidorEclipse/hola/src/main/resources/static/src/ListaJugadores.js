@@ -23,8 +23,8 @@ class ListaJugadores extends Phaser.Scene {
 
         this.textPlayer1 = this.add.bitmapText(config.width/2.17,config.height/2.5,'fuentes2',("Player 1: "),30);
         this.textPlayer2 = this.add.bitmapText(config.width/2.17,config.height/1.38,'fuentes2',("Player 2: "),30);
-        this.caraPlayer1=this.add.image(config.width/2,config.height/3, 'icono2');
-        this.caraPlayer2=this.add.image(config.width/2,config.height/1.5, 'icono1');
+        this.caraPlayer1=this.add.image(config.width/2,config.height/3, 'icono1');
+        this.caraPlayer2=this.add.image(config.width/2,config.height/1.5, 'icono2');
         this.equisPlayer1=this.add.image(config.width/1.97,config.height/3, 'equis');
         this.equisPlayer2=this.add.image(config.width/1.97,config.height/1.5, 'equis');
  

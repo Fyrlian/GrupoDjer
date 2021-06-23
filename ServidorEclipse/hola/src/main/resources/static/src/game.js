@@ -51,6 +51,12 @@ var speed;
 var lastFired = 0;
 var estado;
 var estado2;
+var xContrario =-500;
+var yContrario = -500;
+var xZombie =0;
+var yZombie = 0;
+var parado = true;
+var parado2 = true;
 var encimaDePlat =0;
 var colliderEliminado = 0;
 var colliderEscalerasEliminado = 0;
@@ -69,6 +75,7 @@ var rondaFinal = 0;
 var jugadorRepresentado = -1;
 var that2;
 var that3;
+var that4;
 var estaConectadoPlayer1 = false;
 var estaConectadoPlayer2 = false;
 var estaConectadoPlayer1aux= false;
@@ -76,7 +83,7 @@ var estaConectadoPlayer2aux = false;
 var textEstadoServidor;
 var overlapPlataformasBool = false;
 var overlapEscalerasBool = false;
-
+var connection = new WebSocket('ws://localhost:8080/LastNightFall');
 
 
 

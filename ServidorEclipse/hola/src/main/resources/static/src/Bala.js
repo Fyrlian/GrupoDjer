@@ -1,6 +1,6 @@
 class Bala extends Phaser.GameObjects.Sprite{
 
-    constructor(scene){
+    constructor(scene,idx){
         
         super(scene,-100,-100,"bullet");
         scene.add.existing(this);
@@ -8,6 +8,8 @@ class Bala extends Phaser.GameObjects.Sprite{
         this.body.allowGravity = false;
 
         scene.balas.add(this);
+        this.lanzador = 0;
+     this.indice = idx;
         
     }
     

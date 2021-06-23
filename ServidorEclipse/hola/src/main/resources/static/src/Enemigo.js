@@ -1,12 +1,14 @@
 class Enemigo extends Phaser.GameObjects.Sprite{
 
-    constructor(scene,x,y){
+    constructor(scene,x,y,idx){
 
         super(scene,x,y,"zombieLeft");
         scene.add.existing(this);
         scene.physics.world.enableBody(this);
 
-        scene.enemigos.add(this)
+        scene.enemigos.add(this);
+
+        this.indice = idx
 
     }
 
