@@ -26,7 +26,7 @@ class Scene7 extends Phaser.Scene {
 
   preload() {}
   create() {
-    connection = new WebSocket("ws://localhost:8080/LastNightFall");
+    //connection = new WebSocket("ws://localhost:8080/LastNightFall");
     //connection = new WebSocket('wss://lastnightfall-landing.herokuapp.com/LastNightFall');
 
     //GRUPO DE LOS ENEMIGOS
@@ -261,6 +261,7 @@ class Scene7 extends Phaser.Scene {
             if (player2.vidas == 1) {
               player2.setTint(0xff0000);
               player2.vivo = false;
+              player2.setVelocityX(0);
               that2.gameOverSound.play();
               player2.vidas--;
             } else if (player2.vidas <= 0) {
@@ -276,6 +277,7 @@ class Scene7 extends Phaser.Scene {
             if (player.vidas == 1) {
               player.setTint(0xff0000);
               player.vivo = false;
+              player.setVelocityX(0);
               that2.gameOverSound.play();
               player.vidas--;
             } else if (player.vidas <= 0) {
