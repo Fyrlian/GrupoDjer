@@ -63,10 +63,10 @@ class Scene10 extends Phaser.Scene {
                       connection.send(JSON.stringify(mensaje2));
                     }
                   } catch (error) {
-                   console.log("ERROR");
+                 
                                     }
                   alert("Se ha conectado Jugador 2 en pausa: " + data[1].usuario);
-      
+     
                   
                       }
                

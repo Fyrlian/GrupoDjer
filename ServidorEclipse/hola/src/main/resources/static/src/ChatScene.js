@@ -81,7 +81,7 @@ class ChatScene extends Phaser.Scene {
             //Aqui detecta si pulsamos enter
             document.getElementById('divChat').onkeydown = function(e){
                 if(e.keyCode == 13){
-                  console.log("ENVIO MENSAJE");
+                  
 
 
                   var auxValorChat = document.getElementById("chatButton").value; //guardamos el texto que se desea enviar

@@ -326,7 +326,7 @@ class Scene7 extends Phaser.Scene {
       } else if (mensajeParsed.nombre == "noPausa") {
         if (that2.scene.isVisible("scenePause2") ) {
 
-console.log("that4   " + that4);
+
 
           that4.scene.resume("sceneGame2");
           vueltaAlJuego = true;
@@ -373,7 +373,7 @@ console.log("that4   " + that4);
                 connection.send(JSON.stringify(mensaje));
               }
             } catch (error) {
-              console.log("error");
+    
             }
           }
         } else if (jugadorRepresentado == 2) {
@@ -391,7 +391,7 @@ console.log("that4   " + that4);
                 connection.send(JSON.stringify(mensaje));
               }
             } catch (error) {
-              console.log("error");
+          
             }
           }
         }
@@ -447,7 +447,7 @@ console.log("that4   " + that4);
               connection.send(JSON.stringify(mensaje));
             }
           } catch (error) {
-            console.log("error");
+          
           }
         }
       },
@@ -531,7 +531,7 @@ console.log("that4   " + that4);
                     connection.send(JSON.stringify(mensaje));
                   }
                 } catch (error) {
-                  console.log("error");
+             
                 }
 
                 alert("Se ha conectado Jugador 2: " + data[1].usuario);
@@ -859,7 +859,7 @@ console.log("that4   " + that4);
             connection.send(JSON.stringify(mensaje));
           }
         } catch (error) {
-          console.log("error");
+       
         }
 
         //CAMBIAMOS DE ESCENEÇAA
@@ -1098,7 +1098,7 @@ console.log("that4   " + that4);
               connection.send(JSON.stringify(mensaje));
             }
           } catch (error) {
-            console.log("error");
+           
           }
         }
       } else if (jugadorRepresentado == 2) {
@@ -1136,7 +1136,7 @@ console.log("that4   " + that4);
               connection.send(JSON.stringify(mensaje));
             }
           } catch (error) {
-            console.log("error");
+           
           }
         }
       }
@@ -1307,7 +1307,7 @@ console.log("that4   " + that4);
           connection.send(JSON.stringify(mensaje));
         }
       } catch (error) {
-        console.log("error");
+       
       }
 
       this.indiceEnem++;
@@ -1325,7 +1325,7 @@ console.log("that4   " + that4);
           connection.send(JSON.stringify(mensaje));
         }
       } catch (error) {
-        console.log("error");
+       
       }
 
       this.indiceEnem++;
@@ -1779,7 +1779,7 @@ console.log("that4   " + that4);
           connection.send(JSON.stringify(mensaje));
         }
       } catch (error) {
-        console.log("error");
+       
       }
     }
 
@@ -1797,7 +1797,7 @@ console.log("that4   " + that4);
           connection.send(JSON.stringify(mensaje));
         }
       } catch (error) {
-        console.log("error");
+       
       }
     }
   }
@@ -1829,7 +1829,7 @@ console.log("that4   " + that4);
               connection.send(JSON.stringify(mensaje));
             }
           } catch (error) {
-            console.log("error");
+          
           }
         }
       }
@@ -1858,7 +1858,7 @@ console.log("that4   " + that4);
               connection.send(JSON.stringify(mensaje));
             }
           } catch (error) {
-            console.log("error");
+      
           }
         }
       }
@@ -1904,7 +1904,7 @@ console.log("that4   " + that4);
               connection.send(JSON.stringify(mensaje));
             }
           } catch (error) {
-            console.log("error");
+           
           }
         }
       }

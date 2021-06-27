@@ -408,8 +408,7 @@ class Scene3 extends Phaser.Scene {
             this.physics.world.removeCollider(this.colliderEnemTejas1);
             this.physics.world.removeCollider(this.colliderEnemTejas2);
             colliderEnemigosEliminado = 1; 
-            //console.log("colliderEscalerasElimnado");
-            //console.log("colliderElimnado");
+            
             this.time.delayedCall(1600, this.zombiesPlatF, [], this);       
             
         }
