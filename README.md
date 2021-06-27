@@ -18,18 +18,18 @@ Al tener problemas con el git large file storage, hemos utilizado Google drive p
 LINK: https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view
 
 
-## **INICIAR APLICACION**
+## **INICIAR APLICACION EN .JAR (MULTIJUGADOR LOCAL)**
 
-TTras intentar utilizar Git Large File, no hemos tenido éxito, no nos funciona en ningún ordenador actualmente. 
+Tras intentar utilizar Git Large File, no hemos tenido éxito, no nos funciona en ningún ordenador actualmente. 
 Hemos decidido utilizar un enlace de drive que contiene la carpeta con el juego y el servidor.
 Sentimos las molestias por no poder incluirlo en el GitHub.
+
 Enlace:
 
 https://drive.google.com/file/d/1jxKdSUfUOY91UHmlIMJICXejfxiyfcE5/view?usp=sharing
 
-La carpeta "ServidorEclipse" deberá sustituirse dentro del zip de nuestra entrega por la carpeta con su mismo nombre 
-para que aparezcan todos los archivos necesarios de la entrega (.jar,etc...).
-
+En caso de descargar el proyecto desde GitHub la carpeta "ServidorEclipse" deberá sustituirse dentro del zip de nuestra entrega 
+por la carpeta con su mismo nombre para que aparezcan todos los archivos necesarios de la entrega (.jar,etc...).
 
 EL ARCHIVO .JAR SE ENCUENTRA EN LA RUTA ServidorEclipse/hola/target 
 
@@ -43,6 +43,14 @@ después se abrirá el servidor en el cmd y se podrá ejecutar en el navegador e
 -También se puede ejecutar haciendo doble click sobre el .jar pero se tiene menos control sobre el servidor (no tienes consola). Y después abrir el
 navegador y ejecutar el juego con localhost:8080. El archivo .jar se encuentra en la ruta ServidorEclipse/hola/target, ahí se encontrará el .jar
 
+## **INICIAR APLICACION EN HEROKU (MULTIJUGADOR ONLINE)**
+
+En caso de encontrarse abierto el servidor utilizar el siguiente enlace:
+
+https://lastnightfall-app.herokuapp.com/
+
+Mediante la pagina Heroku hemos podido añadir la característica de multijugador online a nuestro videojuego que permite a los jugadores 
+conectarse desde diferentes dispositivos.
 
 ## **NAVEGACION**
 
@@ -61,7 +69,24 @@ Para simplificar el juego se ha eliminado el scroll lateral, la variedad de arma
 Se ha cambiado totalmente el aspecto del juego y se han corregido algunos errores.
 
 ## **1.1-CAMBIOS FASE 4**
-Se ha incluido un sistema online mediante websockets para jugar en tiempo real con personas en otros dispositivos mediante heroku.
+Para la fase 4 se ha incluido un sistema online mediante websockets para jugar en tiempo real con personas en otros dispositivos mediante heroku y 
+para jugar multijugador de manera local.
+
+Estos websockets se han utilizado sincronizar diferentes elementos del videojuego como posiciones de los jugadores, momento del disparo, 
+posiciones de los enemigos, contador de inicio de rondas y diferentes menús (pausa, etc.).
+
+La posicion de los enemigos se actualiza en la escena del jugador 1, el cual se encarga de enviar las nuevas posiciones al jugador 2 (el jugador
+2 tan solo recibe las posiciones, no las calcula).
+
+En cuanto a la colisión de las balas con los enemigos, cada jugador envía al otro los enemigos que ha matado, si es el jugador 1, se encarga de 
+eliminarlos y si es el jugador 2, envía un mensaje al jugador 1 para que este lo elimine debido a que este es el que controla los enemigos.
+
+Se ha implementado también la desconexión de ambos jugadores, si se trata del jugador 1, al desconectarse de la partida, esta misma se cierra y 
+desconecta al resto de jugadores; si se trata del jugador 2, abandona la partida y esta puede continuar sin él, además puede volver a reconectarse 
+siempre y cuando el jugador 1 se mantenga en ella.
+
+Por último la pausa en este juego también se ha sincronizado, esto se ha realizado de forma que si un jugador pausa el juego, se comunica con el otro
+indicandole que debe ejecutar el menú de pausa
 
 
 ## **1.2-Posibles futuros cambios**
