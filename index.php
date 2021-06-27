@@ -1,0 +1,1 @@
+<?php require_once("ServidorEclipse/hola/src/main/resources/static/index.html") ? >

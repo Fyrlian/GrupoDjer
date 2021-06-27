@@ -53,7 +53,8 @@ function processForm(e) {
 
     $.ajax({
         method: "PUT",
-        url:"http://localhost:8080/cuenta",
+            url: "http://localhost:8080/cuenta",
+            //url: "https://lastnightfall-landing.herokuapp.com/cuenta",
         data: JSON.stringify({usuario : nombreUsuario,contrasena: auxContraseña}),
         processData: false,
         headers: {

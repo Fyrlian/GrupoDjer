@@ -39,24 +39,33 @@ public class WebsocketLastNightfallHandler extends TextWebSocketHandler {
 		
 JsonNode node = mapeador.readTree(message.getPayload());
 		
-		if(node.get("nombre").asText().equals("conec2"))
+		if(!node.get("nombre").asText().equals("posJugador"))
 		{
 			System.out.println("Message received: " + message.getPayload());
 		}
-		
+//System.out.println("Message received: " + message.getPayload());
 		
 		
 		for(WebSocketSession sessionPlayer : sesiones.values()) 
 		{
 			if(!sessionPlayer.getId().equals(session.getId())) 
-			{
-				sessionPlayer.sendMessage(message);
-			}
+            {
+			
+					 
+					 synchronized (sessionPlayer) {
+		                    sessionPlayer.sendMessage(message);
+		                }
+				 
+
+				 }
+                
+
+            }
 		}
 		
 		
 		
-	}
+	
 		
 		
 		

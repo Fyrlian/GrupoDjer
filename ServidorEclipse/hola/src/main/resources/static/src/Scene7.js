@@ -2,6 +2,7 @@ $(window).on("beforeunload", function () {
   $.ajax({
     method: "DELETE",
     url: "http://localhost:8080/conectado",
+    //url: "https://lastnightfall-landing.herokuapp.com/conectado",
     data: JSON.stringify({
       usuario: nombreUsuario,
       contrasena: "auxContraseña",
@@ -25,26 +26,26 @@ class Scene7 extends Phaser.Scene {
 
   preload() {}
   create() {
-    connection = new WebSocket('ws://localhost:8080/LastNightFall');
+    connection = new WebSocket("ws://localhost:8080/LastNightFall");
+    //connection = new WebSocket('wss://lastnightfall-landing.herokuapp.com/LastNightFall');
 
     //GRUPO DE LOS ENEMIGOS
     this.enemigos = this.add.group();
 
-//Audio
+    //Audio
     audio1 = this.sound.add("audioScene1", { volume: 0.05, loop: true });
     this.disparoSound = this.sound.add("disparoSound", { volume: 0.02 });
     this.gameOverSound = this.sound.add("gameOverSound", { volume: 0.09 });
     this.perderUnaVidaSound = this.sound.add("perderUnaVidaSound", {
-    volume: 0.02,
+      volume: 0.02,
     });
 
     if (estadoMusica === true) {
-    audio1.play();
-    audio1.resume();
+      audio1.play();
+      audio1.resume();
     } else {
-    audio1.stop();
+      audio1.stop();
     }
-
 
     this.ronda = 0;
     //  A simple background for our game
@@ -59,692 +60,502 @@ class Scene7 extends Phaser.Scene {
       loop: true,
     });
 
-
-
-
-
-
     //RECIBIMOS MENSAJES WEBSOCKET
-    connection.onmessage = function(mensaje) {
+    connection.onmessage = function (mensaje) {
+      var mensajeParsed = JSON.parse(mensaje.data);
 
-       
+      //MENSAJE DE CUENTA ATRAS
+      if (mensajeParsed.nombre == "cuentaAtras") {
+        if (that2.scene.isActive("sceneGame2")) {
+          if (mensajeParsed.t == 0) {
+            cuentaAtras.setText("");
 
-        var mensajeParsed = JSON.parse(mensaje.data);
+            that2.ronda = mensajeParsed.ronda; //actualiza la ronda
+            scoreText.setText("ronda " + that2.ronda);
+          } else {
+            cuentaAtras.setText(mensajeParsed.t);
+          }
+        }
+      } else if (mensajeParsed.nombre == "posJugador") {
+        //MENSAJE DE POSICION JUGADOR
+
+        if (that2.scene.isActive("sceneGame2")) {
+          xContrario = mensajeParsed.x;
+          yContrario = mensajeParsed.y;
+          // player2.x = mensajeParsed.x;
+          // player2.y = mensajeParsed.y;
+
+          if (jugadorRepresentado == 1) {
+            // that2.tweens.add({
+            //   targets: player2,
+            //   duration: 300,
+            //   y: yContrario,
+            //   x: xContrario,
+            //   ease: 'Linear'
+            // });
+
+            player2.x = xContrario;
+            player2.y = yContrario;
+
+            estado2 = mensajeParsed.dir;
+
+            if (mensajeParsed.isParado == true) {
+              player2.anims.play("turn2", true);
+              player2.anims.stop();
+            } else {
+              if (estado2 == 0) {
+                player2.anims.play("left2", true);
+              } else {
+                player2.anims.play("right2", true);
+              }
+            }
+          } else if (jugadorRepresentado == 2) {
+            // that2.tweens.add({
+            //   targets: player,
+            //   duration: 300,
+            //   y: yContrario,
+            //   x: xContrario,
+            //   ease: 'Linear'
+            // });
+
+            player.x = xContrario;
+            player.y = yContrario;
+
+            estado = mensajeParsed.dir;
+
+            if (mensajeParsed.isParado == true) {
+              try {
+                player.anims.play("turn", true);
+                player.anims.stop();
+              } catch (error) {
+                //player no existe
+              }
+            } else {
+              if (estado == 0) {
+                try {
+                  player.anims.play("left", true);
+                } catch (error) {
+                  //player no existe
+                }
+              } else {
+                try {
+                  player.anims.play("right", true);
+                } catch (error) {
+                  //player no existe
+                }
+              }
+            }
+          }
+        }
+
+        //RECIBIMOS QUE EL OTRO JUGADOR ESTA DISPARANDO
+      } else if (mensajeParsed.nombre == "disparo") {
+        if (that2.scene.isActive("sceneGame2")) {
+          if (jugadorRepresentado == 1) {
+            that2.disparoSound.play();
+            var i = 0;
+            while (that2.balas.getChildren()[i].x != -100) {
+              //encontramos la bala que usaremos
+
+              i++;
+            }
+            if (i >= 50 - 1) {
+              i = 0;
+            }
+            that2.balas.getChildren()[i].x = player2.x;
+            that2.balas.getChildren()[i].y = player2.y + 25;
+            that2.balas.getChildren()[i].setVisible(true);
+            that2.balas.getChildren()[i].lanzador = 2;
+
+            if (estado2 == 0) {
+              that2.balas.getChildren()[i].anims.play("BalaLeft", true);
+              that2.balas.getChildren()[i].body.setVelocityX(-1000);
+            } else {
+              that2.balas.getChildren()[i].anims.play("BalaRight", true);
+              that2.balas.getChildren()[i].body.setVelocityX(1000);
+            }
+          } else if (jugadorRepresentado == 2) {
+            that2.disparoSound.play();
+            var i = 0;
+            while (that2.balas.getChildren()[i].x != -100) {
+              //encontramos la bala que usaremos
+
+              i++;
+            }
+            if (i >= 50 - 1) {
+              i = 0;
+            }
+            that2.balas.getChildren()[i].x = player.x;
+            that2.balas.getChildren()[i].y = player.y + 25;
+            that2.balas.getChildren()[i].setVisible(true);
+            that2.balas.getChildren()[i].lanzador = 1;
+
+            if (estado == 0) {
+              that2.balas.getChildren()[i].anims.play("BalaLeft", true);
+              that2.balas.getChildren()[i].body.setVelocityX(-1000);
+            } else {
+              that2.balas.getChildren()[i].anims.play("BalaRight", true);
+              that2.balas.getChildren()[i].body.setVelocityX(1000);
+            }
+          }
+        }
+
+        //RECIBIMOS QUE SE HA CREADO UN ENEMIGO
+      } else if (mensajeParsed.nombre == "crearEnem") {
+        if (that2.scene.isActive("sceneGame2")) {
+          try {
+            //EL JUGADOR 2 RECIBE LAS POSICIONES
+            new Enemigo(
+              that2,
+              mensajeParsed.x,
+              mensajeParsed.y,
+              mensajeParsed.indice
+            );
+          } catch (error) {
+            //error controlado
+          }
+        }
+
+        // RECIBIMOS LA POSICION DE LOS ENEMIGOS
+      } else if (mensajeParsed.nombre == "posEnem") {
+        if (that2.scene.isActive("sceneGame2")) {
+          for (var i = 0; i < that2.enemigos.getChildren().length; i++) {
+            var enem = that2.enemigos.getChildren()[i];
+
+            // if(enem.indice == mensajeParsed.indice){
+
+            //     enem.x= mensajeParsed.x;
+            //     enem.y = mensajeParsed.y;
+
+            //   }
+
+            // that2.tweens.add({
+            //   targets: enem,
+            //   duration: 300,
+            //   y: mensajeParsed.y[i],
+            //   x: mensajeParsed.x[i],
+            //   ease: 'Linear'
+            // });
+
+            enem.x = mensajeParsed.x[i];
+            enem.y = mensajeParsed.y[i];
+
+            if (mensajeParsed.direccion[i] == 1) {
+              enem.anims.play("Enemigoright", true);
+            } else if (mensajeParsed.direccion[i] == -1) {
+              enem.anims.play("Enemigoleft", true);
+            }
+          }
+        }
+      } else if (mensajeParsed.nombre == "caidaEnem") {
+        that2.physics.world.removeCollider(that2.colliderEnemPlat);
+        that2.physics.world.removeCollider(that2.colliderEnemEscaleras1);
+        that2.physics.world.removeCollider(that2.colliderEnemEscaleras2);
+        that2.physics.world.removeCollider(that2.colliderEnemEscaleras3);
+        colliderEnemigosEliminado = 1;
+
+        that2.time.delayedCall(1600, that2.zombiesPlatF, [], that2);
+      } else if (mensajeParsed.nombre == "quitarVida") {
+        if (that2.scene.isActive("sceneGame2")) {
+          if (jugadorRepresentado == 1) {
+            if (player2.vidas == 1) {
+              player2.setTint(0xff0000);
+              player2.vivo = false;
+              that2.gameOverSound.play();
+              player2.vidas--;
+            } else if (player2.vidas <= 0) {
+            } else {
+              that2.perderUnaVidaSound.play();
+              player2.vidas--;
+              player2.inmortalidad = true;
+            }
+            setTimeout(function () {
+              player2.inmortalidad = false;
+            }, 2000);
+          } else if (jugadorRepresentado == 2) {
+            if (player.vidas == 1) {
+              player.setTint(0xff0000);
+              player.vivo = false;
+              that2.gameOverSound.play();
+              player.vidas--;
+            } else if (player.vidas <= 0) {
+            } else {
+              that2.perderUnaVidaSound.play();
+              player.vidas--;
+              player.inmortalidad = true;
+            }
+            setTimeout(function () {
+              player.inmortalidad = false;
+            }, 2000);
+          }
+        }
+      } else if (mensajeParsed.nombre == "matarEnem") {
+        if (that2.scene.isActive("sceneGame2")) {
+          var enem;
+
+          for (var i = 0; i < that2.enemigos.getChildren().length; i++) {
+            if (
+              that2.enemigos.getChildren()[i].indice == mensajeParsed.indice
+            ) {
+              enem = that2.enemigos.getChildren()[i];
+            }
+          }
+
+          // try{
+          enem.destroy();
+          // }catch(error){
+
+          // }
+
+          that2.balas.getChildren()[mensajeParsed.nBala].matarBala();
+        }
+      } else if (mensajeParsed.nombre == "pausa") {
+        if (that2.scene.isActive("sceneGame2")) {
+          //CAMBIAMOS DE ESCENEÇAA
+          that2.scene.pause("sceneGame2");
+          that2.scene.launch("scenePause2");
+          if (listaJugAbierta == true) {
+            that2.scene.stop("listaJugadores");
+            listaJugAbierta = false;
+          }
+        }
 
         //MENSAJE DE CUENTA ATRAS
-        if(mensajeParsed.nombre == "cuentaAtras"){
+      } else if (mensajeParsed.nombre == "noPausa") {
+        if (that2.scene.isVisible("scenePause2") ) {
 
+console.log("that4   " + that4);
 
-          if(that2.scene.isActive("sceneGame2")){
+          that4.scene.resume("sceneGame2");
+          vueltaAlJuego = true;
+          that4.scene.stop("scenePause2");
 
-
-            if(mensajeParsed.t == 0){
-              cuentaAtras.setText("");
-
-              that2.ronda = mensajeParsed.ronda; //actualiza la ronda
-              scoreText.setText("ronda " + that2.ronda);
-
-             
-          }else{
-              cuentaAtras.setText(mensajeParsed.t);
-          }
-
-          }
-
-           
-        }else if(mensajeParsed.nombre == "posJugador"){ //MENSAJE DE POSICION JUGADOR
-
-
-          if(that2.scene.isActive("sceneGame2")){
-
-
-
-            xContrario = mensajeParsed.x;
-            yContrario = mensajeParsed.y;
-            // player2.x = mensajeParsed.x;
-            // player2.y = mensajeParsed.y;
-
-         
-            if(jugadorRepresentado == 1){
-     
-
-             
-                 player2.x = xContrario;
-                 player2.y = yContrario;
-                 estado2 = mensajeParsed.dir;
-
-                 if(mensajeParsed.isParado == true){
-
-                     player2.anims.play("turn2", true);
-                     player2.anims.stop();
-     
-
-                 }else{
-
-                     if(estado2 == 0){
-                         player2.anims.play("left2", true);
-                     }else{
-                         player2.anims.play("right2", true);
-                     }
-
-                 }
-
-
-                
-             
-             }else if(jugadorRepresentado == 2){
- 
-
-                 player.x = xContrario;
-                 player.y = yContrario;
-
-                 estado = mensajeParsed.dir;
-
-
-                 if(mensajeParsed.isParado == true){
-
-                  try {
-                    player.anims.play("turn", true);
-                     player.anims.stop();
-                  } catch (error) {
-                   //player no existe 
-                  }
-                     
-
-                 }else{
-
-                     if(estado == 0){
-                       try {
-                        player.anims.play("left", true);
-                       } catch (error) {
-                          //player no existe 
-                       }
-                        
-                     }else{
-                       try {
-                        player.anims.play("right", true);
-                       } catch (error) {
-                         //player no existe 
-                       }
-                        
-                     }
-
-                 }
-
-                
-
-
-
-
-             }
-
-          }
-               
-        
-                
-                    //RECIBIMOS QUE EL OTRO JUGADOR ESTA DISPARANDO
-                }else if(mensajeParsed.nombre == "disparo"){
-
-                  if(that2.scene.isActive("sceneGame2")){
-
-
-
-                    if(jugadorRepresentado == 1){
-            
-                      
-                      that2.disparoSound.play();
-                      var i = 0;
-                      while (that2.balas.getChildren()[i].x != -100) {
-                      //encontramos la bala que usaremos
-
-                      i++;
-                      }
-                      if (i >= 50 - 1) {
-                      i = 0;
-                      }
-                      that2.balas.getChildren()[i].x = player2.x;
-                      that2.balas.getChildren()[i].y = player2.y + 25;
-                      that2.balas.getChildren()[i].setVisible(true);
-                      that2.balas.getChildren()[i].lanzador = 2;
-
-
-                      if (estado2 == 0) {
-                          that2.balas.getChildren()[i].anims.play("BalaLeft", true);
-                          that2.balas.getChildren()[i].body.setVelocityX(-1000);
-                      } else {
-                          that2.balas.getChildren()[i].anims.play("BalaRight", true);
-                          that2.balas.getChildren()[i].body.setVelocityX(1000);
-                      }
-
-
-      
-              }else if(jugadorRepresentado == 2){
-      
-                  that2.disparoSound.play();
-                  var i = 0;
-                  while (that2.balas.getChildren()[i].x != -100) {
-                  //encontramos la bala que usaremos
-      
-                  i++;
-                  }
-                  if (i >= 50 - 1) {
-                  i = 0;
-                  }
-                  that2.balas.getChildren()[i].x = player.x;
-                  that2.balas.getChildren()[i].y = player.y + 25;
-                  that2.balas.getChildren()[i].setVisible(true);
-                  that2.balas.getChildren()[i].lanzador = 1;
-      
-                  if (estado == 0) {
-                      that2.balas.getChildren()[i].anims.play("BalaLeft", true);
-                      that2.balas.getChildren()[i].body.setVelocityX(-1000);
-                  } else {
-                      that2.balas.getChildren()[i].anims.play("BalaRight", true);
-                      that2.balas.getChildren()[i].body.setVelocityX(1000);
-                  }
-      
-      
-              }
-
-
-                  }
-
-
-
-
-                  //RECIBIMOS QUE SE HA CREADO UN ENEMIGO
-                }else if(mensajeParsed.nombre == "crearEnem"){
-
-                  if(that2.scene.isActive("sceneGame2")){
-
-                            try {
-                              //EL JUGADOR 2 RECIBE LAS POSICIONES
-                            new Enemigo(that2, mensajeParsed.x, mensajeParsed.y,mensajeParsed.indice);
-                      } catch (error) {
-
-                        //error controlado
-                        
-                      }
-
-                  }
-
-
-                            
-                 
-                  
-                  
-
-               // RECIBIMOS LA POSICION DE LOS ENEMIGOS
-                }else if(mensajeParsed.nombre == "posEnem"){
-
-
-
-                  if(that2.scene.isActive("sceneGame2")){
-
-
-
-
-                    for (var i = 0; i < that2.enemigos.getChildren().length; i++) {
-
-                      var enem = that2.enemigos.getChildren()[i];
-  
-                      // if(enem.indice == mensajeParsed.indice){
-  
-                      //     enem.x= mensajeParsed.x;
-                      //     enem.y = mensajeParsed.y;
-                      
-                      //   }
-  
-  
-                           enem.x= mensajeParsed.x[i];
-              
-                           enem.y = mensajeParsed.y[i];
-  
-  
-                          if(mensajeParsed.direccion[i] == 1){
-  
-  
-                                enem.anims.play("Enemigoright", true);
-                              
-                            
-                          }else if(mensajeParsed.direccion[i] == -1){
-  
-  
-                                enem.anims.play("Enemigoleft", true);
-  
-                          }
-  
-  
-  
-  
-                    }
-
-                  }
-                  
-                
-
-
-                }else if(mensajeParsed.nombre == "caidaEnem"){
-
-
-
-                  that2.physics.world.removeCollider(that2.colliderEnemPlat);
-                  that2.physics.world.removeCollider(that2.colliderEnemEscaleras1);
-                  that2.physics.world.removeCollider(that2.colliderEnemEscaleras2);
-                  that2.physics.world.removeCollider(that2.colliderEnemEscaleras3);
-                  colliderEnemigosEliminado = 1;
-                  
-                  that2.time.delayedCall(1600, that2.zombiesPlatF, [], that2);
-
-
-
-                }else if(mensajeParsed.nombre == "quitarVida"){
-
-                  if(that2.scene.isActive("sceneGame2")){
-
-                    if(jugadorRepresentado == 1){
-                      
-
-
-                      if (player2.vidas == 1) {
-                        player2.setTint(0xff0000);
-                        player2.vivo = false;
-                        that2.gameOverSound.play();
-                        player2.vidas--;
-                      } else if (player2.vidas <= 0) {
-                      } else {
-                        that2.perderUnaVidaSound.play();
-                        player2.vidas--;
-                        player2.inmortalidad = true;
-                      }
-                      setTimeout(function () {
-                        player2.inmortalidad = false;
-                      }, 2000);
-                
-              
-              
-                      
-                   
-          
-                  }else if(jugadorRepresentado == 2){
-          
-                     
-                    if (player.vidas == 1) {
-                      player.setTint(0xff0000);
-                      player.vivo = false;
-                      that2.gameOverSound.play();
-                      player.vidas--;
-                    } else if (player.vidas <= 0) {
-                    } else {
-                      that2.perderUnaVidaSound.play();
-                      player.vidas--;
-                      player.inmortalidad = true;
-                    }
-                    setTimeout(function () {
-                      player.inmortalidad = false;
-                    }, 2000);
-              
-            
-
-
-
-          
-                  }
-
-                  }
-
-                 
-
-
-
-
-                }else if(mensajeParsed.nombre == "matarEnem"){
-
-                  if(that2.scene.isActive("sceneGame2")){
-
-                    var enem;
-
-                    for (var i = 0; i < that2.enemigos.getChildren().length; i++) {
-  
-                      if(that2.enemigos.getChildren()[i].indice == mensajeParsed.indice){
-                        enem = that2.enemigos.getChildren()[i];
-                      }
-                      
-  
-  
-                    }
-  
-                    // try{
-                      enem.destroy();
-                    // }catch(error){
-  
-                    // }
-                 
-  
-  
-                    that2.balas.getChildren()[mensajeParsed.nBala].matarBala();
-
-                  }
-
-                  
-              
-
-
-
-                }else if(mensajeParsed.nombre == "pausa"){
-
-                    if(that2.scene.isActive("sceneGame2")){
-
-                          //CAMBIAMOS DE ESCENEÇAA
-                      that2.scene.pause("sceneGame2");
-                      that2.scene.launch("scenePause2");
-                      if (listaJugAbierta == true) {
-                        that2.scene.stop("listaJugadores");
-                        listaJugAbierta = false;
-                      }
-                    }
-                 
-
-                    
-                  //MENSAJE DE CUENTA ATRAS
-                }else if(mensajeParsed.nombre == "noPausa"){
-
-                  if(that2.scene.isVisible("sceneGame2")){
-
-                    that4.scene.resume('sceneGame2');
-                    vueltaAlJuego = true;
-                    that4.scene.stop("scenePause2");
-
-
-                  }
-        
-                
-        
-
+        }
 
         //SE RE·CONECTA JUGADOR2
-                }else if(mensajeParsed.nombre == "conec2"){
+      } else if (mensajeParsed.nombre == "conec2") {
+        that2.enemigos.clear(true);
 
-                  that2.enemigos.clear(true);
-
-                for(var i = 0; i < mensajeParsed.numZombies ; i++){
-
-
-                  //EL JUGADOR 2 RECIBE LAS POSICIONES
-                  new Enemigo(that2, 0, 0, mensajeParsed.indicesZ[i]);
-
-
-                }
-                   
-                player.vidas = mensajeParsed.viditas1;
-                player2.vidas = mensajeParsed.viditas2;
-                that2.ronda = mensajeParsed.ronditas;
-                scoreText.setText("ronda " + that2.ronda);
-              
-
-
-
-                }
-
-                
-                
-    }
-
-
-this.time.addEvent({
-    delay: 30, callback: function() {
-
-      //ENVIAMOS POSICION JUGADOR WEBSOCKET!
-        if(jugadorRepresentado == 1){
-            
-            if(player != undefined){
-            var mensaje = { nombre: "posJugador", x: player.x, y: player.y, dir: estado, isParado: parado }
-  
-
-              try {
-
-                if(connection.readyState === connection.OPEN){
-                  connection.send(JSON.stringify(mensaje));
-                }
-                
-
-
-              } catch (error) {
-                
-              }
-          
-             
-          
-            
-            }
-
-        }else if(jugadorRepresentado == 2){
-
-            if(player2 != undefined){
-            var mensaje = { nombre: "posJugador", x: player2.x, y: player2.y, dir: estado2, isParado: parado2 }
-           
-
-              try {
-                if(connection.readyState === connection.OPEN){
-                  connection.send(JSON.stringify(mensaje));
-                }
-              } catch (error) {
-                
-              }
-          
-             
-          
-            }
-            
-
+        for (var i = 0; i < mensajeParsed.numZombies; i++) {
+          //EL JUGADOR 2 RECIBE LAS POSICIONES
+          new Enemigo(that2, 0, 0, mensajeParsed.indicesZ[i]);
         }
 
+        player.vidas = mensajeParsed.viditas1;
+        player2.vidas = mensajeParsed.viditas2;
+        that2.ronda = mensajeParsed.ronditas;
+        scoreText.setText("ronda " + that2.ronda);
 
 
 
-    }, callbackScope: this, loop: true 
-
-    
-
-
-
-});
-
-//ENVIAMOS LA POSICION DE TODOS LOS ZOMBIES
-this.time.addEvent({
-  delay: 30, callback: function() {
-
-
-
-
-
-
-if(jugadorRepresentado == 1){
-
-  var indiceX = 0;
-  var indiceY= 0;
-  var indiceIndices= 0;
-  var indiceDireccion= 0;
-  
-  var arrayX= new Array();
-  var arrayY= new Array();
-  var arrayIndices= new Array();
-  var arrayDireccion= new Array();
-
-  for (var i = 0; i < this.enemigos.getChildren().length; i++) {
-
-    var enem = this.enemigos.getChildren()[i];
-
-      arrayX[indiceX] = enem.x;
-      indiceX++;
-      arrayY[indiceY] = enem.y;
-      indiceY++;
-      arrayIndices[indiceIndices] = enem.indice;
-      indiceIndices++;
-
-
-      if(enem.body.velocity.x >0){
-
-        arrayDireccion[indiceDireccion] = 1;
-
-      }else if (enem.body.velocity.x <=0){
-
-        arrayDireccion[indiceDireccion] = -1;
-
+        
       }
-          
-      indiceDireccion++;
+    };
 
+    this.time.addEvent({
+      delay: 30,
+      callback: function () {
+        //ENVIAMOS POSICION JUGADOR WEBSOCKET!
+        if (jugadorRepresentado == 1) {
+          if (player != undefined) {
+            var mensaje = {
+              nombre: "posJugador",
+              x: player.x,
+              y: player.y,
+              dir: estado,
+              isParado: parado,
+            };
 
+            try {
+              if (connection.readyState === connection.OPEN) {
+                connection.send(JSON.stringify(mensaje));
+              }
+            } catch (error) {
+              console.log("error");
+            }
+          }
+        } else if (jugadorRepresentado == 2) {
+          if (player2 != undefined) {
+            var mensaje = {
+              nombre: "posJugador",
+              x: player2.x,
+              y: player2.y,
+              dir: estado2,
+              isParado: parado2,
+            };
 
-      
-      
-    
-
-  }
-
-  var mensaje = { nombre: "posEnem", x: arrayX,y: arrayY, indice: arrayIndices, direccion: arrayDireccion}
- 
-
-    try {
-      if(connection.readyState === connection.OPEN){
-        connection.send(JSON.stringify(mensaje));
-      }
-    } catch (error) {
-      
-    }
-
-   
-
-  
-
-}
- 
-
-
-
-
-
-  }, callbackScope: this, loop: true 
-
-
-});
-
-
-
-
-this.time.addEvent({
-  delay: 500, callback: function() {
-    
-
-    //GET PARA LOS MENSAJES++++++++++++++++++++++++++++++++++++++++++++
-    $.ajax({
-      url: "http://localhost:8080/conectado",
-    }).then(function (data) {
-      //EL JUGADOR1 EXISTE
-      if (data[0] != null) {
-        estaConectadoPlayer1 = true;
-
-        if (estaConectadoPlayer1 != estaConectadoPlayer1aux) {
-
-          if(jugadorRepresentado == 2){
-          alert("Se ha conectado Jugador 1: " + data[0].usuario);
+            try {
+              if (connection.readyState === connection.OPEN) {
+                connection.send(JSON.stringify(mensaje));
+              }
+            } catch (error) {
+              console.log("error");
+            }
           }
         }
-        estaConectadoPlayer1aux = true;
+      },
+      callbackScope: this,
+      loop: true,
+    });
 
-        //EL JUGADOR1 NO EXISTE
-      } else {
-        estaConectadoPlayer1 = false;
+    //ENVIAMOS LA POSICION DE TODOS LOS ZOMBIES
+    this.time.addEvent({
+      delay: 30,
+      callback: function () {
+        if (jugadorRepresentado == 1) {
+          var indiceX = 0;
+          var indiceY = 0;
+          var indiceIndices = 0;
+          var indiceDireccion = 0;
 
-        if (estaConectadoPlayer1 != estaConectadoPlayer1aux) {
-          alert("Se ha desconectado Jugador 1, se cierra la partida");
+          var arrayX = new Array();
+          var arrayY = new Array();
+          var arrayIndices = new Array();
+          var arrayDireccion = new Array();
 
-          that2.sound.removeByKey("audioScene1");
-          rondaFinal = that2.ronda;
-          game.scene.stop("chatScene");
-          game.scene.stop("sceneGame2");
-          var element = document.getElementById("divChat");
-          element.style.display = "none";
-          if (listaJugAbierta == true) {
-              that2.scene.stop("listaJugadores");
-              listaJugAbierta = false;
-          }
-       
-          game.scene.start("sceneGameOver");
+          for (var i = 0; i < this.enemigos.getChildren().length; i++) {
+            var enem = this.enemigos.getChildren()[i];
 
-        }
-        estaConectadoPlayer1aux = false;
-      }
+            arrayX[indiceX] = enem.x;
+            indiceX++;
+            arrayY[indiceY] = enem.y;
+            indiceY++;
+            arrayIndices[indiceIndices] = enem.indice;
+            indiceIndices++;
 
-      //EL JUGADOR2 EXISTE
-
-      if (data[1] != null) {
-        estaConectadoPlayer2 = true;
-        if(jugadorRepresentado == 1){
-            that2.ready = true;
-        }
-        player2.setVisible(true);
-        if (estaConectadoPlayer2 != estaConectadoPlayer2aux) {
-
-          if(jugadorRepresentado == 1){
-
-            var arrayIndices= new Array();
-            var indice = 0;
-
-            for (var i = 0; i < that2.enemigos.getChildren().length; i++) {
-
-              var enem = that2.enemigos.getChildren()[i];
-          
-              arrayIndices[indice] = enem.indice;
-                indice++;
+            if (enem.body.velocity.x > 0) {
+              arrayDireccion[indiceDireccion] = 1;
+            } else if (enem.body.velocity.x <= 0) {
+              arrayDireccion[indiceDireccion] = -1;
             }
 
-            var mensaje = { nombre: "conec2", numZombies: that2.enemigos.getChildren().length, viditas1: player.vidas, viditas2: player2.vidas, ronditas: that2.ronda, indicesZ:arrayIndices }
-           
+            indiceDireccion++;
+          }
 
-              try {
-                if(connection.readyState === connection.OPEN){
-                  connection.send(JSON.stringify(mensaje));
-                }
-              } catch (error) {
-             
+          var mensaje = {
+            nombre: "posEnem",
+            x: arrayX,
+            y: arrayY,
+            indice: arrayIndices,
+            direccion: arrayDireccion,
+          };
+
+          try {
+            if (connection.readyState === connection.OPEN) {
+              connection.send(JSON.stringify(mensaje));
+            }
+          } catch (error) {
+            console.log("error");
+          }
+        }
+      },
+      callbackScope: this,
+      loop: true,
+    });
+
+    this.time.addEvent({
+      delay: 500,
+      callback: function () {
+        //GET PARA LOS MENSAJES++++++++++++++++++++++++++++++++++++++++++++
+        $.ajax({
+          url: "http://localhost:8080/conectado",
+          //url: "https://lastnightfall-landing.herokuapp.com/conectado",
+        }).then(function (data) {
+          //EL JUGADOR1 EXISTE
+          if (data[0] != null) {
+            estaConectadoPlayer1 = true;
+
+            if (estaConectadoPlayer1 != estaConectadoPlayer1aux) {
+              if (jugadorRepresentado == 2) {
+                alert("Se ha conectado Jugador 1: " + data[0].usuario);
               }
-          
-             
-          
-            
-            alert("Se ha conectado Jugador 2: " + data[1].usuario);
+            }
+            estaConectadoPlayer1aux = true;
 
-            
+            //EL JUGADOR1 NO EXISTE
+          } else {
+            estaConectadoPlayer1 = false;
+
+            if (estaConectadoPlayer1 != estaConectadoPlayer1aux) {
+              alert("Se ha desconectado Jugador 1, se cierra la partida");
+
+              that2.sound.removeByKey("audioScene1");
+              rondaFinal = that2.ronda;
+              game.scene.stop("chatScene");
+              game.scene.stop("sceneGame2");
+              var element = document.getElementById("divChat");
+              element.style.display = "none";
+              if (listaJugAbierta == true) {
+                that2.scene.stop("listaJugadores");
+                listaJugAbierta = false;
+              }
+
+              game.scene.start("sceneGameOver");
+            }
+            estaConectadoPlayer1aux = false;
+          }
+
+          //EL JUGADOR2 EXISTE
+
+          if (data[1] != null) {
+            estaConectadoPlayer2 = true;
+            if (jugadorRepresentado == 1) {
+              that2.ready = true;
+            }
+            player2.setVisible(true);
+            if (estaConectadoPlayer2 != estaConectadoPlayer2aux) {
+              if (jugadorRepresentado == 1) {
+                var arrayIndices = new Array();
+                var indice = 0;
+
+                for (var i = 0; i < that2.enemigos.getChildren().length; i++) {
+                  var enem = that2.enemigos.getChildren()[i];
+
+                  arrayIndices[indice] = enem.indice;
+                  indice++;
                 }
-         
 
+                var mensaje = {
+                  nombre: "conec2",
+                  numZombies: that2.enemigos.getChildren().length,
+                  viditas1: player.vidas,
+                  viditas2: player2.vidas,
+                  ronditas: that2.ronda,
+                  indicesZ: arrayIndices,
+                };
 
-    
-        }
-        estaConectadoPlayer2aux = true;
+                try {
+                  if (connection.readyState === connection.OPEN) {
+                    connection.send(JSON.stringify(mensaje));
+                  }
+                } catch (error) {
+                  console.log("error");
+                }
 
-        //EL JUGADOR2 NO EXISTE
-      } else {
-        estaConectadoPlayer2 = false;
-        if (estaConectadoPlayer2 != estaConectadoPlayer2aux) {
-          alert("Se ha desconectado Jugador 2");
-          
-        }
-        estaConectadoPlayer2aux = false;
-      }
-    }); //FIN GETT+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                alert("Se ha conectado Jugador 2: " + data[1].usuario);
+              }
+            }
+            estaConectadoPlayer2aux = true;
 
-
-  }, callbackScope: this, loop: true });
-
-
+            //EL JUGADOR2 NO EXISTE
+          } else {
+            estaConectadoPlayer2 = false;
+            if (estaConectadoPlayer2 != estaConectadoPlayer2aux) {
+              alert("Se ha desconectado Jugador 2");
+            }
+            estaConectadoPlayer2aux = false;
+          }
+        }); //FIN GETT+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+      },
+      callbackScope: this,
+      loop: true,
+    });
 
     //se añade a la lista de jugadores
     $.ajax({
       method: "PUT",
       url: "http://localhost:8080/conectado",
+      // url: "https://lastnightfall-landing.herokuapp.com/conectado",
       data: JSON.stringify({
         usuario: nombreUsuario,
         contrasena: "auxContraseña",
@@ -770,8 +581,6 @@ this.time.addEvent({
       });
 
     this.bg = this.add.image(config.width / 2, config.height / 2, "fondo");
-
-    
 
     this.add.image(250, 50, "icono2");
     this.add.image(250, 125, "icono1");
@@ -1040,21 +849,16 @@ this.time.addEvent({
     this.gameButtonPause.on(
       "pointerdown",
       function (pointer) {
-//ENVIAMOS QUE HEMOS PAUSAO
-        var mensaje = { nombre: "pausa"}
-      
+        //ENVIAMOS QUE HEMOS PAUSAO
+        var mensaje = { nombre: "pausa" };
 
-          try {
-            if(connection.readyState === connection.OPEN){
-              connection.send(JSON.stringify(mensaje));
-            }
-          } catch (error) {
-           
+        try {
+          if (connection.readyState === connection.OPEN) {
+            connection.send(JSON.stringify(mensaje));
           }
-      
-         
-      
-        
+        } catch (error) {
+          console.log("error");
+        }
 
         //CAMBIAMOS DE ESCENEÇAA
         this.scene.pause("sceneGame2");
@@ -1162,8 +966,8 @@ this.time.addEvent({
     );
 
     //CUENTA ATRAS TEXTO
-    if(jugadorRepresentado == 1){
-        this.ready = false; //indica que el jugador ha tenido tiempo de prepararse
+    if (jugadorRepresentado == 1) {
+      this.ready = false; //indica que el jugador ha tenido tiempo de prepararse
     }
     this.indiceEnem = 0;
     this.enemigosSpawn = false;
@@ -1174,7 +978,7 @@ this.time.addEvent({
       "5",
       100
     );
-    if(jugadorRepresentado == 2){
+    if (jugadorRepresentado == 2) {
       cuentaAtras.setText("");
     }
     this.contadorTimeMedido = false;
@@ -1204,14 +1008,12 @@ this.time.addEvent({
     this.physics.add.collider(player2, tejas);
     this.physics.add.collider(player2, tejas2);
 
-
-
     //GRUPO DE LAS BALAS
     this.balas = this.add.group();
     for (var i = 0; i < 50; i++) {
       //inicializamos 50 balas
 
-      this.balas.getChildren()[i] = new Bala(this,i);
+      this.balas.getChildren()[i] = new Bala(this, i);
     }
 
     //COLLIDER DE LOS ENEMIGOS
@@ -1256,120 +1058,86 @@ this.time.addEvent({
       this
     ); //jugador2 choca con enemigo
 
-    
-
     //DISPARO JUGADOR ESPACIO
 
     this.input.keyboard.on("keydown_SPACE", () => {
-
-
-
-
-        if(jugadorRepresentado == 1){
-
-
-
+      if (jugadorRepresentado == 1) {
         //pulsar el boton de disparo
 
         if (player.vivo) {
-
-            this.disparoSound.play();
-            var i = 0;
-            while (this.balas.getChildren()[i].x != -100) {
+          this.disparoSound.play();
+          var i = 0;
+          while (this.balas.getChildren()[i].x != -100) {
             //encontramos la bala que usaremos
 
             i++;
-            }
-            if (i >= 50 - 1) {
+          }
+          if (i >= 50 - 1) {
             i = 0;
-            }
-            this.balas.getChildren()[i].x = player.x;
-            this.balas.getChildren()[i].y = player.y + 25;
-            this.balas.getChildren()[i].setVisible(true);
-            this.balas.getChildren()[i].lanzador = 1;
+          }
+          this.balas.getChildren()[i].x = player.x;
+          this.balas.getChildren()[i].y = player.y + 25;
+          this.balas.getChildren()[i].setVisible(true);
+          this.balas.getChildren()[i].lanzador = 1;
 
-            if (estado == 0) {
+          if (estado == 0) {
             this.balas.getChildren()[i].anims.play("BalaLeft", true);
             this.balas.getChildren()[i].body.setVelocityX(-1000);
-            } else {
+          } else {
             this.balas.getChildren()[i].anims.play("BalaRight", true);
             this.balas.getChildren()[i].body.setVelocityX(1000);
+          }
+
+          //ENVIAMOS A OTRO CLIENTE QUE HEMOS DIÑSPARADO
+          var mensaje = { nombre: "disparo" };
+
+          try {
+            if (connection.readyState === connection.OPEN) {
+              connection.send(JSON.stringify(mensaje));
             }
-
-            
-            //ENVIAMOS A OTRO CLIENTE QUE HEMOS DIÑSPARADO
-            var mensaje = { nombre: "disparo"}
-           
-
-              try {
-                if(connection.readyState === connection.OPEN){
-                  connection.send(JSON.stringify(mensaje));
-                }
-              } catch (error) {
-               
-              }
-          
-             
-          
-            
+          } catch (error) {
+            console.log("error");
+          }
         }
-
-
-
-        }else if(jugadorRepresentado == 2){
-
-
+      } else if (jugadorRepresentado == 2) {
         //pulsar el boton de disparo
 
         if (player2.vivo) {
-            this.disparoSound.play();
-            var i = 0;
-            while (this.balas.getChildren()[i].x != -100) {
+          this.disparoSound.play();
+          var i = 0;
+          while (this.balas.getChildren()[i].x != -100) {
             //encontramos la bala que usaremos
 
             i++;
-            }
-            if (i >= 50 - 1) {
+          }
+          if (i >= 50 - 1) {
             i = 0;
-            }
-            this.balas.getChildren()[i].x = player2.x;
-            this.balas.getChildren()[i].y = player2.y + 25;
-            this.balas.getChildren()[i].setVisible(true);
-           this.balas.getChildren()[i].lanzador = 2;
+          }
+          this.balas.getChildren()[i].x = player2.x;
+          this.balas.getChildren()[i].y = player2.y + 25;
+          this.balas.getChildren()[i].setVisible(true);
+          this.balas.getChildren()[i].lanzador = 2;
 
-            if (estado2 == 0) {
+          if (estado2 == 0) {
             this.balas.getChildren()[i].anims.play("BalaLeft", true);
             this.balas.getChildren()[i].body.setVelocityX(-1000);
-            } else {
+          } else {
             this.balas.getChildren()[i].anims.play("BalaRight", true);
             this.balas.getChildren()[i].body.setVelocityX(1000);
+          }
+
+          //ENVIAMOS A OTRO CLIENTE QUE HEMOS DIÑSPARADO
+          var mensaje = { nombre: "disparo" };
+
+          try {
+            if (connection.readyState === connection.OPEN) {
+              connection.send(JSON.stringify(mensaje));
             }
-
-
-            //ENVIAMOS A OTRO CLIENTE QUE HEMOS DIÑSPARADO
-            var mensaje = { nombre: "disparo"}
-           
-
-              try {
-                if(connection.readyState === connection.OPEN){
-                  connection.send(JSON.stringify(mensaje));
-                }
-              } catch (error) {
-               
-              }
-          
-             
-          
-            
-
+          } catch (error) {
+            console.log("error");
+          }
         }
-
-            
-
-        }
-
-
-
+      }
     });
 
     //Deteccion de teclas del movimiento del jugador 2
@@ -1414,23 +1182,11 @@ this.time.addEvent({
       }
     });
 
-    
-
     this.servidorEstado = false;
-
-
-
-
-
   }
 
   update(time, delta) {
-
-
-
-
     this.tiempo += delta;
-
 
     //ACTUALIZAR VIDAS
     vidasText.setText("vidas   : " + player.vidas);
@@ -1448,7 +1204,7 @@ this.time.addEvent({
         this.scene.stop("listaJugadores");
         listaJugAbierta = false;
       }
- 
+
       game.scene.start("sceneGameOver");
     }
 
@@ -1459,28 +1215,24 @@ this.time.addEvent({
       vueltaAlJuego = false;
     }
 
-    if(jugadorRepresentado == 1){
+    if (jugadorRepresentado == 1) {
+      if (!this.contadorTimeMedido && this.ready) {
+        //ajusta el momento en el que empieza la escena
+        this.inicioContador = this.tiempo;
+        this.contadorTimeMedido = true;
+      }
 
-        if (!this.contadorTimeMedido && this.ready) {
-            //ajusta el momento en el que empieza la escena
-            this.inicioContador = this.tiempo;
-            this.contadorTimeMedido = true;
-        }
-
-
-        if (!this.enemigosSpawn && this.ready) {
-            this.contadorEnEjecucion = true;
-            this.cuentaAtrasFunc(
-                5,
-                cuentaAtras,
-                this.tiempo,
-                this.inicioContador,
-                delta,
-                this
-             ); //crea la cuenta atras que empieza en el numero 5 introducido en la funcion
-        }
-
-
+      if (!this.enemigosSpawn && this.ready) {
+        this.contadorEnEjecucion = true;
+        this.cuentaAtrasFunc(
+          5,
+          cuentaAtras,
+          this.tiempo,
+          this.inicioContador,
+          delta,
+          this
+        ); //crea la cuenta atras que empieza en el numero 5 introducido en la funcion
+      }
     }
 
     if (
@@ -1499,19 +1251,15 @@ this.time.addEvent({
       balita.update();
     }
 
-    
+    //EL JUGADOR 1 CONTROLA LA CAIDA DE LOS ZOMBIES
+    if (jugadorRepresentado == 1) {
+      //UPDATE ENEMIGOS
 
+      for (var i = 0; i < this.enemigos.getChildren().length; i++) {
+        var enem = this.enemigos.getChildren()[i];
+        enem.update(player.x, player2.x, player.vivo, player2.vivo);
+      }
 
-//EL JUGADOR 1 CONTROLA LA CAIDA DE LOS ZOMBIES
-    if(jugadorRepresentado == 1){
-
-      //UPDATE ENEMIGOS 
-
-    for (var i = 0; i < this.enemigos.getChildren().length; i++) {
-      var enem = this.enemigos.getChildren()[i];
-      enem.update(player.x, player2.x, player.vivo, player2.vivo);
-    }
-      
       //ENEMIGOS BAJAN PLATAFORMAS
       var probabilidadBajarEscaleras = 0.0017;
       var bajanEscaleras = Math.random() * (1 - 0) + 0; //numero aleatorio del 0 al 1
@@ -1520,10 +1268,6 @@ this.time.addEvent({
         bajanEscaleras < probabilidadBajarEscaleras &&
         colliderEnemigosEliminado == 0
       ) {
-        
-       
-
-
         this.physics.world.removeCollider(this.colliderEnemPlat);
         this.physics.world.removeCollider(this.colliderEnemEscaleras1);
         this.physics.world.removeCollider(this.colliderEnemEscaleras2);
@@ -1532,60 +1276,58 @@ this.time.addEvent({
 
         this.time.delayedCall(1600, this.zombiesPlatF, [], this);
       }
-
     }
-  
 
-   
     //APARICION ENEMIGOS
     var tiempoEntreZombies = 5000 / this.ronda;
 
-
     if (
-      this.enemigosSpawn  &&
-      (this.tiempo - this.tiempoEnemigo)  >= 0 &&
+      this.enemigosSpawn &&
+      this.tiempo - this.tiempoEnemigo >= 0 &&
       (this.tiempo - this.tiempoEnemigo) % tiempoEntreZombies < delta
     ) {
-      new Enemigo(this, this.sys.game.config.width, this.sys.game.config.height/2,this.indiceEnem);
+      new Enemigo(
+        this,
+        this.sys.game.config.width,
+        this.sys.game.config.height / 2,
+        this.indiceEnem
+      );
       //ENVIAMOS QUE SE HA CREADO NUEVO ENEMIGO
-      var mensaje = { nombre: "crearEnem", x: this.sys.game.config.width, y: this.sys.game.config.height/2, indice: this.indiceEnem }
-      
+      var mensaje = {
+        nombre: "crearEnem",
+        x: this.sys.game.config.width,
+        y: this.sys.game.config.height / 2,
+        indice: this.indiceEnem,
+      };
 
-        try {
-          if(connection.readyState === connection.OPEN){
-            connection.send(JSON.stringify(mensaje));
-          }
-        } catch (error) {
-         
+      try {
+        if (connection.readyState === connection.OPEN) {
+          connection.send(JSON.stringify(mensaje));
         }
-    
-       
-    
-      
+      } catch (error) {
+        console.log("error");
+      }
+
       this.indiceEnem++;
 
-      new Enemigo(this, 0, 0,this.indiceEnem);
-      var mensaje = { nombre: "crearEnem", x: 0, y: 0, indice: this.indiceEnem }
-      
+      new Enemigo(this, 0, 0, this.indiceEnem);
+      var mensaje = {
+        nombre: "crearEnem",
+        x: 0,
+        y: 0,
+        indice: this.indiceEnem,
+      };
 
-        try {
-          if(connection.readyState === connection.OPEN){
-            connection.send(JSON.stringify(mensaje));
-          }
-        } catch (error) {
-        
+      try {
+        if (connection.readyState === connection.OPEN) {
+          connection.send(JSON.stringify(mensaje));
         }
-    
-       
-    
-      
+      } catch (error) {
+        console.log("error");
+      }
+
       this.indiceEnem++;
-    
-     
-
-
     }
-
 
     // EScLERAS POR LA DERECHA JUGADOR 1
     this.colliderEscalerasEliminadoAux = 0;
@@ -1608,8 +1350,6 @@ this.time.addEvent({
 
         enem.disableBody(true, false);
       }
-
-      
     }
     // EScLERAS1 POR LA DERECHA JUGADOR 1
     this.colliderEscalerasEliminadoAux = 0;
@@ -1623,13 +1363,9 @@ this.time.addEvent({
         (enem.body.touching.right && player.body.touching.top && player.vivo)
       ) {
         this.colliderEscalerasEliminadoAux = 1;
-
-
       }
     }
     if (this.colliderEscalerasEliminadoAux == 1) {
-     
-
       //este for sirve paara eliminar los colliders
       for (var i = 0; i < escaleras1.getChildren().length; i++) {
         var enem = escaleras1.getChildren()[i];
@@ -1650,13 +1386,9 @@ this.time.addEvent({
         (enem.body.touching.right && player.body.touching.top && player.vivo)
       ) {
         this.colliderEscalerasEliminadoAux = 1;
-
-  
       }
     }
     if (this.colliderEscalerasEliminadoAux === 1) {
-     
-
       //este for sirve paara eliminar los colliders
       for (var i = 0; i < escaleras2.getChildren().length; i++) {
         var enem = escaleras2.getChildren()[i];
@@ -1667,189 +1399,159 @@ this.time.addEvent({
 
     //CONTROLES JUGADOR WASD
     //Pulsar tecla izquierda
-    if (Phaser.Input.Keyboard.DownDuration(this.a) ) {
-
-
-      if(jugadorRepresentado == 1 && player.vivo){
-    
-        
+    if (Phaser.Input.Keyboard.DownDuration(this.a)) {
+      if (jugadorRepresentado == 1 && player.vivo) {
         player.setVelocityX(-260);
 
         player.anims.play("left", true);
-  
+
         estado = 0;
         parado = false;
-      }
-
-      else if(jugadorRepresentado == 2 && player2.vivo){
+      } else if (jugadorRepresentado == 2 && player2.vivo) {
         player2.setVelocityX(-260);
 
         player2.anims.play("left2", true);
-  
+
         estado2 = 0;
         parado2 = false;
       }
-
-
-
     }
     //Pulsar tecla derecha
-    else if (Phaser.Input.Keyboard.DownDuration(this.d) ) {
+    else if (Phaser.Input.Keyboard.DownDuration(this.d)) {
+      if (jugadorRepresentado == 1 && player.vivo) {
+        player.setVelocityX(260);
 
-        if(jugadorRepresentado == 1 && player.vivo){
-            player.setVelocityX(260);
-    
-            player.anims.play("right", true);
-    
-            estado = 1;
-            parado = false;
-          }
+        player.anims.play("right", true);
 
-        else if(jugadorRepresentado == 2 && player2.vivo){
-
-            player2.setVelocityX(260);
+        estado = 1;
+        parado = false;
+      } else if (jugadorRepresentado == 2 && player2.vivo) {
+        player2.setVelocityX(260);
 
         player2.anims.play("right2", true);
 
         estado2 = 1;
         parado2 = false;
-        }
-       
-
-  
-
+      }
     }
     //Pulsar ninguna tecla
     else if (player.vivo || player2.vivo) {
-
- 
-      if(player.vivo){
-        if(jugadorRepresentado == 1){
-          try{
+      if (player.vivo) {
+        if (jugadorRepresentado == 1) {
+          try {
             player.setVelocityX(0);
             player.anims.play("turn", true);
             parado = true;
-          }catch(error){
-  //pñlayer no existe
+          } catch (error) {
+            //pñlayer no existe
           }
-          
         }
       }
 
-      if(player2.vivo){
-
-        if(jugadorRepresentado == 2){
-          try{
+      if (player2.vivo) {
+        if (jugadorRepresentado == 2) {
+          try {
             player2.setVelocityX(0);
             player2.anims.play("turn", true);
             parado2 = true;
-          }catch(error){
-              //pñlayer no existe
+          } catch (error) {
+            //pñlayer no existe
           }
-          
-
-         }
-
-
-  
-    }
-   
-
+        }
+      }
     }
 
+    if (jugadorRepresentado == 1) {
+      if (player.vivo) {
+        //Pulsar tecla arriba
+        if (
+          Phaser.Input.Keyboard.DownDuration(this.w) &&
+          player.body.touching.down
+        ) {
+          player.setVelocityY(-400);
+          player.anims.stop();
+        }
 
+        //Pulsar tecla abajo(eliminar collider)
+        if (
+          Phaser.Input.Keyboard.DownDuration(this.s) &&
+          player.body.touching.down
+        ) {
+          //este for sirve paara eliminar los colliders
+          for (var i = 0; i < platforms.getChildren().length; i++) {
+            var enem = platforms.getChildren()[i];
 
-    if(jugadorRepresentado == 1){
-        if (player.vivo) {
-            //Pulsar tecla arriba
-            if ( Phaser.Input.Keyboard.DownDuration(this.w) && player.body.touching.down) {
-              player.setVelocityY(-400);
-              player.anims.stop();
-            }
-      
-            //Pulsar tecla abajo(eliminar collider)
-            if (Phaser.Input.Keyboard.DownDuration(this.s) && player.body.touching.down) {
+            enem.disableBody(true, false);
+          }
 
-      
-              //este for sirve paara eliminar los colliders
-              for (var i = 0; i < platforms.getChildren().length; i++) {
-                var enem = platforms.getChildren()[i];
-      
-                enem.disableBody(true, false);
-              }
-      
-              //este for sirve paara eliminar los colliders
-              for (var i = 0; i < escaleras.getChildren().length; i++) {
-                var enem = escaleras.getChildren()[i];
-      
-                enem.disableBody(true, false);
-              }
-      
-              //este for sirve paara eliminar los colliders
-              for (var i = 0; i < escaleras1.getChildren().length; i++) {
-                var enem = escaleras1.getChildren()[i];
-      
-                enem.disableBody(true, false);
-              }
-      
-              //este for sirve paara eliminar los colliders
-              for (var i = 0; i < escaleras2.getChildren().length; i++) {
-                var enem = escaleras2.getChildren()[i];
-      
-                enem.disableBody(true, false);
-              }
-            } // FIN PULSAR TECLA ABAJO
-          } // FIN PULSAR TECLA ABAJO mas o menos
+          //este for sirve paara eliminar los colliders
+          for (var i = 0; i < escaleras.getChildren().length; i++) {
+            var enem = escaleras.getChildren()[i];
 
-      }else if(jugadorRepresentado == 2){
-        if (player2.vivo) {
-        
-            //Pulsar tecla arriba
-            if ( Phaser.Input.Keyboard.DownDuration(this.w) && player2.body.touching.down) {
-      
-              player2.setVelocityY(-400);
-              player.anims.stop();
-      
-      
-            }
-      
-            //Pulsar tecla abajo(eliminar collider)
-            if (Phaser.Input.Keyboard.DownDuration(this.s) && player2.body.touching.down) {
-             
-              //este for sirve paara eliminar los colliders
-              for (var i = 0; i < platformsd.getChildren().length; i++) {
-                var enem = platformsd.getChildren()[i];
-      
-                enem.disableBody(true, false);
-              }
-      
-              //este for sirve paara eliminar los colliders
-              for (var i = 0; i < escalerasd.getChildren().length; i++) {
-                var enem = escalerasd.getChildren()[i];
-      
-                enem.disableBody(true, false);
-              }
-      
-              //este for sirve paara eliminar los colliders
-              for (var i = 0; i < escaleras1d.getChildren().length; i++) {
-                var enem = escaleras1d.getChildren()[i];
-      
-                enem.disableBody(true, false);
-              }
-      
-              //este for sirve paara eliminar los colliders
-              for (var i = 0; i < escaleras2d.getChildren().length; i++) {
-                var enem = escaleras2d.getChildren()[i];
-      
-                enem.disableBody(true, false);
-              }
-            } // FIN PULSAR TECLA ABAJO
-          } // FIN PULSAR TECLA ABAJO mas o menos
+            enem.disableBody(true, false);
+          }
 
+          //este for sirve paara eliminar los colliders
+          for (var i = 0; i < escaleras1.getChildren().length; i++) {
+            var enem = escaleras1.getChildren()[i];
+
+            enem.disableBody(true, false);
+          }
+
+          //este for sirve paara eliminar los colliders
+          for (var i = 0; i < escaleras2.getChildren().length; i++) {
+            var enem = escaleras2.getChildren()[i];
+
+            enem.disableBody(true, false);
+          }
+        } // FIN PULSAR TECLA ABAJO
+      } // FIN PULSAR TECLA ABAJO mas o menos
+    } else if (jugadorRepresentado == 2) {
+      if (player2.vivo) {
+        //Pulsar tecla arriba
+        if (
+          Phaser.Input.Keyboard.DownDuration(this.w) &&
+          player2.body.touching.down
+        ) {
+          player2.setVelocityY(-400);
+          player.anims.stop();
+        }
+
+        //Pulsar tecla abajo(eliminar collider)
+        if (
+          Phaser.Input.Keyboard.DownDuration(this.s) &&
+          player2.body.touching.down
+        ) {
+          //este for sirve paara eliminar los colliders
+          for (var i = 0; i < platformsd.getChildren().length; i++) {
+            var enem = platformsd.getChildren()[i];
+
+            enem.disableBody(true, false);
+          }
+
+          //este for sirve paara eliminar los colliders
+          for (var i = 0; i < escalerasd.getChildren().length; i++) {
+            var enem = escalerasd.getChildren()[i];
+
+            enem.disableBody(true, false);
+          }
+
+          //este for sirve paara eliminar los colliders
+          for (var i = 0; i < escaleras1d.getChildren().length; i++) {
+            var enem = escaleras1d.getChildren()[i];
+
+            enem.disableBody(true, false);
+          }
+
+          //este for sirve paara eliminar los colliders
+          for (var i = 0; i < escaleras2d.getChildren().length; i++) {
+            var enem = escaleras2d.getChildren()[i];
+
+            enem.disableBody(true, false);
+          }
+        } // FIN PULSAR TECLA ABAJO
+      } // FIN PULSAR TECLA ABAJO mas o menos
     }
-
-
-
 
     // EScLERAS POR LA DERECHA  JUGADOR 2
     this.colliderEscalerasEliminadoAux2 = 0;
@@ -1863,12 +1565,9 @@ this.time.addEvent({
         (enem.body.touching.right && player2.body.touching.top && player2.vivo)
       ) {
         this.colliderEscalerasEliminadoAux2 = 1;
-   
       }
     }
     if (this.colliderEscalerasEliminadoAux2 == 1) {
-    
-
       //este for sirve paara eliminar los colliders
       for (var i = 0; i < escalerasd.getChildren().length; i++) {
         var enem = escalerasd.getChildren()[i];
@@ -1888,13 +1587,9 @@ this.time.addEvent({
         (enem.body.touching.right && player2.body.touching.top && player2.vivo)
       ) {
         this.colliderEscalerasEliminadoAux2 = 1;
-
-
       }
     }
     if (this.colliderEscalerasEliminadoAux2 == 1) {
-     
-
       //este for sirve paara eliminar los colliders
       for (var i = 0; i < escaleras1d.getChildren().length; i++) {
         var enem = escaleras1d.getChildren()[i];
@@ -1915,12 +1610,9 @@ this.time.addEvent({
         (enem.body.touching.right && player2.body.touching.top && player2.vivo)
       ) {
         this.colliderEscalerasEliminadoAux2 = 1;
-       
       }
     }
     if (this.colliderEscalerasEliminadoAux2 == 1) {
-     
-
       //este for sirve paara eliminar los colliders
       for (var i = 0; i < escaleras2d.getChildren().length; i++) {
         var enem = escaleras2d.getChildren()[i];
@@ -1939,7 +1631,6 @@ this.time.addEvent({
 
       if (checkOverlap(player, escalerillas)) {
         this.auxoverlapchoca = true;
-      
       }
     } //fin for
     //OVERLAP CON ESCALERAS????????????????????????????????????????????????????
@@ -1948,7 +1639,6 @@ this.time.addEvent({
 
       if (checkOverlap(player, escalerillas)) {
         this.auxoverlapchoca = true;
-     
       }
     } //fin for
     //OVERLAP CON ESCALERAS1????????????????????????????????????????????????????
@@ -1957,7 +1647,6 @@ this.time.addEvent({
 
       if (checkOverlap(player, escalerillas)) {
         this.auxoverlapchoca = true;
-       
       }
     } //fin for
     //OVERLAP CON ESCALERAS2????????????????????????????????????????????????????
@@ -1966,7 +1655,6 @@ this.time.addEvent({
 
       if (checkOverlap(player, escalerillas)) {
         this.auxoverlapchoca = true;
-       
       }
     } //fin for
 
@@ -1974,8 +1662,6 @@ this.time.addEvent({
     if (this.auxoverlapchoca === true) {
       //
     } else {
-     
-
       //EN ESTOS FOR ESTAMOS CREANDO LAS COLISIONES (EN VERDAD SE ACTIVA EL BODY)
       for (var i = 0; i < platforms.getChildren().length; i++) {
         var enem = platforms.getChildren()[i];
@@ -2015,7 +1701,6 @@ this.time.addEvent({
 
       if (checkOverlap(player2, escalerillas)) {
         this.auxoverlapchoca2 = true;
-        
       }
     } //fin for
     //OVERLAP CON ESCALERAS????????????????????????????????????????????????????
@@ -2024,7 +1709,6 @@ this.time.addEvent({
 
       if (checkOverlap(player2, escalerillas)) {
         this.auxoverlapchoca2 = true;
-       
       }
     } //fin for
     //OVERLAP CON ESCALERAS1????????????????????????????????????????????????????
@@ -2033,7 +1717,6 @@ this.time.addEvent({
 
       if (checkOverlap(player2, escalerillas)) {
         this.auxoverlapchoca2 = true;
-       
       }
     } //fin for
     //OVERLAP CON ESCALERAS2????????????????????????????????????????????????????
@@ -2042,7 +1725,6 @@ this.time.addEvent({
 
       if (checkOverlap(player2, escalerillas)) {
         this.auxoverlapchoca2 = true;
-       
       }
     } //fin for
 
@@ -2050,8 +1732,6 @@ this.time.addEvent({
     if (this.auxoverlapchoca2 === true) {
       //
     } else {
-
-
       //EN ESTOS FOR ESTAMOS CREANDO LAS COLISIONES (EN VERDAD SE ACTIVA EL BODY)
       for (var i = 0; i < platformsd.getChildren().length; i++) {
         var enem = platformsd.getChildren()[i];
@@ -2083,79 +1763,48 @@ this.time.addEvent({
   } //FIN UPDATE
 
   matarEnemigos(bala, enemigo) {
+    if (jugadorRepresentado == 1 && bala.lanzador == 1) {
+      var mensaje = {
+        nombre: "matarEnem",
+        indice: enemigo.indice,
+        nBala: bala.indice,
+      };
+      bala.matarBala();
+      enemigo.destroy();
 
-
- 
-
-if(jugadorRepresentado == 1 && bala.lanzador == 1){
-
-  var mensaje = { nombre: "matarEnem",indice: enemigo.indice, nBala: bala.indice}
-  bala.matarBala();
-  enemigo.destroy();
-  
-
-    try {
-      if(connection.readyState === connection.OPEN){
-        connection.send(JSON.stringify(mensaje));
+      try {
+        if (connection.readyState === connection.OPEN) {
+          connection.send(JSON.stringify(mensaje));
+        }
+      } catch (error) {
+        console.log("error");
       }
-    } catch (error) {
-     
     }
 
-   
+    if (jugadorRepresentado == 2 && bala.lanzador == 2) {
+      var mensaje = {
+        nombre: "matarEnem",
+        indice: enemigo.indice,
+        nBala: bala.indice,
+      };
+      bala.matarBala();
+      enemigo.destroy();
 
-  
-
-
-}
-
-if(jugadorRepresentado == 2 && bala.lanzador == 2){
-
-  var mensaje = { nombre: "matarEnem",indice: enemigo.indice, nBala: bala.indice}
-  bala.matarBala();
-  enemigo.destroy();
-
-
-    try {
-      if(connection.readyState === connection.OPEN){
-        connection.send(JSON.stringify(mensaje));
+      try {
+        if (connection.readyState === connection.OPEN) {
+          connection.send(JSON.stringify(mensaje));
+        }
+      } catch (error) {
+        console.log("error");
       }
-    } catch (error) {
-     
     }
-
-   
-
-  }
-  
-
-
-
-
-
-
-
-
-
-
   }
   quitarVida(_player) {
-
-
-
     if (!_player.inmortalidad) {
       //si no es considerado inmortal (conrol realizado para respetetar un tiempo entre daño y daño)
-      
 
-
-
-     
-      if(jugadorRepresentado == 1){
-
-        if(_player == player){
-
-
-
+      if (jugadorRepresentado == 1) {
+        if (_player == player) {
           if (_player.vidas == 1) {
             _player.setTint(0xff0000);
             _player.vivo = false;
@@ -2170,146 +1819,103 @@ if(jugadorRepresentado == 2 && bala.lanzador == 2){
           setTimeout(function () {
             _player.inmortalidad = false;
           }, 2000);
-    
-  
-          var mensaje = { nombre: "quitarVida"}
 
-         
+          var mensaje = { nombre: "quitarVida" };
 
-            try {
-              if(connection.readyState === connection.OPEN){
-                connection.send(JSON.stringify(mensaje));
-              }
-            } catch (error) {
-            
+          try {
+            if (connection.readyState === connection.OPEN) {
+              connection.send(JSON.stringify(mensaje));
             }
-        
-           
-        
+          } catch (error) {
+            console.log("error");
           }
-         
-  
-        
-
-
-      }
-
-
-      if(jugadorRepresentado == 2){
-
-        if(_player == player2){
-
-
-
-          if (_player.vidas == 1) {
-            _player.setTint(0xff0000);
-            _player.vivo = false;
-            this.gameOverSound.play();
-            _player.vidas--;
-          } else if (_player.vidas <= 0) {
-          } else {
-            this.perderUnaVidaSound.play();
-            _player.vidas--;
-            _player.inmortalidad = true;
-          }
-          setTimeout(function () {
-            _player.inmortalidad = false;
-          }, 2000);
-    
-          var mensaje = { nombre: "quitarVida"}
-          
-
-            try {
-              if(connection.readyState === connection.OPEN){
-                connection.send(JSON.stringify(mensaje));
-              }
-            } catch (error) {
-             
-            }
-        
-           
-        
-          
-
-  
         }
-
-
       }
 
+      if (jugadorRepresentado == 2) {
+        if (_player == player2) {
+          if (_player.vidas == 1) {
+            _player.setTint(0xff0000);
+            _player.vivo = false;
+            this.gameOverSound.play();
+            _player.vidas--;
+          } else if (_player.vidas <= 0) {
+          } else {
+            this.perderUnaVidaSound.play();
+            _player.vidas--;
+            _player.inmortalidad = true;
+          }
+          setTimeout(function () {
+            _player.inmortalidad = false;
+          }, 2000);
 
-      
+          var mensaje = { nombre: "quitarVida" };
 
-   
-     
+          try {
+            if (connection.readyState === connection.OPEN) {
+              connection.send(JSON.stringify(mensaje));
+            }
+          } catch (error) {
+            console.log("error");
+          }
+        }
+      }
     }
   }
 
   cuentaAtrasFunc(num, cuentaAtras, tiempo, inicioContador, delta, scene) {
-    
-    if(jugadorRepresentado == 1){
+    if (jugadorRepresentado == 1) {
+      num++;
 
-        num++;
-
-        for (var i = 0; i <= num; i++) {
+      for (var i = 0; i <= num; i++) {
         if (
-            tiempo > i * 1000 + inicioContador - delta/2 &&
-            tiempo < i * 1000 + inicioContador + delta/2
+          tiempo > i * 1000 + inicioContador - delta / 2 &&
+          tiempo < i * 1000 + inicioContador + delta / 2
         ) {
-            
-                if((num - i - 1) == 0){
+          if (num - i - 1 == 0) {
+            //la cuenta atras ya ha terminado
+            cuentaAtras.setText("");
+            scene.enemigosSpawn = true; //se activa que emiecen a aparecer enemigos
+            scene.tiempoEnemigo = tiempo; //se guarda el tiempo en el que se activa su aparicion
+            if (jugadorRepresentado == 1) {
+              scene.ready = false; //El jugador al incio de la siguiente ronda no estara preparado
+            }
 
-                    //la cuenta atras ya ha terminado
-                    cuentaAtras.setText("");
-                    scene.enemigosSpawn = true; //se activa que emiecen a aparecer enemigos
-                    scene.tiempoEnemigo = tiempo; //se guarda el tiempo en el que se activa su aparicion
-                    if(jugadorRepresentado == 1){
-                        scene.ready = false; //El jugador al incio de la siguiente ronda no estara preparado
-                    }
-                
-                    this.contadorEnEjecucion = false; //finaliza la cuenta atras
+            this.contadorEnEjecucion = false; //finaliza la cuenta atras
 
-                    cuentaAtras.setText("");
-                    scene.ronda++; //actualiza la ronda
-                    scoreText.setText("ronda " + this.ronda);
+            cuentaAtras.setText("");
+            scene.ronda++; //actualiza la ronda
+            scoreText.setText("ronda " + this.ronda);
+          } else {
+            cuentaAtras.setText(num - i - 1);
+          }
 
-                }else{
-                    cuentaAtras.setText(num - i - 1);
-                }
-            
+          //ENVIAMOS A OTRO CLIENTE POR DONDE VA LA CUENTA
+          var mensaje = {
+            nombre: "cuentaAtras",
+            t: num - i - 1,
+            ronda: this.ronda,
+          };
 
-            //ENVIAMOS A OTRO CLIENTE POR DONDE VA LA CUENTA
-            var mensaje = { nombre: "cuentaAtras", t: (num - i - 1),ronda: this.ronda}
-           
-
-              try {
-                if(connection.readyState === connection.OPEN){
-                  connection.send(JSON.stringify(mensaje));
-                }
-              } catch (error) {
-             
-              }
-          
-             
-          
-            
-
-
-            
-        }
+          try {
+            if (connection.readyState === connection.OPEN) {
+              connection.send(JSON.stringify(mensaje));
+            }
+          } catch (error) {
+            console.log("error");
+          }
         }
       }
     }
+  }
 
   reiniciarContador(scene) {
     scene.contadorTimeMedido = false;
-    if(jugadorRepresentado == 1){
-        scene.ready = true;
+    if (jugadorRepresentado == 1) {
+      scene.ready = true;
     }
-   
   }
 
- 
   zombiesPlatF() {
     if (colliderEnemigosEliminado === 1) {
       this.colliderEnemPlat = this.physics.add.collider(
@@ -2332,7 +1938,6 @@ if(jugadorRepresentado == 2 && bala.lanzador == 2){
         escaleras2z
       );
 
-      
       colliderEnemigosEliminado = 0;
     }
   }
@@ -2358,6 +1963,7 @@ function servidor() {
   //Actualiza el estado del servidor
   $.ajax({
     url: "http://localhost:8080/juego",
+    //url: "https://lastnightfall-landing.herokuapp.com/juego",
   })
     .then(function (data) {
       if (data == true) {

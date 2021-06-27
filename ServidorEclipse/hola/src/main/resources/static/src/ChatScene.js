@@ -93,7 +93,8 @@ class ChatScene extends Phaser.Scene {
 
                   $.ajax({
                     method: "PUT",
-                    url:"http://localhost:8080/mensaje",
+                        url: "http://localhost:8080/mensaje",
+                        //url: "https://lastnightfall-landing.herokuapp.com/mensaje",
                     data: JSON.stringify({texto: auxValorChat,usuario : nombreUsuario}),
                     processData: false,
                     headers: {
@@ -136,7 +137,8 @@ class ChatScene extends Phaser.Scene {
 //GET PARA LOS MENSAJES
     $.ajax({
 
-        url: "http://localhost:8080/chat"
+            url: "http://localhost:8080/chat",
+            //url: "https://lastnightfall-landing.herokuapp.com/chat",
     }).then(function(data) {
    
     that.text.setText("");//vaciamos el chat para actualizarlo

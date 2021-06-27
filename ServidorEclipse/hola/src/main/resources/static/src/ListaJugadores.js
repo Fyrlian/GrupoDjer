@@ -37,7 +37,8 @@ class ListaJugadores extends Phaser.Scene {
 //GET PARA LOS MENSAJES++++++++++++++++++++++++++++++++++++++++++++
 $.ajax({
 
-    url: "http://localhost:8080/conectado"
+    //url: "https://lastnightfall-landing.herokuapp.com/conectado",
+    url:"http://localhost:8080/conectado",
 }).then(function(data) {
 
    

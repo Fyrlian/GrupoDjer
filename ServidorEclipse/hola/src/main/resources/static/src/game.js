@@ -84,7 +84,5 @@ var textEstadoServidor;
 var overlapPlataformasBool = false;
 var overlapEscalerasBool = false;
 var connection = new WebSocket('ws://localhost:8080/LastNightFall');
-
-
-
+//var   connection = new WebSocket('wss://lastnightfall-landing.herokuapp.com/LastNightFall');
 var game = new Phaser.Game(config);

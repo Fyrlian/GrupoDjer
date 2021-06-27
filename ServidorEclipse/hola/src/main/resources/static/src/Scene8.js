@@ -12,7 +12,8 @@ class Scene8 extends Phaser.Scene {
       
       $.ajax({
         method: "DELETE",
-        url:"http://localhost:8080/conectado",
+        url: "http://localhost:8080/conectado",
+        //url: "https://lastnightfall-landing.herokuapp.com/conectado",
         data: JSON.stringify({usuario : nombreUsuario,contrasena: "auxContraseña"}),
         processData: false,
         headers: {

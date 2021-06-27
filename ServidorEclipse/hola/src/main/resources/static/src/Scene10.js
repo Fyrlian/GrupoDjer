@@ -19,7 +19,8 @@ class Scene10 extends Phaser.Scene {
          
           //GET PARA LOS MENSAJES++++++++++++++++++++++++++++++++++++++++++++
           $.ajax({
-            url: "http://localhost:8080/conectado",
+                url: "http://localhost:8080/conectado",
+                //url: "https://lastnightfall-landing.herokuapp.com/conectado",
           }).then(function (data) {
            
 
@@ -47,7 +48,7 @@ class Scene10 extends Phaser.Scene {
                       indice++;
                   }
       
-                  var mensaje = { nombre: "conec2", numZombies: that2.enemigos.getChildren().length, viditas1: player.vidas, viditas2: player2.vidas, ronditas: that2.ronda, indicesZ:arrayIndices }
+                  var mensaje = { nombre: "conec2", numZombies: that2.enemigos.getChildren().length, viditas1: player.vidas, viditas2: player2.vidas, ronditas: that2.ronda, indicesZ:arrayIndices}
                   try {
                     if(connection.readyState === connection.OPEN){
                       connection.send(JSON.stringify(mensaje));
@@ -55,7 +56,16 @@ class Scene10 extends Phaser.Scene {
                   } catch (error) {
                    
                   }
-                  alert("Se ha conectado Jugador 2: " + data[1].usuario);
+
+                  var mensaje2 = { nombre: "pausa"}
+                  try {
+                    if(connection.readyState === connection.OPEN){
+                      connection.send(JSON.stringify(mensaje2));
+                    }
+                  } catch (error) {
+                   console.log("ERROR");
+                                    }
+                  alert("Se ha conectado Jugador 2 en pausa: " + data[1].usuario);
       
                   
                       }
@@ -150,6 +160,11 @@ class Scene10 extends Phaser.Scene {
         
         this.gameButtonBack.on('pointerdown', function (pointer) {
 
+
+          that4.scene.resume('sceneGame2');
+          vueltaAlJuego = true;
+          that4.scene.stop("scenePause2");
+
             var mensaje = { nombre: "noPausa" }
             try {
               if(connection.readyState === connection.OPEN){
@@ -159,9 +174,7 @@ class Scene10 extends Phaser.Scene {
             
             }
 
-            this.scene.resume('sceneGame2');
-            vueltaAlJuego = true;
-            this.scene.stop("scenePause2");
+           
             
         }.bind(this));
  
@@ -184,7 +197,8 @@ class Scene10 extends Phaser.Scene {
         this.gameButtonExit.on('pointerdown', function (pointer) {
             $.ajax({
             method: "DELETE",
-            url:"http://localhost:8080/conectado",
+                url: "http://localhost:8080/conectado",
+                //url: "https://lastnightfall-landing.herokuapp.com/conectado",
             data: JSON.stringify({usuario : nombreUsuario,contrasena: "auxContraseña"}),
             processData: false,
             headers: {
