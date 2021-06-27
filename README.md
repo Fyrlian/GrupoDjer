@@ -51,7 +51,7 @@ navegador y ejecutar el juego con localhost:8080. El archivo .jar se encuentra e
 
 ## **DIAGRAMA DE CLASES Y API REST**
 
-![](https://cdn.discordapp.com/attachments/798862661047025664/799064021022015508/unknown.png)
+![](https://media.discordapp.net/attachments/848167350728785930/858726025511698482/DiagramaDeClases.png)
 
 ## **1.-CAMBIOS FASE 2**
 Al comienzo queríamos hacer un juego demasiado complejo, por lo que hemos decidido en esta fase simplificarlo, algunas de las ideas iniciales por el momento las dejaremos en "Posibles cambios futuros".
@@ -59,6 +59,9 @@ Para simplificar el juego se ha eliminado el scroll lateral, la variedad de arma
 
 ## **1.1-CAMBIOS FASE 3**
 Se ha cambiado totalmente el aspecto del juego y se han corregido algunos errores.
+
+## **1.1-CAMBIOS FASE 4**
+Se ha incluido un sistema online mediante websockets para jugar en tiempo real con personas en otros dispositivos mediante heroku.
 
 
 ## **1.2-Posibles futuros cambios**
