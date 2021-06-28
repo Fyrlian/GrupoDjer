@@ -303,11 +303,11 @@ class Scene7 extends Phaser.Scene {
             }
           }
 
-          // try{
-          enem.destroy();
-          // }catch(error){
+          try{
+            enem.destroy();
+          }catch(error){
 
-          // }
+          }
 
           that2.balas.getChildren()[mensajeParsed.nBala].matarBala();
         }
@@ -568,12 +568,19 @@ class Scene7 extends Phaser.Scene {
       },
     })
       .done(function (data, textStatus, jqXHR) {
-        if (data == 1) {
+       if (data == 1) {
           //entra como el jugador 1
           jugadorRepresentado = 1;
+    
+            player2.body.setAllowGravity(false);
+
+           
         } else {
           //entra como el jugador 2
           jugadorRepresentado = 2;
+
+          player.body.setAllowGravity(false);
+       
         }
       })
       .fail(function (data, textStatus, jqXHR) {
